@@ -1,11 +1,11 @@
-I9 : naming of variables, subroutines, modules
+I1 : naming of variables, subroutines, modules
 **********************************************
 
 The IFS has a historical naming convention, which should be adhered to 
 where sensible.
 
-*Variable naming convention*
-
+Variable naming 
+================
 * Local variables
 
  * integer : ``Ixxx``
@@ -20,7 +20,13 @@ where sensible.
  * logical : ``LDxxx``
  * derived type : ``YDxxx``
 
-*Routine naming*
+* Name suffixes
+
+ * L suffix corresponds to local / subdomain variables
+ * G suffix corresponds to global / full-domain variables
+
+Routine naming
+==============
 
 * setup routines should start with subroutines
 * TL and AD routines should end with tl and ad respectively

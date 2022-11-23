@@ -1,4 +1,4 @@
-L13 : OPTIONAL argument keyword usage
+L7 : OPTIONAL argument keyword usage
 *************************************
 
 Optional arguments passed to a routine shall have their keyword speficied.

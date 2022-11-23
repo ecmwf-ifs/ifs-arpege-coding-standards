@@ -1,4 +1,4 @@
-S14 : line continuation
+S3 : line continuation
 ************************
 
 Optional arguments to a routine shall be after non-optional ones.

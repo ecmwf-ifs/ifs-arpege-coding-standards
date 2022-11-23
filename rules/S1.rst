@@ -1,4 +1,4 @@
-S7: END IF / ENDIF
+S1 : END IF / ENDIF
 *******************
 
 Two-word control flow constructs should be written as single words. 

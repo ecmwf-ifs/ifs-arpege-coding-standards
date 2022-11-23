@@ -1,0 +1,6 @@
+R5 :  Variable name suffixes
+****************************
+
+**Obsolescent** : covered elsewhere
+
+Variables suffixed with L are local in the sense of the parallel distribution. Variables suffixed with G are global.

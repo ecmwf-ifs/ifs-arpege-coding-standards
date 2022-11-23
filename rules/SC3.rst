@@ -1,4 +1,4 @@
-SC8: function calls from inside KPROMA loops
+SC3 : function calls from inside KPROMA loops
 ********************************************
 
 Inside tight horizontal loops of type DO ``JL=KIDIA,KFDIA``, calls should be restricted to intrinsics.

@@ -1,4 +1,4 @@
-S11: order of argument declarations
+S2: order of argument declarations
 ***********************************
 
 Arguments to a routine shall be declared in the same order as that of the call signature. 

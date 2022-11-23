@@ -1,4 +1,4 @@
-L18 : copying allocatable arrays
+L8 : copying allocatable arrays
 ********************************
 
 An array declared in scope as allocatable shall not be copied without dimension specification.

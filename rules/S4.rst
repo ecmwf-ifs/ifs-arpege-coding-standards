@@ -1,4 +1,4 @@
-S16: no unqualified END statements
+S4: no unqualified END statements
 **********************************
 
 END statements shall all be qualified. 

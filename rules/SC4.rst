@@ -1,4 +1,4 @@
-SC17 : no horizontal indirection
+SC4 : no horizontal indirection
 ********************************
 
 Where relevant (Single Column), indirect addressing on the innermost, 

@@ -1,4 +1,4 @@
-I19 : Excessively long interfaces
+I3 : Excessively long interfaces
 *********************************
 
 IFS routines should not have more than 50 **(arbitrary value, but used in historical document, and sounds already long to me)** arguments.

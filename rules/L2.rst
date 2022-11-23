@@ -1,0 +1,9 @@
+L2 : use module, only 
+*********************
+
+Unrestricted ``USE MODULE`` statements should not be used.
+
+Exceptions
+==========
+* Fypp-based modules, as cmake's dependency analysis does not know what symbols a fypp module will expose.
+* modules where ASSIGNMENT operator is overloaded

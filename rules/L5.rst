@@ -1,4 +1,4 @@
-L10 : argument INTENT
+L5 : argument INTENT
 **********************
 
 All arguments to routines shall be declared with an INTENT.

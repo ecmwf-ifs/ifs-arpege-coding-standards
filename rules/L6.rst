@@ -1,4 +1,4 @@
-L12 : OPTIONAL argument position
+L6 : OPTIONAL argument position
 ********************************
 
 Optional arguments to a routine shall be after non-optional ones.

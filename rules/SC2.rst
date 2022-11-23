@@ -1,7 +1,7 @@
-I5 : horizontal indexing
+SC2 : horizontal looping
 ************************
 
-Variables refering to horizontal indices should be named consistently, *JL*, *KPROMA*
+All loops over the innermost, horizontal array dimension should be explicit.
 
 The Loki tool relies on elements of code style in order to identify loops needing to be manipulated
 for architecture specialisation. 

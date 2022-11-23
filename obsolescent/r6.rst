@@ -1,0 +1,6 @@
+R6 :  Array syntax
+******************
+
+**Obsolescent** : recommendation rather than rule.
+
+The use of array syntax is not recommended except for initialization and very basic computations.
