@@ -1,0 +1,15 @@
+L12 : OPTIONAL argument position
+********************************
+
+Optional arguments to a routine shall be after non-optional ones.
+
+To be avoided : 
+
+.. code-block:: fortran
+   :caption: OPTIONAL argument position
+
+   SUBROUTINE OPT_ARG( ARG1, ARG2, ARG3)
+   
+   INTEGER(KIND=JPIM), INTENT(IN)          :: ARG1
+   INTEGER(KIND=JPIM), INTENT(IN),OPTIONAL :: ARG2
+   INTEGER(KIND=JPIM), INTENT(OUT)         :: ARG3

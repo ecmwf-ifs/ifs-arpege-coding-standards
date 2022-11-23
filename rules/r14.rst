@@ -1,0 +1,21 @@
+S14 : line continuation
+************************
+
+Optional arguments to a routine shall be after non-optional ones.
+
+.. code-block:: fortran
+   :caption: Good line continuation
+
+    CALL ROUTINE_WITH_VERY_LONG_AND_BORING_NAME ( IVAL1,IVAL2,IVAL3, &
+     &    PVAL_1,PVAL2,PVAL3, &
+     &    LDVAL1,LDVAL2)
+
+
+
+
+.. code-block:: fortran
+   :caption: Bad line continuation
+
+    CALL ROUTINE_WITH_VERY_LONG_AND_BORING_NAME ( IVAL1,IVAL2,IVAL3, &
+          PVAL_1,PVAL2,PVAL3, &
+          LDVAL1,LDVAL2)

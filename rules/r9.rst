@@ -1,0 +1,30 @@
+I9 : naming of variables, subroutines, modules
+**********************************************
+
+The IFS has a historical naming convention, which should be adhered to 
+where sensible.
+
+*Variable naming convention*
+
+* Local variables
+
+ * integer : ``Ixxx``
+ * real : ``Zxxx``
+ * logical : ``LLxxx``
+ * derived type : ``YRxxx``
+
+* Argument variables
+
+ * integer : ``Kxxxx``
+ * real : ``Pxxx``
+ * logical : ``LDxxx``
+ * derived type : ``YDxxx``
+
+*Routine naming*
+
+* setup routines should start with subroutines
+* TL and AD routines should end with tl and ad respectively
+
+*Module naming*
+New modules should end with _mod. The name of the file should match
+the name of the module it contains (e.g. ``MODULE EINT`` should be in file eint_mod.F90)
