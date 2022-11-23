@@ -3,5 +3,6 @@ L2 : use module, only
 
 Unrestricted ``USE MODULE`` statements should not be used.
 
-
+Fypp files are only exception to this, as cmake's dependency analysis does not know
+what symbols a fypp module will expose.
 

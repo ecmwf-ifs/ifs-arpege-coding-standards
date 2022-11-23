@@ -1,7 +1,7 @@
-I6 : horizontal looping
-***********************
+SC6 : horizontal looping
+************************
 
-All loops over the horizontal dimension should be explicit.
+All loops over the innermost, horizontal array dimension should be explicit.
 
 The Loki tool relies on elements of code style in order to identify loops needing to be manipulated
 for architecture specialisation. 

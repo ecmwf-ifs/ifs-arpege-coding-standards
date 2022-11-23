@@ -10,7 +10,8 @@ Developments to the Arpege/IFS codebase should aim to adhere to the guidelines
 and rules presented in this document.
 
 Guidelines and rules described here are designed to make code easier to read,
-easier to maintain, easier to extend, and less prone to bugs.
+easier to maintain, easier to extend, and less prone to bugs. 
+Rules are also written so as to allow implementation of automatic checking.
 
 Good code should not require large amounts of comments to be intelligible.
 Nevertheless targetted explanataions of particular segments of interest are desirable.
@@ -22,8 +23,14 @@ where appropriate.
 Naming of new variables, routines and modules should help the reader understand code as efficiently as
 possible. *Renaming of legacy / existing code?*
 
-Rules are organised into general language rules (Lx), IFS-specific rules (Iy) and stylistic
-points (Sz).
+Some of the rules relate to the idea of Single Column code, where algorithmic tasks can be expressed
+independently of horizontal position, and no horizontal dependencies exist. Code which maps to this 
+concept can be modified at compile time by tooling (Loki, Fxtran) in line with architecture-specific
+requirements. Such tooling relies heavily on code formatting to determine required transformations, 
+explaining the prescriptive rules for these areas of code.
+
+Rules are organised into general language rules (Lw), IFS-specific rules (Ix), stylistic
+points (Sy), and Single-Column related rules (SCz).
 
 .. toctree::
    :maxdepth: 2
@@ -45,7 +52,7 @@ points (Sz).
    rules/r14
    rules/r15
    rules/r16
-
+ 
 Indices and tables
 ==================
 
