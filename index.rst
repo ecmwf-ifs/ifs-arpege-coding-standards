@@ -52,7 +52,10 @@ points (Sy), and Single-Column related rules (SCz).
    rules/r14
    rules/r15
    rules/r16
- 
+   rules/r17
+   rules/r18
+   rules/r19
+
 Indices and tables
 ==================
 
