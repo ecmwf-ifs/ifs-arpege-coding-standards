@@ -1,7 +1,22 @@
 L2 : use module, only 
 *********************
 
-Unrestricted ``USE MODULE`` statements should not be used.
+Module imports via the USE statement shall contain an ONLY specifier.
+
+
+**To be avoided :**
+
+.. code-block:: fortran
+
+   USE GEOMETRY_MOD
+   USE YOMRIP
+
+**Correct way to import from modules :**
+
+.. code-block:: fortran
+
+   USE GEOMETRY_MOD, ONLY : TYPE_GEOMETRY
+   USE YOMRIP,       ONLY : NSTADD
 
 Exceptions
 ==========

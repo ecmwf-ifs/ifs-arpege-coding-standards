@@ -1,0 +1,7 @@
+R20 : names of variables
+************************
+
+**status** : mentioned in preamble
+
+Variable names should be meaningful to an English reader. 
+Very short names should be reserved for loop indices.

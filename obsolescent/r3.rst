@@ -1,7 +1,7 @@
 R3 : Cosmetic changes
 *********************
 
-**Obsolescent** : is this still relevant with git development everywhere, and shared history?
+**status** : is this still relevant with git development everywhere, and shared history?
 
 Avoid cosmetic changes that will make merges difficult (such as re-ordering argument lists and 
 USE statements, or changing the indentation of large blocks of code). 

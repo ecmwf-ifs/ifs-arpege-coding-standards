@@ -13,15 +13,56 @@ Guidelines and rules described here are designed to make code easier to read,
 easier to maintain, easier to extend, and less prone to bugs. 
 Rules are also written so as to allow implementation of automatic checking.
 
-Good code should not require large amounts of comments to be intelligible.
-Nevertheless targetted explanataions of particular segments of interest are desirable.
+Guidelines and recommendations
+------------------------------
 
-Routine call signatures or interfaces should be designed with care, respecting library contouring
-and avoiding excessive argument counts. Derived types can be used to shorten call signatures
-where appropriate.
+* Good code should not require large amounts of comments to be intelligible. 
+  Nevertheless targeted explanations of particular segments of interest are desirable.
+  Each source file should have a homogeneous coding style.
 
-Naming of new variables, routines and modules should help the reader understand code as efficiently as
-possible. *Renaming of legacy / existing code?*
+* Routine call signatures or interfaces should be designed with care, respecting library 
+  contouring. Interfaces that are not internal to a component should priviledge 
+
+* Naming of new variables, routines and modules should help the reader understand code as efficiently 
+  as possible. *Renaming of legacy / existing code?*
+
+* Contours of a routine or module should be considered with care, avoiding excessive length
+  or complexity.
+
+* In order to make domain decomposition easier to follow, global variable names are suffixed by G, 
+  while subdomain-local variables are suffixed by L.
+
+* Large arrays should be declared as allocatable, to avoid excessive stack usage. 
+  Small arrays, and in particular those declared in tight code (this should be avoided wherever 
+  possible!) should be automatic, to benefit from faster stack handling.
+
+* If an allocatable variable can be used rather than a pointer, opt for the allocatable for 
+  safety reasons.
+
+* Different meteorological data formats are used at ECMWF and Meteo-France. 
+  The choice between these formats should be based on logical keys LARPEGEF or LARPEGEF_xx 
+  (and not LECMWF).
+
+* Conditional clauses with multiple cases should be handled with SELECT CASE rather than IF 
+  statements followed by multiple ELSEIF statements.
+
+* Aladin routines that are counterparts of IFS/Arpege ones should have the same name but 
+  prefixed with E. 
+  Aladin counterparts to IFS/Arpege SUxxx setup routines should be named SUE.
+
+* Output that should appear in the main text output file should be written to NULOUT.
+  Output to NULOUT must be deterministic and should not change according to the 
+  parallel distribution or the time at which the job is run. 
+  Error messages should be written to unit NULERR.
+
+* If execution is to be aborted by the code, a call to ABOR1, with a meaningful message, 
+  should be used.
+ 
+
+ 
+
+Rules (as checked by norms checker)
+-----------------------------------
 
 Some of the rules relate to the idea of Single Column code, where algorithmic tasks can be expressed
 independently of horizontal position, and no horizontal dependencies exist. Code which maps to this 
@@ -36,25 +77,35 @@ points (Sy), and Single-Column related rules (SCz).
    :maxdepth: 2
    :caption: List of rules:
 
-   rules/r1
-   rules/r2
-   rules/r3
-   rules/r4
-   rules/r5
-   rules/r6
-   rules/r7
-   rules/r8
-   rules/r9
-   rules/r10
-   rules/r11
-   rules/r12
-   rules/r13
-   rules/r14
-   rules/r15
-   rules/r16
-   rules/r17
-   rules/r18
-   rules/r19
+   rules/L1
+   rules/L2
+   rules/L3
+   rules/L4
+   rules/L5
+   rules/L6
+   rules/L7
+   rules/L8
+   rules/L9
+   rules/L10
+   rules/I1
+   rules/I2
+   rules/I3
+   rules/I4
+   rules/I5
+   rules/I6
+   rules/I7
+   rules/I8
+   rules/SC1
+   rules/SC2
+   rules/SC3
+   rules/SC4
+   rules/S1
+   rules/S2
+   rules/S3
+   rules/S4
+   rules/S5
+
+   obsolescent/index
 
 Indices and tables
 ==================

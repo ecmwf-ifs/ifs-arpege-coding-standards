@@ -1,0 +1,6 @@
+R33 : no hard-coded array dimensions
+************************************
+
+**status** : ambiguous, possibly no longer relevant
+
+Array dimensions must not be hard-coded.

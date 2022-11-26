@@ -1,0 +1,7 @@
+R24 : universal constants
+*************************
+
+**status** : no longer applicable, yomcst is being passed as argument
+
+Universal  constants  must  be  stored,  saved  and initialized  in  data  module YOMCST. 
+They cannot be modified elsewhere and should not be accessed via dummy arguments.

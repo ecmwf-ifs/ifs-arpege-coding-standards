@@ -1,8 +1,10 @@
 R1 : Encapsulation rules
 ************************
 
-**Obsolescent**: covered elsewhere
+**status**: not a lintable rule, covered in preamble
 
 Modules should be split up in a sensible manner to avoid too long Fortran files or too complex modules. 
-One recommendation is to separate the data structures, the operators and the descriptive parameters (including setup if existing). 
-The number of entities in a single module is not limited, but a reasonable total number should be considered always (about 10 to 20 entities ?).
+One recommendation is to separate the data structures, the operators and the descriptive parameters 
+(including setup if existing). 
+The number of entities in a single module is not limited, but a reasonable total number should be 
+considered always (about 10 to 20 entities ?).
