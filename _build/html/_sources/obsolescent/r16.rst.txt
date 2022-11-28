@@ -1,0 +1,6 @@
+R16 : argument passing characteristics
+**************************************
+
+**status** : until MPL uses F08 bindings, this is not fully respected in IFS
+
+Array shape and Variable type must not be changed when passed to a subroutine.

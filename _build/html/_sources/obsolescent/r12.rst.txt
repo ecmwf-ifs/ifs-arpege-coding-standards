@@ -1,0 +1,6 @@
+R12 :  Derived types in a module
+********************************
+
+**status** : mentioned elsewhere (I5)
+
+Derived types should be declared in a module.

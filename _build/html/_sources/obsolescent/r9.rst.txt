@@ -1,0 +1,6 @@
+R9 : LELAM variable
+*******************
+
+**status** : very far from true in current IFS?!
+
+The variable LELAM is not to be used below SCAN2M.

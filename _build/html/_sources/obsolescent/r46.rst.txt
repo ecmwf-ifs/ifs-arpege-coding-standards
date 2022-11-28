@@ -1,0 +1,6 @@
+R46 : order of optional arguments
+*********************************
+
+**status** : covered elsewhere
+
+Optional arguments must be called in the same order they are declared.

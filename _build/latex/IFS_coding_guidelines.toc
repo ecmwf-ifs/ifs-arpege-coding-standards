@@ -1,0 +1,83 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Guidelines and recommendations}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Rules (as checked by norms checker)}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}L1 : implicit none}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.2}L2 : use module, only}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Exceptions}{5}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.3}L3 : global variables}{6}{section.2.3}%
+\contentsline {section}{\numberline {2.4}L4 : language features}{6}{section.2.4}%
+\contentsline {section}{\numberline {2.5}L5 : argument INTENT}{6}{section.2.5}%
+\contentsline {section}{\numberline {2.6}L6 : OPTIONAL argument position}{6}{section.2.6}%
+\contentsline {section}{\numberline {2.7}L7 : OPTIONAL argument keyword usage}{7}{section.2.7}%
+\contentsline {section}{\numberline {2.8}L8 : copying allocatable arrays}{7}{section.2.8}%
+\contentsline {section}{\numberline {2.9}L9 : interfaces for routines}{7}{section.2.9}%
+\contentsline {section}{\numberline {2.10}L10 : declaration syntax}{7}{section.2.10}%
+\contentsline {section}{\numberline {2.11}I1 : naming of variables, subroutines, modules}{7}{section.2.11}%
+\contentsline {subsection}{\numberline {2.11.1}Variable naming}{8}{subsection.2.11.1}%
+\contentsline {subsection}{\numberline {2.11.2}Routine naming}{8}{subsection.2.11.2}%
+\contentsline {section}{\numberline {2.12}I2 : DRHOOK instrumentation}{8}{section.2.12}%
+\contentsline {section}{\numberline {2.13}I3 : Excessively long interfaces}{8}{section.2.13}%
+\contentsline {section}{\numberline {2.14}I4 : MPL and message passing}{9}{section.2.14}%
+\contentsline {section}{\numberline {2.15}I5 : derived types in modules}{9}{section.2.15}%
+\contentsline {section}{\numberline {2.16}I6 : MPL and string argument}{9}{section.2.16}%
+\contentsline {section}{\numberline {2.17}I7 : no TABS}{9}{section.2.17}%
+\contentsline {section}{\numberline {2.18}I8 : KIND specification}{9}{section.2.18}%
+\contentsline {section}{\numberline {2.19}SC1 : horizontal indexing}{9}{section.2.19}%
+\contentsline {section}{\numberline {2.20}SC2 : horizontal looping}{9}{section.2.20}%
+\contentsline {section}{\numberline {2.21}SC3 : function calls from inside KPROMA loops}{10}{section.2.21}%
+\contentsline {section}{\numberline {2.22}SC4 : no horizontal indirection}{10}{section.2.22}%
+\contentsline {section}{\numberline {2.23}S1 : END IF / ENDIF}{10}{section.2.23}%
+\contentsline {section}{\numberline {2.24}S2: order of argument declarations}{10}{section.2.24}%
+\contentsline {section}{\numberline {2.25}S3 : line continuation}{10}{section.2.25}%
+\contentsline {section}{\numberline {2.26}S4: no unqualified END statements}{11}{section.2.26}%
+\contentsline {section}{\numberline {2.27}S5 : unused variables}{11}{section.2.27}%
+\contentsline {section}{\numberline {2.28}Coding norms 2011 rules}{11}{section.2.28}%
+\contentsline {subsection}{\numberline {2.28.1}R1 : Encapsulation rules}{11}{subsection.2.28.1}%
+\contentsline {subsection}{\numberline {2.28.2}R2 : Subroutine length}{11}{subsection.2.28.2}%
+\contentsline {subsection}{\numberline {2.28.3}R3 : Cosmetic changes}{12}{subsection.2.28.3}%
+\contentsline {subsection}{\numberline {2.28.4}R4 : Unused variables}{12}{subsection.2.28.4}%
+\contentsline {subsection}{\numberline {2.28.5}R5 : Variable name suffixes}{12}{subsection.2.28.5}%
+\contentsline {subsection}{\numberline {2.28.6}R6 : Array syntax}{12}{subsection.2.28.6}%
+\contentsline {subsection}{\numberline {2.28.7}R7 : Cut\sphinxhyphen {}n\sphinxhyphen {}paste}{12}{subsection.2.28.7}%
+\contentsline {subsection}{\numberline {2.28.8}R8 : LECMWF variable}{12}{subsection.2.28.8}%
+\contentsline {subsection}{\numberline {2.28.9}R9 : LELAM variable}{12}{subsection.2.28.9}%
+\contentsline {subsection}{\numberline {2.28.10}R10 : LFI or GRIB}{13}{subsection.2.28.10}%
+\contentsline {subsection}{\numberline {2.28.11}R11 : message passing}{13}{subsection.2.28.11}%
+\contentsline {subsection}{\numberline {2.28.12}R12 : Derived types in a module}{13}{subsection.2.28.12}%
+\contentsline {subsection}{\numberline {2.28.13}R13 : Code must be threadsafe}{13}{subsection.2.28.13}%
+\contentsline {subsection}{\numberline {2.28.14}R14 : Abnormal termination}{13}{subsection.2.28.14}%
+\contentsline {subsection}{\numberline {2.28.15}R15 : The save statement}{13}{subsection.2.28.15}%
+\contentsline {subsection}{\numberline {2.28.16}R16 : argument passing characteristics}{13}{subsection.2.28.16}%
+\contentsline {subsection}{\numberline {2.28.17}R17 : SELECT CASE}{13}{subsection.2.28.17}%
+\contentsline {subsection}{\numberline {2.28.18}R18 : include interfaces}{14}{subsection.2.28.18}%
+\contentsline {subsection}{\numberline {2.28.19}R19 : number of arguments to routines}{14}{subsection.2.28.19}%
+\contentsline {subsection}{\numberline {2.28.20}R20 : names of variables}{14}{subsection.2.28.20}%
+\contentsline {subsection}{\numberline {2.28.21}R21 : Name prefixes and suffixes}{14}{subsection.2.28.21}%
+\contentsline {subsection}{\numberline {2.28.22}R22 : Aladin routine names}{14}{subsection.2.28.22}%
+\contentsline {subsection}{\numberline {2.28.23}R23 : NULOUT \& NULERR usage}{14}{subsection.2.28.23}%
+\contentsline {subsection}{\numberline {2.28.24}R24 : universal constants}{14}{subsection.2.28.24}%
+\contentsline {subsection}{\numberline {2.28.25}R25 : MPL string argument}{15}{subsection.2.28.25}%
+\contentsline {subsection}{\numberline {2.28.26}R26 : code structure and file location}{15}{subsection.2.28.26}%
+\contentsline {subsection}{\numberline {2.28.27}R27 : namelist usage}{15}{subsection.2.28.27}%
+\contentsline {subsection}{\numberline {2.28.28}R28 : DATA statement}{15}{subsection.2.28.28}%
+\contentsline {subsection}{\numberline {2.28.29}R29 : F90 free format}{15}{subsection.2.28.29}%
+\contentsline {subsection}{\numberline {2.28.30}R30 : consistent style}{15}{subsection.2.28.30}%
+\contentsline {subsection}{\numberline {2.28.31}R31 : no TAB usage}{15}{subsection.2.28.31}%
+\contentsline {subsection}{\numberline {2.28.32}R32 : IMPLICIT NONE}{15}{subsection.2.28.32}%
+\contentsline {subsection}{\numberline {2.28.33}R33 : no hard\sphinxhyphen {}coded array dimensions}{16}{subsection.2.28.33}%
+\contentsline {subsection}{\numberline {2.28.34}R34 : “::” notation}{16}{subsection.2.28.34}%
+\contentsline {subsection}{\numberline {2.28.35}R35 : mandatory KIND specification}{16}{subsection.2.28.35}%
+\contentsline {subsection}{\numberline {2.28.36}R36 : USE, ONLY}{16}{subsection.2.28.36}%
+\contentsline {subsection}{\numberline {2.28.37}R37 : PARAMETER wherever possible}{16}{subsection.2.28.37}%
+\contentsline {subsection}{\numberline {2.28.38}R38 : variable name prefixes}{16}{subsection.2.28.38}%
+\contentsline {subsection}{\numberline {2.28.39}R39 : banned statements}{16}{subsection.2.28.39}%
+\contentsline {subsection}{\numberline {2.28.40}R40 : no implicit array sizing}{17}{subsection.2.28.40}%
+\contentsline {subsection}{\numberline {2.28.41}R41 : automatic and allocatable arrays}{17}{subsection.2.28.41}%
+\contentsline {subsection}{\numberline {2.28.42}R42 : deallocation of allocatables}{17}{subsection.2.28.42}%
+\contentsline {subsection}{\numberline {2.28.43}R43 : comparison operators}{17}{subsection.2.28.43}%
+\contentsline {subsection}{\numberline {2.28.44}R44 : value comparisons}{17}{subsection.2.28.44}%
+\contentsline {subsection}{\numberline {2.28.45}R45 : argument intents are compulsory}{17}{subsection.2.28.45}%
+\contentsline {subsection}{\numberline {2.28.46}R46 : order of optional arguments}{17}{subsection.2.28.46}%
+\contentsline {subsection}{\numberline {2.28.47}R47 : ENDIF / END IF}{18}{subsection.2.28.47}%
+\contentsline {subsection}{\numberline {2.28.48}R48 : removal of dead code}{18}{subsection.2.28.48}%
+\contentsline {chapter}{\numberline {3}Indices and tables}{19}{chapter.3}%

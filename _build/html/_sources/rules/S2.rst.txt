@@ -1,0 +1,16 @@
+S2: order of argument declarations
+***********************************
+
+Arguments to a routine shall be declared in the same order as that of the call signature. 
+
+To be avoided : 
+
+.. code-block:: fortran
+   :caption: declaration order
+
+   SUBROUTINE WRONG_ORDER( ARG3, ARG2, ARG1)
+   
+   INTEGER(KIND=JPIM), INTENT(IN)  :: ARG3
+   INTEGER(KIND=JPIM), INTENT(IN)  :: ARG2
+   INTEGER(KIND=JPIM), INTENT(OUT) :: ARG1
+

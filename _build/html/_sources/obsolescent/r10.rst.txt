@@ -1,0 +1,7 @@
+R10 :  LFI or GRIB
+******************
+
+**status** : not a lintable rule, so moved to preamble
+
+The  choice between  LFI/LFA  or  GRIB  format  should  be  made  using  the variables 
+LARPEGEF or LARPEGEF-xx (and not LECMWF).

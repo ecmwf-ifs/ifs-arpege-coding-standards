@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; IFS_coding_guidelines  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> IFS_coding_guidelines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">List of rules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L1.html">L1 : implicit none</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L2.html">L2 : use module, only</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L3.html">L3 : global variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L4.html">L4 : language features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L5.html">L5 : argument INTENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L6.html">L6 : OPTIONAL argument position</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L7.html">L7 : OPTIONAL argument keyword usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L8.html">L8 : copying allocatable arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L9.html">L9 : interfaces for routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/L10.html">L10 : declaration syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I1.html">I1 : naming of variables, subroutines, modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I2.html">I2 : DRHOOK instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I3.html">I3 : Excessively long interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I4.html">I4 : MPL and message passing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I5.html">I5 : derived types in modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I6.html">I6 : MPL and string argument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I7.html">I7 : no TABS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/I8.html">I8 : KIND specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/SC1.html">SC1 : horizontal indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/SC2.html">SC2 : horizontal looping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/SC3.html">SC3 : function calls from inside KPROMA loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/SC4.html">SC4 : no horizontal indirection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/S1.html">S1 : END IF / ENDIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/S2.html">S2: order of argument declarations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/S3.html">S3 : line continuation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/S4.html">S4: no unqualified END statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/S5.html">S5 : unused variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Coding norms 2011 rules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IFS_coding_guidelines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/obsolescent/full_list.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p>1. Encapsulation rules.
+Modules should be split up in a sensible manner to avoid too long Fortran files or too complex modules.
+One recommendation is to separate the data structures, the operators and the descriptive parameters (including setup if existing).
+The number of entities in a single module is not limited, but a reasonable total number should be considered always (about 10 to 20 entities ?).
+2.  Subroutines should have no more than 300 executable statements.</p>
+<blockquote>
+<div><p>For a module containing several entities, this limit of 300 executable statements is applicable for each inner subroutine.</p>
+</div></blockquote>
+<p>3.  Avoid cosmetic changes that will make merges difficult (such as re-ordering argument lists and USE statements, or changing
+the indentation of large blocks of code).
+As an exception, cosmetic changes can happen when a routine is heavily modified, and only one well identified developer will
+contribute to the code for the next common cycle.
+4.  Declarations of unused variables must be removed
+5.  Variables suffixed with L are local in the sense of the parallel distribution. Variables suffixed with G are global.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+6.  The use of array syntax is not recommended except for initialization and very basic computations.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+7.  Cut-and-paste  of  existing  piece  of  code  should  be  avoided.  Common  code should be extracted to a separate subroutine or function.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+8.  The variable LECMWF should be used only in setup subroutines.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+9.  The variable LELAM is not to be used below SCAN2M.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+10.  The  choice between  LFI/LFA  or  GRIB  format  should  be  made  using  the variables LARPEGEF or LARPEGEF-xx (and not LECMWF).
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+11.  The MPL package must be used as the interface for any message passing.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+12.  Derived types should be declared in a module.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+13.  Code must be threadsafe.7
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!</p>
+<p>3  Detailed design of the code
+14.  Abnormal termination must be invoked by ABOR1.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+15.  Variables in data modules must be saved using the SAVE statement.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+16.  Array shape and Variable type must not be changed when passed to a subroutine.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+17.  Use SELECT CASE when possible instead of IF/ELSEIF/ELSE/ENDIF.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+18.  For each called routine there must be a “”#include”statement that includes an explicit interface block for the routine.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+Note that the files containing the explicit interface blocks are automatically generated during compilation.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+19.  Routines should have a small number of dummy arguments. Routine with more than 50 dummy arguments are not allowed.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+20.  Variable names should be meaningful to an English reader. Very short names should be reserved for loop indices.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+21.  Conventional prefixes or suffixes are to be used for all variables except derived types, as described in table 1 in section 4.
+There is no naming convention for derived types.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+22.  Aladin subroutines that are counterparts of IFS/Arpege ones should have the same name but prefixed with E.
+Aladin setup routines that are counterparts of IFS/Arpege (prefixed SU) should be prefixed SUE.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+23.  The logical unit for output listing is NULOUT. Output to NULOUT must be deterministic and should not change according to the
+parallel distribution or the time at which the job is run. Error messages should be written to unit NULERR.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+24.  Universal  constants  must  be  stored,  saved  and initialized  in  data  module YOMCST.
+They cannot be modified elsewhere and should not be accessed via dummy arguments.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+25.  Calls to MPL subroutines should provide a CDSTRING identifying the caller.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+26.  Source code is partitioned into projects. Each source file must be put in the proper directory for its project.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+27.  Runtime specification of variables must be done using name-lists.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+28.  DATA statement should be avoided if possible and is allowed only for small lists.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!</p>
+<p>Detailed Fortran coding standards</p>
+<p>29.  The code should be Fortran 90 free format.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+30.  Use a consistent style throughout each module and subroutine.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+31.  The TAB character is not allowed.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+32. IMPLICIT NONE is mandatory in all routines.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+33.  Array dimensions must not be hard-coded.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+34.  Declarations must use the notation “::”.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+35.  Variables and constants must be declared with explicit kind, using the kinds defined in PARKIND1 and PARKIND2.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+36.  All USE statements must include an “ONLY” clause, except for modules that override ASSIGNMENT, where this is dangerous.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+37.  Constants should be PARAMETERs wherever as possible
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+38.  Variable names should follow the prefix convention defined in table 1.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+39.  The following statements are banned :(a)STOP (b)PRINT (c)RETURN (d)ENTRY (e)DIMENSION (f)DOUBLE PRECISION (g)COMPLEX
+(h)GO TO (i)CONTINUE (j)FORMAT (k)COMMON (l)EQUIVALENCE
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+40.  Arrays should not be declared with implicit size : “A(*)”.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+41.  Large arrays should be allocatable. Small or low-level arrays should be automatic.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+42.  All allocated arrays should be explicitly deallocated.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+43.  Use Fortran 90 comparison operators (e.g. == rather than .EQ.).
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+44.  Explicitly set variables (parameters, constants, namelist variables,…) should be always exactly compared (using==or=, etc).
+Evaluated variables (that might be subject to roundoff error) should be tested against a reference using a threshold.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+45.  All dummy arguments must specify the INTENT attribute
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+46.  Optional arguments must be called in the same order they are declared.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+47.  END statements for blocks should not have a space after END. For example an IF block should end with ENDIF, not “END IF”.
+<strong>Obsolescent</strong> : can this remotely be considered enforceable, from current IFS?!
+48.  Inactive (e.g. commented-out) code must be removed.</p>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ECMWF.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

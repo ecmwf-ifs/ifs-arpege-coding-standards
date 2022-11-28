@@ -1,0 +1,6 @@
+I8 : KIND specification
+***********************
+
+Real and integer variables in the IFS shall have an explicit KIND specifier, with 
+a kind defined in PARKIND1 or PARKIND2, or in a similar file for stand-alone projects
+(ecTRANS, WAM, etc)

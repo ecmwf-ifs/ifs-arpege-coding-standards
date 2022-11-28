@@ -1,0 +1,6 @@
+R15 :  The save statement
+*************************
+
+**status** : no longer applicable
+
+Variables in data modules must be saved using the SAVE statement.

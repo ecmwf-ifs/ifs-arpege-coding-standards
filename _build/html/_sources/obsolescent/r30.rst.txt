@@ -1,0 +1,6 @@
+R30 :  consistent style
+***********************
+
+**status** : not a lintable rule, but suggested in preamble.
+
+Use a consistent style throughout each module and subroutine.

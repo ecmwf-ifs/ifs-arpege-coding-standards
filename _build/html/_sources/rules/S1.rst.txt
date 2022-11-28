@@ -1,0 +1,10 @@
+S1 : END IF / ENDIF
+*******************
+
+Two-word control flow constructs should be written as single words. 
+
+``ENDIF`` rather than ``END IF``
+``ENDDO`` rather than ``END DO``
+``ENDWHERE`` rather than ``END WHERE``
+
+(this one makes me cry a little)

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search &mdash; IFS_coding_guidelines  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="#" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> IFS_coding_guidelines
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">List of rules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rules/L1.html">L1 : implicit none</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L2.html">L2 : use module, only</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L3.html">L3 : global variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L4.html">L4 : language features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L5.html">L5 : argument INTENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L6.html">L6 : OPTIONAL argument position</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L7.html">L7 : OPTIONAL argument keyword usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L8.html">L8 : copying allocatable arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L9.html">L9 : interfaces for routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/L10.html">L10 : declaration syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I1.html">I1 : naming of variables, subroutines, modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I2.html">I2 : DRHOOK instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I3.html">I3 : Excessively long interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I4.html">I4 : MPL and message passing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I5.html">I5 : derived types in modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I6.html">I6 : MPL and string argument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I7.html">I7 : no TABS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/I8.html">I8 : KIND specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/SC1.html">SC1 : horizontal indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/SC2.html">SC2 : horizontal looping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/SC3.html">SC3 : function calls from inside KPROMA loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/SC4.html">SC4 : no horizontal indirection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/S1.html">S1 : END IF / ENDIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/S2.html">S2: order of argument declarations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/S3.html">S3 : line continuation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/S4.html">S4: no unqualified END statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rules/S5.html">S5 : unused variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="obsolescent/index.html">Coding norms 2011 rules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IFS_coding_guidelines</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search functionality.
+    </p>
+  </div>
+  </noscript>
+
+  
+  <div id="search-results">
+  
+  </div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, ECMWF.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+  <script>
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script id="searchindexloader"></script>
+   
+
+
+</body>
+</html>

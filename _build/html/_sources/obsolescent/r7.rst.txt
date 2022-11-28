@@ -1,0 +1,7 @@
+R7 :  Cut-n-paste
+*****************
+
+**status** : not a rule
+
+Cut-and-paste  of  existing  piece  of  code  should  be  avoided.  
+Common  code should be extracted to a separate subroutine or function.

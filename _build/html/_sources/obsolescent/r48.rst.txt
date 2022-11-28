@@ -1,0 +1,6 @@
+R48 :  removal of dead code
+***************************
+
+**status** : covered elsewhere
+
+Inactive (e.g. commented-out) code must be removed. 

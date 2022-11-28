@@ -1,0 +1,6 @@
+R32 : IMPLICIT NONE
+*******************
+
+**status** : mentioned elsewhere (L1)
+
+IMPLICIT NONE is mandatory in all routines

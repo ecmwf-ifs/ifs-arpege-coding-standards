@@ -1,0 +1,6 @@
+R31 :  no TAB usage
+*******************
+
+**status** : mentioned elsewhere (I7)
+
+The TAB character is not allowed.

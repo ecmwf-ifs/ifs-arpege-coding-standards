@@ -1,0 +1,7 @@
+R35 : mandatory KIND specification
+**********************************
+
+**status** : updated and mentioned elsewhere (I8)
+
+Variables and constants must be declared with explicit kind, using the kinds defined 
+in PARKIND1 and PARKIND2.

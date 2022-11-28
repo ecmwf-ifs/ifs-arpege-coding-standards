@@ -1,0 +1,112 @@
+1. Encapsulation rules.
+Modules should be split up in a sensible manner to avoid too long Fortran files or too complex modules. 
+One recommendation is to separate the data structures, the operators and the descriptive parameters (including setup if existing). 
+The number of entities in a single module is not limited, but a reasonable total number should be considered always (about 10 to 20 entities ?).
+2.  Subroutines should have no more than 300 executable statements. 
+ For a module containing several entities, this limit of 300 executable statements is applicable for each inner subroutine.
+3.  Avoid cosmetic changes that will make merges difficult (such as re-ordering argument lists and USE statements, or changing 
+the indentation of large blocks of code). 
+As an exception, cosmetic changes can happen when a routine is heavily modified, and only one well identified developer will 
+contribute to the code for the next common cycle.
+4.  Declarations of unused variables must be removed
+5.  Variables suffixed with L are local in the sense of the parallel distribution. Variables suffixed with G are global.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+6.  The use of array syntax is not recommended except for initialization and very basic computations.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+7.  Cut-and-paste  of  existing  piece  of  code  should  be  avoided.  Common  code should be extracted to a separate subroutine or function.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+8.  The variable LECMWF should be used only in setup subroutines.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+9.  The variable LELAM is not to be used below SCAN2M.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+10.  The  choice between  LFI/LFA  or  GRIB  format  should  be  made  using  the variables LARPEGEF or LARPEGEF-xx (and not LECMWF).
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+11.  The MPL package must be used as the interface for any message passing.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+12.  Derived types should be declared in a module.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+13.  Code must be threadsafe.7
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+
+3  Detailed design of the code
+14.  Abnormal termination must be invoked by ABOR1.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+15.  Variables in data modules must be saved using the SAVE statement.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+16.  Array shape and Variable type must not be changed when passed to a subroutine.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+17.  Use SELECT CASE when possible instead of IF/ELSEIF/ELSE/ENDIF.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+18.  For each called routine there must be a “"#include"statement that includes an explicit interface block for the routine. 
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+Note that the files containing the explicit interface blocks are automatically generated during compilation.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+19.  Routines should have a small number of dummy arguments. Routine with more than 50 dummy arguments are not allowed.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+20.  Variable names should be meaningful to an English reader. Very short names should be reserved for loop indices.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+21.  Conventional prefixes or suffixes are to be used for all variables except derived types, as described in table 1 in section 4. 
+There is no naming convention for derived types.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+22.  Aladin subroutines that are counterparts of IFS/Arpege ones should have the same name but prefixed with E. 
+Aladin setup routines that are counterparts of IFS/Arpege (prefixed SU) should be prefixed SUE.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+23.  The logical unit for output listing is NULOUT. Output to NULOUT must be deterministic and should not change according to the 
+parallel distribution or the time at which the job is run. Error messages should be written to unit NULERR.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+24.  Universal  constants  must  be  stored,  saved  and initialized  in  data  module YOMCST. 
+They cannot be modified elsewhere and should not be accessed via dummy arguments.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+25.  Calls to MPL subroutines should provide a CDSTRING identifying the caller.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+26.  Source code is partitioned into projects. Each source file must be put in the proper directory for its project.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+27.  Runtime specification of variables must be done using name-lists.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+28.  DATA statement should be avoided if possible and is allowed only for small lists.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+
+Detailed Fortran coding standards
+
+29.  The code should be Fortran 90 free format.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+30.  Use a consistent style throughout each module and subroutine.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+31.  The TAB character is not allowed.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+32. IMPLICIT NONE is mandatory in all routines.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+33.  Array dimensions must not be hard-coded.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+34.  Declarations must use the notation “::”.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+35.  Variables and constants must be declared with explicit kind, using the kinds defined in PARKIND1 and PARKIND2.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+36.  All USE statements must include an “ONLY” clause, except for modules that override ASSIGNMENT, where this is dangerous.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+37.  Constants should be PARAMETERs wherever as possible
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+38.  Variable names should follow the prefix convention defined in table 1. 
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+39.  The following statements are banned :(a)STOP (b)PRINT (c)RETURN (d)ENTRY (e)DIMENSION (f)DOUBLE PRECISION (g)COMPLEX 
+(h)GO TO (i)CONTINUE (j)FORMAT (k)COMMON (l)EQUIVALENCE
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+40.  Arrays should not be declared with implicit size : “A(*)”.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+41.  Large arrays should be allocatable. Small or low-level arrays should be automatic.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+42.  All allocated arrays should be explicitly deallocated.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+43.  Use Fortran 90 comparison operators (e.g. == rather than .EQ.).
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+44.  Explicitly set variables (parameters, constants, namelist variables,...) should be always exactly compared (using==or\=, etc). 
+Evaluated variables (that might be subject to roundoff error) should be tested against a reference using a threshold.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+45.  All dummy arguments must specify the INTENT attribute
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+46.  Optional arguments must be called in the same order they are declared.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+47.  END statements for blocks should not have a space after END. For example an IF block should end with ENDIF, not “END IF”.
+**Obsolescent** : can this remotely be considered enforceable, from current IFS?!
+48.  Inactive (e.g. commented-out) code must be removed. 
+

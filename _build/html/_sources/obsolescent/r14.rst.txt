@@ -1,0 +1,6 @@
+R14 :  Abnormal termination
+***************************
+
+**status** : mentioned in preamble
+
+Abnormal termination must be invoked by ABOR1.
