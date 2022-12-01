@@ -1,7 +1,7 @@
 L7 : OPTIONAL argument keyword usage
-*************************************
+************************************
 
-Optional arguments passed to a routine shall have their keyword speficied.
+Optional arguments passed to a routine shall have their keyword specified.
 
 To be avoided : 
 

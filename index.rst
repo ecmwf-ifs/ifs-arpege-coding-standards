@@ -20,17 +20,15 @@ Guidelines and recommendations
   Nevertheless targeted explanations of particular segments of interest are desirable.
   Each source file should have a homogeneous coding style.
 
-* Routine call signatures or interfaces should be designed with care, respecting library 
-  contouring. Interfaces that are not internal to a component should priviledge 
-
-* Naming of new variables, routines and modules should help the reader understand code as efficiently 
-  as possible. *Renaming of legacy / existing code?*
-
 * Contours of a routine or module should be considered with care, avoiding excessive length
   or complexity.
 
-* In order to make domain decomposition easier to follow, global variable names are suffixed by G, 
-  while subdomain-local variables are suffixed by L.
+* Routine call signatures or interfaces should be designed with care, respecting library 
+  contouring. Interfaces that are not internal to a component should privilege as much as 
+  possible native fortran datatypes rather than derived types.
+
+* Naming of new variables, routines and modules should help the reader understand code as efficiently 
+  as possible. *Renaming of legacy / existing code?*
 
 * Large arrays should be declared as allocatable, to avoid excessive stack usage. 
   Small arrays, and in particular those declared in tight code (this should be avoided wherever 
@@ -39,12 +37,12 @@ Guidelines and recommendations
 * If an allocatable variable can be used rather than a pointer, opt for the allocatable for 
   safety reasons.
 
+* In order to make domain decomposition easier to follow, global variable names are suffixed by G, 
+  while subdomain-local variables are suffixed by L.
+
 * Different meteorological data formats are used at ECMWF and Meteo-France. 
   The choice between these formats should be based on logical keys LARPEGEF or LARPEGEF_xx 
   (and not LECMWF).
-
-* Conditional clauses with multiple cases should be handled with SELECT CASE rather than IF 
-  statements followed by multiple ELSEIF statements.
 
 * Aladin routines that are counterparts of IFS/Arpege ones should have the same name but 
   prefixed with E. 
@@ -54,6 +52,9 @@ Guidelines and recommendations
   Output to NULOUT must be deterministic and should not change according to the 
   parallel distribution or the time at which the job is run. 
   Error messages should be written to unit NULERR.
+
+* Conditional clauses with multiple cases should be handled with SELECT CASE rather than IF 
+  statements followed by multiple ELSEIF statements.
 
 * If execution is to be aborted by the code, a call to ABOR1, with a meaningful message, 
   should be used.
@@ -94,7 +95,6 @@ points (Sy), and Single-Column related rules (SCz).
    rules/I5
    rules/I6
    rules/I7
-   rules/I8
    rules/SC1
    rules/SC2
    rules/SC3
@@ -104,6 +104,7 @@ points (Sy), and Single-Column related rules (SCz).
    rules/S3
    rules/S4
    rules/S5
+   rules/S6
 
    obsolescent/index
 

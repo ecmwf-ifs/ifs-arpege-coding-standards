@@ -1,13 +1,6 @@
-I2 : DRHOOK instrumentation
-****************************
+I2 : KIND specification
+***********************
 
-All IFS routines shall have DRHOOK calls as first and last statement, unless referenced 
-explicitly in exceptions list.
-
-The string argument to these calls must give the name of subroutine. 
-In the case of a contained subroutine, the string should be constructed from the name of the 
-parent routine and the contained routine, separated with a percent symbol (%).
-
-
-The exceptions list should only contain routines that are called in time-critical / tight contexts, 
-where DRHOOK overhead would not be acceptable.
+Real and integer variables in the IFS shall have an explicit KIND specifier, with 
+a kind defined in PARKIND1 or PARKIND2, or in a similar file for stand-alone projects
+(ecTRANS, WAM, etc)

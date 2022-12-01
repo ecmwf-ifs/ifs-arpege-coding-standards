@@ -1,7 +1,6 @@
-I5 : derived types in modules
-*****************************
+I5 : MPL and message passing
+****************************
 
-Derived type definitions shall not be outside of a module
+All operations related to message passing internal to the IFS shall be done via the MPL library.
 
-A module may contain multiple type definitions, but a subroutine should
-not contain a type definition.
+Nemo code, WAM code, and master.F90 are not concerned by this rule.

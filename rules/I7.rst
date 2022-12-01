@@ -1,4 +1,13 @@
-I7 : no TABS
-************
+I7 : DRHOOK instrumentation
+****************************
 
-TAB characters are not to be used
+All IFS routines shall have DRHOOK calls as first and last statement, unless referenced 
+explicitly in exceptions list.
+
+The string argument to these calls must give the name of subroutine. 
+In the case of a contained subroutine, the string should be constructed from the name of the 
+parent routine and the contained routine, separated with a percent symbol (%).
+
+
+The exceptions list should only contain routines that are called in time-critical / tight contexts, 
+where DRHOOK overhead would not be acceptable.
