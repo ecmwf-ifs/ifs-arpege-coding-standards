@@ -3,14 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the IFS coding guidelines!
-=====================================
+Welcome to the Arpege/IFS coding guidelines!
+============================================
 
 Developments to the Arpege/IFS codebase should aim to adhere to the guidelines 
 and rules presented in this document.
 
 Guidelines and rules described here are designed to make code easier to read,
 easier to maintain, easier to extend, and less prone to bugs. 
+The code review process for submissions to Arpege and IFS could aim to check
+code against these guidelines.
 Rules are also written so as to allow implementation of automatic checking.
 
 Guidelines and recommendations
