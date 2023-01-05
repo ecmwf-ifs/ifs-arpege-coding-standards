@@ -1,5 +1,0 @@
-L4 : language features
-**********************
-
-New features from recent Fortran standards should not be
-used if they are not supported by GNU, Intel, & Nvidia compilers.

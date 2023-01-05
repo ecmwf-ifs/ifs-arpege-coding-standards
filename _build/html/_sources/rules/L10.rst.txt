@@ -1,4 +1,0 @@
-L10 : declaration syntax
-*************************
-
-All declarations shall use the “::” notation.

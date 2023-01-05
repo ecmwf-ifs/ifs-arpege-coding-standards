@@ -1,6 +1,0 @@
-I4 : MPL and message passing
-****************************
-
-All operations related to message passing internal to the IFS shall be done via the MPL library.
-
-Nemo code, WAM code, and master.F90 are not concerned by this rule.

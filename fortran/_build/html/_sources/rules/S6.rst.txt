@@ -1,0 +1,4 @@
+S6 : no TABS
+************
+
+TAB characters are not to be used
