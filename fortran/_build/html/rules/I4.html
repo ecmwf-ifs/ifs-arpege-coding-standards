@@ -1,0 +1,243 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>I4 : Excessively long interfaces &mdash; IFS_coding_guidelines  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="I5 : MPL and message passing" href="I5.html" />
+    <link rel="prev" title="I3 : derived types in modules" href="I3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> IFS_coding_guidelines
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">List of rules:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="L1.html">L1 : implicit none</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L2.html">L2 : use module, only</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L3.html">L3 : global variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L4.html">L4 : new language features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L5.html">L5 : argument INTENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L6.html">L6 : OPTIONAL argument position</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L7.html">L7 : OPTIONAL argument keyword usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L8.html">L8 : copying allocatable arrays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L9.html">L9 : interfaces for routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="L10.html">L10 : declaration syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I1.html">I1 : naming of variables, subroutines, modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I2.html">I2 : KIND specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I3.html">I3 : derived types in modules</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">I4 : Excessively long interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I5.html">I5 : MPL and message passing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I6.html">I6 : MPL and string argument</a></li>
+<li class="toctree-l1"><a class="reference internal" href="I7.html">I7 : DRHOOK instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SC1.html">SC1 : horizontal indexing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SC2.html">SC2 : horizontal looping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SC3.html">SC3 : function calls from inside KPROMA loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SC4.html">SC4 : no horizontal indirection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S1.html">S1 : END IF / ENDIF</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S2.html">S2: order of argument declarations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S3.html">S3 : line continuation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S4.html">S4: no unqualified END statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S5.html">S5 : unused variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="S6.html">S6 : no TABS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../obsolescent/index.html">Coding norms 2011 rules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IFS_coding_guidelines</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>I4 : Excessively long interfaces</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/rules/I4.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="i4-excessively-long-interfaces">
+<h1>I4 : Excessively long interfaces<a class="headerlink" href="#i4-excessively-long-interfaces" title="Permalink to this heading">¶</a></h1>
+<p>IFS routines should not have more than 50 <strong>(arbitrary value, but used in historical document, and sounds already long to me)</strong> arguments.</p>
+<p>Control flow routines should use derived types to group long lists of related variables.</p>
+<p>Algorithmic kernels should be tight enough in scope to avoid the need for more than 50 arguments.</p>
+<p>Lightweight <em>_layer</em> routines can be used as bridge between control flow code and kernel code.</p>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="I5.html" class="btn btn-neutral float-right" title="I5 : MPL and message passing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="I3.html" class="btn btn-neutral float-left" title="I3 : derived types in modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, ECMWF.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
