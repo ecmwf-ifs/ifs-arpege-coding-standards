@@ -1,0 +1,10 @@
+I1 : naming of variables, scripts, functions
+**********************************************
+
+File naming
+===========
+
+Executable files should have no suffix, e.g. `run_parallel`.
+
+Files containing fragments of scripts, such as include files, libraries, etc.,
+should have a suffix reflecting the syntax, e.g. `.bash` or `.ksh`.
