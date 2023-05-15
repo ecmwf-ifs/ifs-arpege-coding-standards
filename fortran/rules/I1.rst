@@ -28,7 +28,7 @@ Variable naming
 Routine naming
 ==============
 
-* setup routines should start with subroutines
+* setup routines should start with "su"
 * TL and AD routines should end with tl and ad respectively
 
 *Module naming*

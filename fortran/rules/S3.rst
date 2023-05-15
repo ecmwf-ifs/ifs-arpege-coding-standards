@@ -1,7 +1,7 @@
 S3 : line continuation
 ************************
 
-Optional arguments to a routine shall be after non-optional ones.
+Line continuation should use an ampersand both at the end of lines to be continued and at the start of the next line.
 
 .. code-block:: fortran
    :caption: Good line continuation
