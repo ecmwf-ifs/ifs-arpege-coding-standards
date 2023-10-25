@@ -1,0 +1,14 @@
+L15 : dummy/actual array dimensions
+***********************************
+
+If an actual argument is an array, then :
+- its rank should match the rank of the corresponding dummy argument
+- its dimensions should match those of the corresponding dummy argument
+
+Notable exceptions are the interpolation routines of the Semi-Lagrangian: 
+
+* ``laitli.F90``
+
+* ``laitri.F90``
+
+* etc.

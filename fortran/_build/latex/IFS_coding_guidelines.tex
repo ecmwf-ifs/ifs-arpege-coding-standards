@@ -4,48 +4,31 @@
 \ifdefined\pdfpxdimen
    \let\sphinxpxdimen\pdfpxdimen\else\newdimen\sphinxpxdimen
 \fi \sphinxpxdimen=.75bp\relax
-\ifdefined\pdfimageresolution
-    \pdfimageresolution= \numexpr \dimexpr1in\relax/\sphinxpxdimen\relax
-\fi
-%% let collapsible pdf bookmarks panel have high depth per default
-\PassOptionsToPackage{bookmarksdepth=5}{hyperref}
-
 
 \PassOptionsToPackage{warn}{textcomp}
 \usepackage[utf8]{inputenc}
 \ifdefined\DeclareUnicodeCharacter
 % support both utf8 and utf8x syntaxes
-  \ifdefined\DeclareUnicodeCharacterAsOptional
-    \def\sphinxDUC#1{\DeclareUnicodeCharacter{"#1}}
-  \else
-    \let\sphinxDUC\DeclareUnicodeCharacter
-  \fi
-  \sphinxDUC{00A0}{\nobreakspace}
-  \sphinxDUC{2500}{\sphinxunichar{2500}}
-  \sphinxDUC{2502}{\sphinxunichar{2502}}
-  \sphinxDUC{2514}{\sphinxunichar{2514}}
-  \sphinxDUC{251C}{\sphinxunichar{251C}}
-  \sphinxDUC{2572}{\textbackslash}
+\edef\sphinxdqmaybe{\ifdefined\DeclareUnicodeCharacterAsOptional\string"\fi}
+  \DeclareUnicodeCharacter{\sphinxdqmaybe00A0}{\nobreakspace}
+  \DeclareUnicodeCharacter{\sphinxdqmaybe2500}{\sphinxunichar{2500}}
+  \DeclareUnicodeCharacter{\sphinxdqmaybe2502}{\sphinxunichar{2502}}
+  \DeclareUnicodeCharacter{\sphinxdqmaybe2514}{\sphinxunichar{2514}}
+  \DeclareUnicodeCharacter{\sphinxdqmaybe251C}{\sphinxunichar{251C}}
+  \DeclareUnicodeCharacter{\sphinxdqmaybe2572}{\textbackslash}
 \fi
 \usepackage{cmap}
 \usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amstext}
 \usepackage{babel}
-
-
-
-\usepackage{tgtermes}
-\usepackage{tgheros}
-\renewcommand{\ttdefault}{txtt}
-
-
-
-\usepackage[Bjarne]{fncychap}
+\usepackage{times}
+\usepackage[Sonny]{fncychap}
+\ChNameVar{\Large\normalfont\sffamily}
+\ChTitleVar{\Large\normalfont\sffamily}
 \usepackage{sphinx}
 
-\fvset{fontsize=auto}
+\fvset{fontsize=\small}
 \usepackage{geometry}
-
 
 % Include hyperref last.
 \usepackage{hyperref}
@@ -53,16 +36,32 @@
 \usepackage{hypcap}% it must be loaded after hyperref.
 % Set up styles of URL: it should be placed after hyperref.
 \urlstyle{same}
-
 \addto\captionsenglish{\renewcommand{\contentsname}{List of rules:}}
 
-\usepackage{sphinxmessages}
+\addto\captionsenglish{\renewcommand{\figurename}{Fig.\@ }}
+\makeatletter
+\def\fnum@figure{\figurename\thefigure{}}
+\makeatother
+\addto\captionsenglish{\renewcommand{\tablename}{Table }}
+\makeatletter
+\def\fnum@table{\tablename\thetable{}}
+\makeatother
+\addto\captionsenglish{\renewcommand{\literalblockname}{Listing}}
+
+\addto\captionsenglish{\renewcommand{\literalblockcontinuedname}{continued from previous page}}
+\addto\captionsenglish{\renewcommand{\literalblockcontinuesname}{continues on next page}}
+\addto\captionsenglish{\renewcommand{\sphinxnonalphabeticalgroupname}{Non-alphabetical}}
+\addto\captionsenglish{\renewcommand{\sphinxsymbolsname}{Symbols}}
+\addto\captionsenglish{\renewcommand{\sphinxnumbersname}{Numbers}}
+
+\addto\extrasenglish{\def\pageautorefname{page}}
+
 \setcounter{tocdepth}{1}
 
 
 
 \title{IFS\_coding\_guidelines Documentation}
-\date{Nov 28, 2022}
+\date{Oct 25, 2023}
 \release{}
 \author{ECMWF}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -83,120 +82,117 @@
 \phantomsection\label{\detokenize{index::doc}}
 
 
-\sphinxAtStartPar
 Developments to the Arpege/IFS codebase should aim to adhere to the guidelines
 and rules presented in this document.
 
-\sphinxAtStartPar
 Guidelines and rules described here are designed to make code easier to read,
 easier to maintain, easier to extend, and less prone to bugs.
+The code review process for submissions to Arpege and IFS could aim to check
+code against these guidelines.
 Rules are also written so as to allow implementation of automatic checking.
 
 
 \chapter{Guidelines and recommendations}
 \label{\detokenize{index:guidelines-and-recommendations}}\begin{itemize}
 \item {} 
-\sphinxAtStartPar
 Good code should not require large amounts of comments to be intelligible.
 Nevertheless targeted explanations of particular segments of interest are desirable.
 Each source file should have a homogeneous coding style.
 
-\item {} 
-\sphinxAtStartPar
-Routine call signatures or interfaces should be designed with care, respecting library
-contouring. Interfaces that are not internal to a component should priviledge
+\end{itemize}
 
+\textgreater{}\textgreater{}PM: suggestion: remove all history comments at the beginning of each routine; these can
+be obtained from git history.\textless{}\textless{}
+\begin{itemize}
 \item {} 
-\sphinxAtStartPar
-Naming of new variables, routines and modules should help the reader understand code as efficiently
-as possible. \sphinxstyleemphasis{Renaming of legacy / existing code?}
-
-\item {} 
-\sphinxAtStartPar
 Contours of a routine or module should be considered with care, avoiding excessive length
 or complexity.
 
 \item {} 
-\sphinxAtStartPar
-In order to make domain decomposition easier to follow, global variable names are suffixed by G,
-while subdomain\sphinxhyphen{}local variables are suffixed by L.
+Routine call signatures or interfaces should be designed with care, respecting library
+contouring. Interfaces that are not internal to a component should privilege as much as
+possible native fortran datatypes rather than derived types.
+
+\end{itemize}
+
+\textgreater{}\textgreater{}PM: this does not make sense; most modern libraries (eg Atlas) use derived types.\textless{}\textless{}
+\begin{itemize}
+\item {} 
+Naming of new variables, routines and modules should help the reader understand code as efficiently
+as possible. \sphinxstyleemphasis{Renaming of legacy / existing code?}
 
 \item {} 
-\sphinxAtStartPar
 Large arrays should be declared as allocatable, to avoid excessive stack usage.
 Small arrays, and in particular those declared in tight code (this should be avoided wherever
 possible!) should be automatic, to benefit from faster stack handling.
 
+\end{itemize}
+
+\textgreater{}\textgreater{}PM: definition of large and small arrays ? I recommand banning ALLOCATABLEs in all NPROMA routines
+(ie those which process a single NPROMA block).\textless{}\textless{}
+\begin{itemize}
 \item {} 
-\sphinxAtStartPar
 If an allocatable variable can be used rather than a pointer, opt for the allocatable for
 safety reasons.
 
 \item {} 
-\sphinxAtStartPar
-Different meteorological data formats are used at ECMWF and Meteo\sphinxhyphen{}France.
+In order to make domain decomposition easier to follow, global variable names are suffixed by G,
+while subdomain-local variables are suffixed by L.
+
+\item {} 
+Different meteorological data formats are used at ECMWF and Meteo-France.
 The choice between these formats should be based on logical keys LARPEGEF or LARPEGEF\_xx
 (and not LECMWF).
 
 \item {} 
-\sphinxAtStartPar
-Conditional clauses with multiple cases should be handled with SELECT CASE rather than IF
-statements followed by multiple ELSEIF statements.
-
-\item {} 
-\sphinxAtStartPar
 Aladin routines that are counterparts of IFS/Arpege ones should have the same name but
 prefixed with E.
 Aladin counterparts to IFS/Arpege SUxxx setup routines should be named SUE.
 
 \item {} 
-\sphinxAtStartPar
 Output that should appear in the main text output file should be written to NULOUT.
 Output to NULOUT must be deterministic and should not change according to the
 parallel distribution or the time at which the job is run.
 Error messages should be written to unit NULERR.
 
 \item {} 
-\sphinxAtStartPar
+Conditional clauses with multiple cases should be handled with SELECT CASE rather than IF
+statements followed by multiple ELSEIF statements.
+
+\item {} 
 If execution is to be aborted by the code, a call to ABOR1, with a meaningful message,
 should be used.
 
 \end{itemize}
 
+\textgreater{}\textgreater{}PM: I think we should also discuss how source files are organized in the git repository;
+in particular, having an arpifs/module directory with all the modules does not make
+sense.\textless{}\textless{}
+
 
 \chapter{Rules (as checked by norms checker)}
 \label{\detokenize{index:rules-as-checked-by-norms-checker}}
-\sphinxAtStartPar
 Some of the rules relate to the idea of Single Column code, where algorithmic tasks can be expressed
 independently of horizontal position, and no horizontal dependencies exist. Code which maps to this
-concept can be modified at compile time by tooling (Loki, Fxtran) in line with architecture\sphinxhyphen{}specific
+concept can be modified at compile time by tooling (Loki, Fxtran) in line with architecture-specific
 requirements. Such tooling relies heavily on code formatting to determine required transformations,
 explaining the prescriptive rules for these areas of code.
 
-\sphinxAtStartPar
-Rules are organised into general language rules (Lw), IFS\sphinxhyphen{}specific rules (Ix), stylistic
-points (Sy), and Single\sphinxhyphen{}Column related rules (SCz).
-
-\sphinxstepscope
+Rules are organised into general language rules (Lw), IFS-specific rules (Ix), stylistic
+points (Sy), and Single-Column related rules (SCz).
 
 
 \section{L1 : implicit none}
 \label{\detokenize{rules/L1:l1-implicit-none}}\label{\detokenize{rules/L1::doc}}
-\sphinxAtStartPar
 \sphinxcode{\sphinxupquote{IMPLICIT NONE}} must figure in all scoping units
 
-\sphinxAtStartPar
 Once per module is sufficient
-
-\sphinxstepscope
 
 
 \section{L2 : use module, only}
 \label{\detokenize{rules/L2:l2-use-module-only}}\label{\detokenize{rules/L2::doc}}
-\sphinxAtStartPar
 Module imports via the USE statement shall contain an ONLY specifier.
 
-\sphinxAtStartPar
 \sphinxstylestrong{To be avoided :}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
@@ -204,173 +200,291 @@ Module imports via the USE statement shall contain an ONLY specifier.
 \PYG{k}{USE }\PYG{n}{YOMRIP}
 \end{sphinxVerbatim}
 
-\sphinxAtStartPar
 \sphinxstylestrong{Correct way to import from modules :}
 
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{USE }\PYG{n}{GEOMETRY\PYGZus{}MOD}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{ONLY}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{TYPE\PYGZus{}GEOMETRY}
-\PYG{k}{USE }\PYG{n}{YOMRIP}\PYG{p}{,}\PYG{+w}{       }\PYG{k}{ONLY}\PYG{+w}{ }\PYG{p}{:}\PYG{+w}{ }\PYG{n}{NSTADD}
+\PYG{k}{USE }\PYG{n}{GEOMETRY\PYGZus{}MOD}\PYG{p}{,} \PYG{n}{ONLY} \PYG{p}{:} \PYG{n}{TYPE\PYGZus{}GEOMETRY}
+\PYG{k}{USE }\PYG{n}{YOMRIP}\PYG{p}{,}       \PYG{n}{ONLY} \PYG{p}{:} \PYG{n}{NSTADD}
 \end{sphinxVerbatim}
 
 
 \subsection{Exceptions}
 \label{\detokenize{rules/L2:exceptions}}\begin{itemize}
 \item {} 
-\sphinxAtStartPar
-Fypp\sphinxhyphen{}based modules, as cmake’s dependency analysis does not know what symbols a fypp module will expose.
+Fypp-based modules, as cmake’s dependency analysis does not know what symbols a fypp module will expose.
 
 \item {} 
-\sphinxAtStartPar
 modules where ASSIGNMENT operator is overloaded
 
 \end{itemize}
 
-\sphinxstepscope
-
 
 \section{L3 : global variables}
 \label{\detokenize{rules/L3:l3-global-variables}}\label{\detokenize{rules/L3::doc}}
-\sphinxAtStartPar
 Only parameters to be declared as global variables.
 
-\sphinxAtStartPar
+\textgreater{}\textgreater{}PM: Does this mean that global variables are forbidden ? I think it is a good idea, but there is a lot of work to do to get there.\textless{}\textless{}
+
 Example :
 \sphinxSetupCaptionForVerbatim{global variable usage}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{rules/L3:id1}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{k}{MODULE }\PYG{n}{YOMLUN}
 
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{PARAMETER}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{NULSTAT}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{  }\PYG{l+m+mi}{1}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{PARAMETER}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{NULNAM}\PYG{+w}{  }\PYG{o}{=}\PYG{+w}{  }\PYG{l+m+mi}{4}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{PARAMETER} \PYG{k+kd}{::} \PYG{n}{NULSTAT} \PYG{o}{=}  \PYG{l+m+mi}{1}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{PARAMETER} \PYG{k+kd}{::} \PYG{n}{NULNAM}  \PYG{o}{=}  \PYG{l+m+mi}{4}
 
 \PYG{k}{END }\PYG{k}{MODULE}
 \end{sphinxVerbatim}
 
-\sphinxstepscope
 
-
-\section{L4 : language features}
-\label{\detokenize{rules/L4:l4-language-features}}\label{\detokenize{rules/L4::doc}}
-\sphinxAtStartPar
+\section{L4 : new language features}
+\label{\detokenize{rules/L4:l4-new-language-features}}\label{\detokenize{rules/L4::doc}}
 New features from recent Fortran standards should not be
 used if they are not supported by GNU, Intel, \& Nvidia compilers.
-
-\sphinxstepscope
 
 
 \section{L5 : argument INTENT}
 \label{\detokenize{rules/L5:l5-argument-intent}}\label{\detokenize{rules/L5::doc}}
-\sphinxAtStartPar
 All arguments to routines shall be declared with an INTENT.
 \begin{itemize}
 \item {} 
-\sphinxAtStartPar
 \sphinxcode{\sphinxupquote{INTENT(IN)}} : variables which are not assigned to in the scope
 
 \item {} 
-\sphinxAtStartPar
 \sphinxcode{\sphinxupquote{INTENT(OUT)}} : variables whose previous content is irrelevant, and which are written to in the scope
 
 \item {} 
-\sphinxAtStartPar
 \sphinxcode{\sphinxupquote{INTENT(INOUT)}} : all other variables
 
 \end{itemize}
 
-\sphinxAtStartPar
+\textgreater{}\textgreater{}PM: Structures like YDVARS which contain some pointers can have the INTENT(IN) attribute, and
+have their pointed values modified. This is a problem, as we will have such structures everywhere
+in the code.
+Furthermore, using the \sphinxcode{\sphinxupquote{INTENT(OUT)}} attribute for such variables may cause some compilers
+(eg NAG) to wipe their contents.
+And YDVARS also contains some metadata that should remain constant. I think we do not have any
+other choice but to declare YDVARS (and other similar structures) with \sphinxcode{\sphinxupquote{INTENT(IN)}} everywhere.
+\textless{}\textless{}
+
 \sphinxstyleemphasis{warning}
 Particular care should be paid to intent of array variables:
 * arrays where only a few locations are updated but other locations
 contain required values, \sphinxstyleemphasis{must} be declared as INTENT(INOUT)
-* arguments declared as allocatable may be deallocated at entry if declared as INTENT(OUT)
 
-\sphinxstepscope
+\textgreater{}\textgreater{}PM: no compiler can make the difference between INTENT(INOUT) and INTENT(OUT).\textless{}\textless{}
+\begin{itemize}
+\item {} 
+arguments declared as allocatable may be deallocated at entry if declared as INTENT(OUT)
+
+\end{itemize}
 
 
 \section{L6 : OPTIONAL argument position}
 \label{\detokenize{rules/L6:l6-optional-argument-position}}\label{\detokenize{rules/L6::doc}}
-\sphinxAtStartPar
-Optional arguments to a routine shall be after non\sphinxhyphen{}optional ones.
+Optional arguments to a routine shall be after non-optional ones.
 
-\sphinxAtStartPar
 To be avoided :
 \sphinxSetupCaptionForVerbatim{OPTIONAL argument position}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{rules/L6:id1}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{SUBROUTINE }\PYG{n}{OPT\PYGZus{}ARG}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{ARG1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG3}\PYG{p}{)}
+\PYG{k}{SUBROUTINE }\PYG{n}{OPT\PYGZus{}ARG}\PYG{p}{(} \PYG{n}{ARG1}\PYG{p}{,} \PYG{n}{ARG2}\PYG{p}{,} \PYG{n}{ARG3}\PYG{p}{)}
 
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{+w}{          }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG1}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{p}{,}\PYG{k}{OPTIONAL}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG2}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}\PYG{+w}{         }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG3}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}          \PYG{k+kd}{::} \PYG{n}{ARG1}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{p}{,}\PYG{k}{OPTIONAL} \PYG{k+kd}{::} \PYG{n}{ARG2}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}         \PYG{k+kd}{::} \PYG{n}{ARG3}
 \end{sphinxVerbatim}
-
-\sphinxstepscope
 
 
 \section{L7 : OPTIONAL argument keyword usage}
 \label{\detokenize{rules/L7:l7-optional-argument-keyword-usage}}\label{\detokenize{rules/L7::doc}}
-\sphinxAtStartPar
-Optional arguments passed to a routine shall have their keyword speficied.
+Optional arguments passed to a routine shall have their keyword specified.
 
-\sphinxAtStartPar
 To be avoided :
 \sphinxSetupCaptionForVerbatim{OPTIONAL argument keyword}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{rules/L7:id1}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
 \PYG{c}{!! interface of OPT\PYGZus{}ARG subroutine is below}
-\PYG{k}{CALL }\PYG{n}{OPT\PYGZus{}ARG}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{IVAL1}\PYG{p}{,}\PYG{n}{IVAL2}\PYG{p}{,}\PYG{n}{IVAL3}\PYG{p}{)}
+\PYG{k}{CALL }\PYG{n}{OPT\PYGZus{}ARG}\PYG{p}{(} \PYG{n}{IVAL1}\PYG{p}{,}\PYG{n}{IVAL2}\PYG{p}{,}\PYG{n}{IVAL3}\PYG{p}{)}
 
 
-\PYG{k}{SUBROUTINE }\PYG{n}{OPT\PYGZus{}ARG}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{ARG1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG3}\PYG{p}{)}
+\PYG{k}{SUBROUTINE }\PYG{n}{OPT\PYGZus{}ARG}\PYG{p}{(} \PYG{n}{ARG1}\PYG{p}{,} \PYG{n}{ARG2}\PYG{p}{,} \PYG{n}{ARG3}\PYG{p}{)}
 
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{+w}{          }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG1}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}\PYG{+w}{         }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG2}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{p}{,}\PYG{k}{OPTIONAL}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG3}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}          \PYG{k+kd}{::} \PYG{n}{ARG1}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}         \PYG{k+kd}{::} \PYG{n}{ARG2}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{p}{,}\PYG{k}{OPTIONAL} \PYG{k+kd}{::} \PYG{n}{ARG3}
 \end{sphinxVerbatim}
-
-\sphinxstepscope
 
 
 \section{L8 : copying allocatable arrays}
 \label{\detokenize{rules/L8:l8-copying-allocatable-arrays}}\label{\detokenize{rules/L8::doc}}
-\sphinxAtStartPar
 An array declared in scope as allocatable shall not be copied without dimension specification.
 
-\sphinxAtStartPar
 For example, copy 1D array as \sphinxcode{\sphinxupquote{PARR2(:)=PARR1(:)}}, and \sphinxstyleemphasis{not} \sphinxcode{\sphinxupquote{PARR2=PARR1}}.
-The latter form may lead to reallocation of the left\sphinxhyphen{}hand\sphinxhyphen{}side target array at runtime, which
-is error\sphinxhyphen{}prone, and costly.
-
-\sphinxAtStartPar
-Inside computational kernels, explicit looping over array elements is preferred.
-
-\sphinxstepscope
+The latter form may lead to reallocation of the left-hand-side target array at runtime, which
+is error-prone, and costly.
 
 
 \section{L9 : interfaces for routines}
 \label{\detokenize{rules/L9:l9-interfaces-for-routines}}\label{\detokenize{rules/L9::doc}}
-\sphinxAtStartPar
 Calls to subroutines and functions that are provided neither by a module nor by a CONTAINS statement,
 must have a matching explicit interface block.
 
-\sphinxAtStartPar
 Routines that may be called from outside the IFS should have an interface in the codebase, while
 routines called exclusively internally have their interfaces generated at build time.
-
-\sphinxstepscope
 
 
 \section{L10 : declaration syntax}
 \label{\detokenize{rules/L10:l10-declaration-syntax}}\label{\detokenize{rules/L10::doc}}
-\sphinxAtStartPar
 All declarations shall use the “::” notation.
 
-\sphinxstepscope
+
+\section{L11 : array syntax}
+\label{\detokenize{rules/L11:l11-array-syntax}}\label{\detokenize{rules/L11::doc}}
+Fortran array syntax, eg :
+
+\sphinxcode{\sphinxupquote{ZX(:)=ZY(:)+ZZ(:)}}
+
+is forbidden, except for the two following trivial cases:
+\begin{itemize}
+\item {} 
+Array initialization: \sphinxcode{\sphinxupquote{X(:)=constant}}
+
+\item {} 
+Array copy : \sphinxcode{\sphinxupquote{X(:)=Y(:)}}
+
+\end{itemize}
+
+
+\section{L12 : array declarations in NPROMA routines}
+\label{\detokenize{rules/L12:l12-array-declarations-in-nproma-routines}}\label{\detokenize{rules/L12::doc}}
+NPROMA routines (those processing a single NPROMA block) should only declare arrays of basic
+data types whose kinds are taken from parkind1.F90 and parkind2.F90, eg:
+\begin{itemize}
+\item {} 
+\sphinxcode{\sphinxupquote{REAL(KIND=JPRB)}}
+
+\item {} 
+\sphinxcode{\sphinxupquote{REAL(KIND=JPRD)}}
+
+\item {} 
+\sphinxcode{\sphinxupquote{INTEGER(KIND=JPIM)}}
+
+\item {} 
+\sphinxcode{\sphinxupquote{LOGICAL}}
+
+\end{itemize}
+
+The leading dimensions of these array should be \sphinxcode{\sphinxupquote{NPROMA}}.
+
+Any other arrays are forbidden in NPROMA routines. These other arrays (not depending on
+the meteorological situation) should be computed in the setup and passed as arguments
+to NPROMA compute routines, or integrated into sub-components of YDMODEL.
+
+Arrays declared in NPROMA routines be automatic arrays; ALLOCATABLEs and POINTERs are
+forbidden.
+
+
+\section{L13 : array declarations in parallel routines}
+\label{\detokenize{rules/L13:l13-array-declarations-in-parallel-routines}}\label{\detokenize{rules/L13::doc}}
+Parallel routines (those processing a list of NPROMA blocks) should wrap their field data
+into Field API objects.
+
+In particular the legacy data representation for model state (PGMV/PGFL arrays) should be
+considered obsolescent and replaced by YDVARS wherever possible.
+
+Parallel routines should never declare an array that will be involved in calculations
+(ie passed to NPROMA routines or used in OpenMP sections).
+
+
+\section{L14 : notations}
+\label{\detokenize{rules/L14:l14-notations}}\label{\detokenize{rules/L14::doc}}
+Notations should homogeneous for the loop index, NPROMA array leading dimension, first iteration, last iteration:
+\begin{itemize}
+\item {} 
+\sphinxcode{\sphinxupquote{JLON/KLON/KIDIA/KFDIA}} in ARPEGE physics
+
+\item {} 
+\sphinxcode{\sphinxupquote{JL/KLON/KIDIA/KFDIA}} in ECMWF physics
+
+\item {} 
+\sphinxcode{\sphinxupquote{JROF/NPROMA/KST/KEND}} in dynamics routines (call\_sl.F90, cpg\_gp.F90, cpg\_dyn.F90)
+
+\end{itemize}
+
+
+\section{L15 : dummy/actual array dimensions}
+\label{\detokenize{rules/L15:l15-dummy-actual-array-dimensions}}\label{\detokenize{rules/L15::doc}}
+If an actual argument is an array, then :
+- its rank should match the rank of the corresponding dummy argument
+- its dimensions should match those of the corresponding dummy argument
+
+Notable exceptions are the interpolation routines of the Semi-Lagrangian:
+\begin{itemize}
+\item {} 
+\sphinxcode{\sphinxupquote{laitli.F90}}
+
+\item {} 
+\sphinxcode{\sphinxupquote{laitri.F90}}
+
+\item {} 
+etc.
+
+\end{itemize}
+
+
+\section{L16 : INTENT attribute in NPROMA routines}
+\label{\detokenize{rules/L16:l16-intent-attribute-in-nproma-routines}}\label{\detokenize{rules/L16::doc}}
+In NPROMA routines (those processing a single NPROMA block), only NPROMA data should
+be allowed to have an INTENT different of IN.
+All other argument data should have the \sphinxcode{\sphinxupquote{INTENT(IN)}} attribute.
+
+This, for instance should be forbidden:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{SUBROUTINE }\PYG{n}{LAPINEA}\PYG{p}{(}\PYG{p}{\PYGZam{}}
+\PYG{p}{\PYGZam{}} \PYG{n}{YDGEOMETRY}\PYG{p}{,} \PYG{n}{YDML\PYGZus{}GCONF}\PYG{p}{,}\PYG{n}{YDML\PYGZus{}DYN}\PYG{p}{,}\PYG{n}{KST}\PYG{p}{,}\PYG{n}{KPROF}\PYG{p}{,}\PYG{n}{YDSL}\PYG{p}{,}\PYG{n}{KIBL}\PYG{p}{,}\PYG{n}{PB1}\PYG{p}{,}\PYG{n}{PB2}\PYG{p}{,}\PYG{n}{PWRL9}\PYG{p}{,}\PYG{p}{\PYGZam{}}
+\PYG{p}{\PYGZam{}} \PYG{n}{KVSEPC}\PYG{p}{,}\PYG{n}{KVSEPL}\PYG{p}{,}\PYG{p}{\PYGZam{}}
+\PYG{p}{\PYGZam{}} \PYG{n}{PSAVEDP}\PYG{p}{,}\PYG{n}{PCCO}\PYG{p}{,}\PYG{n}{PUF}\PYG{p}{,}\PYG{n}{PVF}\PYG{p}{,}\PYG{n}{KL0}\PYG{p}{,}\PYG{n}{KLH0}\PYG{p}{,}\PYG{n}{PLSCAW}\PYG{p}{,}\PYG{n}{PRSCAW}\PYG{p}{,}\PYG{n}{KL0H}\PYG{p}{,}\PYG{n}{PLSCAWH}\PYG{p}{,}\PYG{n}{PRSCAWH}\PYG{p}{,}\PYG{p}{\PYGZam{}}
+\PYG{p}{\PYGZam{}} \PYG{n}{PSCO}\PYG{p}{,}\PYG{n}{PGFLT1}\PYG{p}{,}\PYG{n}{KNOWENO}\PYG{p}{)}
+
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{INOUT}\PYG{p}{)} \PYG{k+kd}{::} \PYG{n}{KVSEPC}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{INOUT}\PYG{p}{)} \PYG{k+kd}{::} \PYG{n}{KVSEPL}
+\end{sphinxVerbatim}
+
+In particular, \sphinxcode{\sphinxupquote{YDMODEL}} and \sphinxcode{\sphinxupquote{YDGEOMETRY}} as well as all their sub-components passed as arguments (eg \sphinxcode{\sphinxupquote{YDDYNA}}) should
+have the \sphinxcode{\sphinxupquote{INTENT(IN)}} attribute in NPROMA routines.
+
+
+\section{L17 : Pointers in NPROMA routines}
+\label{\detokenize{rules/L17:l17-pointers-in-nproma-routines}}\label{\detokenize{rules/L17::doc}}
+The use of Fortran pointers in compute NPROMA routines should be forbidden except for the following pattern:
+
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\PYG{k}{SUBROUTINE }\PYG{n}{GPRCP\PYGZus{}EXPL} \PYG{p}{(}\PYG{n}{YDCST}\PYG{p}{,} \PYG{n}{YDCPG\PYGZus{}BNDS}\PYG{p}{,} \PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{,} \PYG{n}{PCP}\PYG{p}{,} \PYG{n}{PR}\PYG{p}{,} \PYG{n}{PKAP}\PYG{p}{,} \PYG{n}{YDVARS}\PYG{p}{,} \PYG{n}{KGFLTYP}\PYG{p}{)}
+
+\PYG{k+kt}{REAL}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPRB}\PYG{p}{)}\PYG{p}{,}\PYG{k}{OPTIONAL}\PYG{p}{,}\PYG{k}{TARGET}\PYG{p}{,}\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}   \PYG{k+kd}{::} \PYG{n}{PCP}\PYG{p}{(}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KLON}\PYG{p}{,}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KFLEVG}\PYG{p}{)}
+\PYG{k+kt}{REAL}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPRB}\PYG{p}{)}\PYG{p}{,}\PYG{k}{OPTIONAL}\PYG{p}{,}\PYG{k}{TARGET}\PYG{p}{,}\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}   \PYG{k+kd}{::} \PYG{n}{PR}\PYG{p}{(}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KLON}\PYG{p}{,}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KFLEVG}\PYG{p}{)}
+\PYG{k+kt}{REAL}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPRB}\PYG{p}{)}\PYG{p}{,}\PYG{k}{OPTIONAL}\PYG{p}{,}       \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}   \PYG{k+kd}{::} \PYG{n}{PKAP}\PYG{p}{(}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KLON}\PYG{p}{,}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KFLEVG}\PYG{p}{)}
+
+\PYG{k+kt}{REAL}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPRB}\PYG{p}{)}\PYG{p}{,} \PYG{k}{POINTER} \PYG{k+kd}{::} \PYG{n}{ZR}\PYG{p}{(}\PYG{p}{:}\PYG{p}{,}\PYG{p}{:}\PYG{p}{)}
+\PYG{k+kt}{REAL}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPRB}\PYG{p}{)}\PYG{p}{,} \PYG{k}{TARGET}  \PYG{k+kd}{::} \PYG{n}{ZR0}\PYG{p}{(}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KLON}\PYG{p}{,}\PYG{n}{YDCPG\PYGZus{}OPTS}\PYG{p}{\PYGZpc{}}\PYG{n}{KFLEVG}\PYG{p}{)}
+
+\PYG{k}{IF} \PYG{p}{(}\PYG{n+nb}{PRESENT} \PYG{p}{(}\PYG{n}{PR}\PYG{p}{)}\PYG{p}{)} \PYG{k}{THEN}
+\PYG{k}{  }\PYG{n}{ZR} \PYG{o}{=}\PYG{o}{\PYGZgt{}} \PYG{n}{PR}
+\PYG{n}{ELSEIF} \PYG{p}{(}\PYG{n+nb}{PRESENT} \PYG{p}{(}\PYG{n}{PKAP}\PYG{p}{)}\PYG{p}{)} \PYG{k}{THEN}
+\PYG{k}{  }\PYG{n}{ZR} \PYG{o}{=}\PYG{o}{\PYGZgt{}} \PYG{n}{ZR0}
+\PYG{k}{ELSE}
+\PYG{k}{  }\PYG{k}{CALL }\PYG{n}{ABOR1} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}GPRCP\PYGZus{}EXPL: EXPECTED PR OR PKAP\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{ENDIF}
+\end{sphinxVerbatim}
+
+And such pointers should always point to arrays with the same shapes.
 
 
 \section{I1 : naming of variables, subroutines, modules}
 \label{\detokenize{rules/I1:i1-naming-of-variables-subroutines-modules}}\label{\detokenize{rules/I1::doc}}
-\sphinxAtStartPar
 The IFS has a historical naming convention, which should be adhered to
 where sensible.
 
@@ -378,66 +492,53 @@ where sensible.
 \subsection{Variable naming}
 \label{\detokenize{rules/I1:variable-naming}}\begin{itemize}
 \item {} 
-\sphinxAtStartPar
 Local variables
 
 \end{itemize}
 \begin{itemize}
 \item {} 
-\sphinxAtStartPar
 integer : \sphinxcode{\sphinxupquote{Ixxx}}
 
 \item {} 
-\sphinxAtStartPar
 real : \sphinxcode{\sphinxupquote{Zxxx}}
 
 \item {} 
-\sphinxAtStartPar
 logical : \sphinxcode{\sphinxupquote{LLxxx}}
 
 \item {} 
-\sphinxAtStartPar
-derived type : \sphinxcode{\sphinxupquote{YRxxx}}
+derived type : \sphinxcode{\sphinxupquote{YLxxx}}
 
 \end{itemize}
 \begin{itemize}
 \item {} 
-\sphinxAtStartPar
 Argument variables
 
 \end{itemize}
 \begin{itemize}
 \item {} 
-\sphinxAtStartPar
 integer : \sphinxcode{\sphinxupquote{Kxxxx}}
 
 \item {} 
-\sphinxAtStartPar
 real : \sphinxcode{\sphinxupquote{Pxxx}}
 
 \item {} 
-\sphinxAtStartPar
 logical : \sphinxcode{\sphinxupquote{LDxxx}}
 
 \item {} 
-\sphinxAtStartPar
 derived type : \sphinxcode{\sphinxupquote{YDxxx}}
 
 \end{itemize}
 \begin{itemize}
 \item {} 
-\sphinxAtStartPar
 Name suffixes
 
 \end{itemize}
 \begin{itemize}
 \item {} 
-\sphinxAtStartPar
 L suffix corresponds to local / subdomain variables
 
 \item {} 
-\sphinxAtStartPar
-G suffix corresponds to global / full\sphinxhyphen{}domain variables
+G suffix corresponds to global / full-domain variables
 
 \end{itemize}
 
@@ -445,821 +546,561 @@ G suffix corresponds to global / full\sphinxhyphen{}domain variables
 \subsection{Routine naming}
 \label{\detokenize{rules/I1:routine-naming}}\begin{itemize}
 \item {} 
-\sphinxAtStartPar
 setup routines should start with subroutines
 
 \item {} 
-\sphinxAtStartPar
 TL and AD routines should end with tl and ad respectively
 
 \end{itemize}
 
-\sphinxAtStartPar
 \sphinxstyleemphasis{Module naming}
 New modules should end with \_mod. The name of the file should match
 the name of the module it contains (e.g. \sphinxcode{\sphinxupquote{MODULE EINT}} should be in file eint\_mod.F90)
 
-\sphinxstepscope
+
+\section{I2 : KIND specification}
+\label{\detokenize{rules/I2:i2-kind-specification}}\label{\detokenize{rules/I2::doc}}
+Real and integer variables in the IFS shall have an explicit KIND specifier, with
+a kind defined in PARKIND1 or PARKIND2, or in a similar file for stand-alone projects
+(ecTRANS, WAM, etc)
 
 
-\section{I2 : DRHOOK instrumentation}
-\label{\detokenize{rules/I2:i2-drhook-instrumentation}}\label{\detokenize{rules/I2::doc}}
-\sphinxAtStartPar
-All IFS routines shall have DRHOOK calls as first and last statement, unless referenced
-explicitly in exceptions list.
-
-\sphinxAtStartPar
-The string argument to these calls must give the name of subroutine.
-In the case of a contained subroutine, the string should be constructed from the name of the
-parent routine and the contained routine, separated with a percent symbol (\%).
-
-\sphinxAtStartPar
-The exceptions list should only contain routines that are called in time\sphinxhyphen{}critical / tight contexts,
-where DRHOOK overhead would not be acceptable.
-
-\sphinxstepscope
-
-
-\section{I3 : Excessively long interfaces}
-\label{\detokenize{rules/I3:i3-excessively-long-interfaces}}\label{\detokenize{rules/I3::doc}}
-\sphinxAtStartPar
-IFS routines should not have more than 50 \sphinxstylestrong{(arbitrary value, but used in historical document, and sounds already long to me)} arguments.
-
-\sphinxAtStartPar
-Control flow routines should use derived types to group long lists of related variables.
-
-\sphinxAtStartPar
-Algorithmic kernels should be tight enough in scope to avoid the need for more than 50 arguments.
-
-\sphinxAtStartPar
-Lightweight \sphinxstyleemphasis{\_layer} routines can be used as bridge between control flow code and kernel code.
-
-\sphinxstepscope
-
-
-\section{I4 : MPL and message passing}
-\label{\detokenize{rules/I4:i4-mpl-and-message-passing}}\label{\detokenize{rules/I4::doc}}
-\sphinxAtStartPar
-All operations related to message passing internal to the IFS shall be done via the MPL library.
-
-\sphinxAtStartPar
-Nemo code, WAM code, and master.F90 are not concerned by this rule.
-
-\sphinxstepscope
-
-
-\section{I5 : derived types in modules}
-\label{\detokenize{rules/I5:i5-derived-types-in-modules}}\label{\detokenize{rules/I5::doc}}
-\sphinxAtStartPar
+\section{I3 : derived types in modules}
+\label{\detokenize{rules/I3:i3-derived-types-in-modules}}\label{\detokenize{rules/I3::doc}}
 Derived type definitions shall not be outside of a module
 
-\sphinxAtStartPar
 A module may contain multiple type definitions, but a subroutine should
 not contain a type definition.
 
-\sphinxstepscope
+
+\section{I4 : Excessively long interfaces}
+\label{\detokenize{rules/I4:i4-excessively-long-interfaces}}\label{\detokenize{rules/I4::doc}}
+IFS routines should not have more than 50 \sphinxstylestrong{(arbitrary value, but used in historical document, and sounds already long to me)} arguments.
+
+Control flow routines should use derived types to group long lists of related variables.
+
+Algorithmic kernels should be tight enough in scope to avoid the need for more than 50 arguments.
+
+Lightweight \sphinxstyleemphasis{\_layer} routines can be used as bridge between control flow code and kernel code.
+
+
+\section{I5 : MPL and message passing}
+\label{\detokenize{rules/I5:i5-mpl-and-message-passing}}\label{\detokenize{rules/I5::doc}}
+All operations related to message passing internal to the IFS shall be done via the MPL library.
+
+Nemo code, WAM code, and master.F90 are not concerned by this rule.
 
 
 \section{I6 : MPL and string argument}
 \label{\detokenize{rules/I6:i6-mpl-and-string-argument}}\label{\detokenize{rules/I6::doc}}
-\sphinxAtStartPar
 Calls to MPL methods should have string argument identifying call site
 
-\sphinxstepscope
 
+\section{I7 : DRHOOK instrumentation}
+\label{\detokenize{rules/I7:i7-drhook-instrumentation}}\label{\detokenize{rules/I7::doc}}
+All IFS routines shall have DRHOOK calls as first and last statement, unless referenced
+explicitly in exceptions list.
 
-\section{I7 : no TABS}
-\label{\detokenize{rules/I7:i7-no-tabs}}\label{\detokenize{rules/I7::doc}}
-\sphinxAtStartPar
-TAB characters are not to be used
+The string argument to these calls must give the name of subroutine.
+In the case of a contained subroutine, the string should be constructed from the name of the
+parent routine and the contained routine, separated with a percent symbol (\%).
 
-\sphinxstepscope
-
-
-\section{I8 : KIND specification}
-\label{\detokenize{rules/I8:i8-kind-specification}}\label{\detokenize{rules/I8::doc}}
-\sphinxAtStartPar
-Real and integer variables in the IFS shall have an explicit KIND specifier, with
-a kind defined in PARKIND1 or PARKIND2, or in a similar file for stand\sphinxhyphen{}alone projects
-(ecTRANS, WAM, etc)
-
-\sphinxstepscope
+The exceptions list should only contain routines that are called in time-critical / tight contexts,
+where DRHOOK overhead would not be acceptable.
 
 
 \section{SC1 : horizontal indexing}
 \label{\detokenize{rules/SC1:sc1-horizontal-indexing}}\label{\detokenize{rules/SC1::doc}}
-\sphinxAtStartPar
 Variables refering to horizontal indices should be named consistently, \sphinxstyleemphasis{JL}, \sphinxstyleemphasis{KPROMA}
 
-\sphinxAtStartPar
 The Loki tool relies on elements of code style in order to identify loops needing to be manipulated
 for architecture specialisation.
-
-\sphinxstepscope
 
 
 \section{SC2 : horizontal looping}
 \label{\detokenize{rules/SC2:sc2-horizontal-looping}}\label{\detokenize{rules/SC2::doc}}
-\sphinxAtStartPar
 All loops over the innermost, horizontal array dimension should be explicit.
 
-\sphinxAtStartPar
 The Loki tool relies on elements of code style in order to identify loops needing to be manipulated
 for architecture specialisation.
-
-\sphinxstepscope
 
 
 \section{SC3 : function calls from inside KPROMA loops}
 \label{\detokenize{rules/SC3:sc3-function-calls-from-inside-kproma-loops}}\label{\detokenize{rules/SC3::doc}}
-\sphinxAtStartPar
 Inside tight horizontal loops of type DO \sphinxcode{\sphinxupquote{JL=KIDIA,KFDIA}}, calls should be restricted to intrinsics.
 
-\sphinxAtStartPar
-If a function construct must be used inside the loop, the function shall be pure elemental, so as not
+If a function construct must be used inside the loop, the function shall be pure elemental or defined in a statement function, so as not
 to inhibit compiler vectorization of the loop.
-
-\sphinxstepscope
 
 
 \section{SC4 : no horizontal indirection}
 \label{\detokenize{rules/SC4:sc4-no-horizontal-indirection}}\label{\detokenize{rules/SC4::doc}}
-\sphinxAtStartPar
 Where relevant (Single Column), indirect addressing on the innermost,
 horizontal array index shall not be used.
 
-\sphinxAtStartPar
 The Loki tool relies on elements of code style in order to identify loops needing to be manipulated
 for architecture specialisation.
 
-\sphinxstepscope
+\textgreater{}\textgreater{}PM: some parts of cucalln.F90 rely on indirect addressing, and can nevertheless transformed. I think
+this constraint should be relaxed.\textless{}\textless{}
 
 
 \section{S1 : END IF / ENDIF}
 \label{\detokenize{rules/S1:s1-end-if-endif}}\label{\detokenize{rules/S1::doc}}
-\sphinxAtStartPar
-Two\sphinxhyphen{}word control flow constructs should be written as single words.
+Two-word control flow constructs should be written as single words.
 
-\sphinxAtStartPar
 \sphinxcode{\sphinxupquote{ENDIF}} rather than \sphinxcode{\sphinxupquote{END IF}}
 \sphinxcode{\sphinxupquote{ENDDO}} rather than \sphinxcode{\sphinxupquote{END DO}}
 \sphinxcode{\sphinxupquote{ENDWHERE}} rather than \sphinxcode{\sphinxupquote{END WHERE}}
 
-\sphinxAtStartPar
 (this one makes me cry a little)
-
-\sphinxstepscope
 
 
 \section{S2: order of argument declarations}
 \label{\detokenize{rules/S2:s2-order-of-argument-declarations}}\label{\detokenize{rules/S2::doc}}
-\sphinxAtStartPar
 Arguments to a routine shall be declared in the same order as that of the call signature.
 
-\sphinxAtStartPar
 To be avoided :
 \sphinxSetupCaptionForVerbatim{declaration order}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{rules/S2:id1}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{SUBROUTINE }\PYG{n}{WRONG\PYGZus{}ORDER}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{ARG3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG1}\PYG{p}{)}
+\PYG{k}{SUBROUTINE }\PYG{n}{WRONG\PYGZus{}ORDER}\PYG{p}{(} \PYG{n}{ARG3}\PYG{p}{,} \PYG{n}{ARG2}\PYG{p}{,} \PYG{n}{ARG1}\PYG{p}{)}
 
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{+w}{  }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG3}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{+w}{  }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG2}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG1}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}  \PYG{k+kd}{::} \PYG{n}{ARG3}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}  \PYG{k+kd}{::} \PYG{n}{ARG2}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)} \PYG{k+kd}{::} \PYG{n}{ARG1}
 \end{sphinxVerbatim}
-
-\sphinxstepscope
 
 
 \section{S3 : line continuation}
 \label{\detokenize{rules/S3:s3-line-continuation}}\label{\detokenize{rules/S3::doc}}
-\sphinxAtStartPar
-Optional arguments to a routine shall be after non\sphinxhyphen{}optional ones.
+Optional arguments to a routine shall be after non-optional ones.
 \sphinxSetupCaptionForVerbatim{Good line continuation}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{rules/S3:id1}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{+w}{ }\PYG{k}{CALL }\PYG{n}{ROUTINE\PYGZus{}WITH\PYGZus{}VERY\PYGZus{}LONG\PYGZus{}AND\PYGZus{}BORING\PYGZus{}NAME}\PYG{+w}{ }\PYG{p}{(}\PYG{+w}{ }\PYG{n}{IVAL1}\PYG{p}{,}\PYG{n}{IVAL2}\PYG{p}{,}\PYG{n}{IVAL3}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZam{}}
-\PYG{+w}{  }\PYG{p}{\PYGZam{}}\PYG{+w}{    }\PYG{n}{PVAL\PYGZus{}1}\PYG{p}{,}\PYG{n}{PVAL2}\PYG{p}{,}\PYG{n}{PVAL3}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZam{}}
-\PYG{+w}{  }\PYG{p}{\PYGZam{}}\PYG{+w}{    }\PYG{n}{LDVAL1}\PYG{p}{,}\PYG{n}{LDVAL2}\PYG{p}{)}
+ \PYG{k}{CALL }\PYG{n}{ROUTINE\PYGZus{}WITH\PYGZus{}VERY\PYGZus{}LONG\PYGZus{}AND\PYGZus{}BORING\PYGZus{}NAME} \PYG{p}{(} \PYG{n}{IVAL1}\PYG{p}{,}\PYG{n}{IVAL2}\PYG{p}{,}\PYG{n}{IVAL3}\PYG{p}{,} \PYG{p}{\PYGZam{}}
+  \PYG{p}{\PYGZam{}}    \PYG{n}{PVAL\PYGZus{}1}\PYG{p}{,}\PYG{n}{PVAL2}\PYG{p}{,}\PYG{n}{PVAL3}\PYG{p}{,} \PYG{p}{\PYGZam{}}
+  \PYG{p}{\PYGZam{}}    \PYG{n}{LDVAL1}\PYG{p}{,}\PYG{n}{LDVAL2}\PYG{p}{)}
 \end{sphinxVerbatim}
 \sphinxSetupCaptionForVerbatim{Bad line continuation}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{rules/S3:id2}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{+w}{ }\PYG{k}{CALL }\PYG{n}{ROUTINE\PYGZus{}WITH\PYGZus{}VERY\PYGZus{}LONG\PYGZus{}AND\PYGZus{}BORING\PYGZus{}NAME}\PYG{+w}{ }\PYG{p}{(}\PYG{+w}{ }\PYG{n}{IVAL1}\PYG{p}{,}\PYG{n}{IVAL2}\PYG{p}{,}\PYG{n}{IVAL3}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZam{}}
-\PYG{+w}{       }\PYG{n}{PVAL\PYGZus{}1}\PYG{p}{,}\PYG{n}{PVAL2}\PYG{p}{,}\PYG{n}{PVAL3}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZam{}}
-\PYG{+w}{       }\PYG{n}{LDVAL1}\PYG{p}{,}\PYG{n}{LDVAL2}\PYG{p}{)}
+ \PYG{k}{CALL }\PYG{n}{ROUTINE\PYGZus{}WITH\PYGZus{}VERY\PYGZus{}LONG\PYGZus{}AND\PYGZus{}BORING\PYGZus{}NAME} \PYG{p}{(} \PYG{n}{IVAL1}\PYG{p}{,}\PYG{n}{IVAL2}\PYG{p}{,}\PYG{n}{IVAL3}\PYG{p}{,} \PYG{p}{\PYGZam{}}
+       \PYG{n}{PVAL\PYGZus{}1}\PYG{p}{,}\PYG{n}{PVAL2}\PYG{p}{,}\PYG{n}{PVAL3}\PYG{p}{,} \PYG{p}{\PYGZam{}}
+       \PYG{n}{LDVAL1}\PYG{p}{,}\PYG{n}{LDVAL2}\PYG{p}{)}
 \end{sphinxVerbatim}
-
-\sphinxstepscope
 
 
 \section{S4: no unqualified END statements}
 \label{\detokenize{rules/S4:s4-no-unqualified-end-statements}}\label{\detokenize{rules/S4::doc}}
-\sphinxAtStartPar
 END statements shall all be qualified.
 END SUBROUTINE shall state subroutine name.
 
-\sphinxAtStartPar
 To be avoided :
 \sphinxSetupCaptionForVerbatim{declaration order}
 \def\sphinxLiteralBlockLabel{\label{\detokenize{rules/S4:id1}}}
 \begin{sphinxVerbatim}[commandchars=\\\{\}]
-\PYG{k}{SUBROUTINE }\PYG{n}{WRONG\PYGZus{}ORDER}\PYG{p}{(}\PYG{+w}{ }\PYG{n}{ARG3}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG2}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{ARG1}\PYG{p}{)}
+\PYG{k}{SUBROUTINE }\PYG{n}{WRONG\PYGZus{}ORDER}\PYG{p}{(} \PYG{n}{ARG3}\PYG{p}{,} \PYG{n}{ARG2}\PYG{p}{,} \PYG{n}{ARG1}\PYG{p}{)}
 
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{+w}{  }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG3}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}\PYG{+w}{  }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG2}
-\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{ARG1}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}  \PYG{k+kd}{::} \PYG{n}{ARG3}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{IN}\PYG{p}{)}  \PYG{k+kd}{::} \PYG{n}{ARG2}
+\PYG{k+kt}{INTEGER}\PYG{p}{(}\PYG{n+nb}{KIND}\PYG{o}{=}\PYG{n}{JPIM}\PYG{p}{)}\PYG{p}{,} \PYG{k}{INTENT}\PYG{p}{(}\PYG{n}{OUT}\PYG{p}{)} \PYG{k+kd}{::} \PYG{n}{ARG1}
 \end{sphinxVerbatim}
-
-\sphinxstepscope
 
 
 \section{S5 : unused variables}
 \label{\detokenize{rules/S5:s5-unused-variables}}\label{\detokenize{rules/S5::doc}}
-\sphinxAtStartPar
 Variables that are declared and not used, or included and not used, should be pruned.
 
-\sphinxAtStartPar
 \sphinxstyleemphasis{Warning:}
 the use of statement functions can lead to module variables that appear unused, but that are
 referenced in statement function.
 
-\sphinxstepscope
+
+\section{S6 : no TABS}
+\label{\detokenize{rules/S6:s6-no-tabs}}\label{\detokenize{rules/S6::doc}}
+TAB characters are not to be used
 
 
 \section{Coding norms 2011 rules}
 \label{\detokenize{obsolescent/index:coding-norms-2011-rules}}\label{\detokenize{obsolescent/index::doc}}
-\sphinxstepscope
-
 
 \subsection{R1 : Encapsulation rules}
 \label{\detokenize{obsolescent/r1:r1-encapsulation-rules}}\label{\detokenize{obsolescent/r1::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status}: not a lintable rule, covered in preamble
 
-\sphinxAtStartPar
 Modules should be split up in a sensible manner to avoid too long Fortran files or too complex modules.
 One recommendation is to separate the data structures, the operators and the descriptive parameters
 (including setup if existing).
 The number of entities in a single module is not limited, but a reasonable total number should be
 considered always (about 10 to 20 entities ?).
 
-\sphinxstepscope
-
 
 \subsection{R2 : Subroutine length}
 \label{\detokenize{obsolescent/r2:r2-subroutine-length}}\label{\detokenize{obsolescent/r2::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : can this remotely be considered enforceable, from current IFS?!
 \begin{description}
-\sphinxlineitem{Subroutines should have no more than 300 executable statements.}
-\sphinxAtStartPar
+\item[{Subroutines should have no more than 300 executable statements.}] \leavevmode
 For a module containing several entities, this limit of 300 executable statements is applicable for each inner subroutine.
 
 \end{description}
 
-\sphinxstepscope
-
 
 \subsection{R3 : Cosmetic changes}
 \label{\detokenize{obsolescent/r3:r3-cosmetic-changes}}\label{\detokenize{obsolescent/r3::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : is this still relevant with git development everywhere, and shared history?
 
-\sphinxAtStartPar
-Avoid cosmetic changes that will make merges difficult (such as re\sphinxhyphen{}ordering argument lists and
+Avoid cosmetic changes that will make merges difficult (such as re-ordering argument lists and
 USE statements, or changing the indentation of large blocks of code).
 As an exception, cosmetic changes can happen when a routine is heavily modified, and only one
 well identified developer will contribute to the code for the next common cycle.
 
-\sphinxstepscope
-
 
 \subsection{R4 :  Unused variables}
 \label{\detokenize{obsolescent/r4:r4-unused-variables}}\label{\detokenize{obsolescent/r4::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered in S5
 
-\sphinxAtStartPar
 Declarations of unused variables must be removed
-
-\sphinxstepscope
 
 
 \subsection{R5 :  Variable name suffixes}
 \label{\detokenize{obsolescent/r5:r5-variable-name-suffixes}}\label{\detokenize{obsolescent/r5::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : not a lintable rule, mentioned in preamble
 
-\sphinxAtStartPar
 Variables suffixed with L are local in the sense of the parallel distribution.
 Variables suffixed with G are global.
-
-\sphinxstepscope
 
 
 \subsection{R6 :  Array syntax}
 \label{\detokenize{obsolescent/r6:r6-array-syntax}}\label{\detokenize{obsolescent/r6::doc}}
-\sphinxAtStartPar
-\sphinxstylestrong{status} : covered in L8
+\sphinxstylestrong{status} : covered in L11
 
-\sphinxAtStartPar
 The use of array syntax is not recommended except for initialization and very basic computations.
 
-\sphinxstepscope
 
-
-\subsection{R7 :  Cut\sphinxhyphen{}n\sphinxhyphen{}paste}
+\subsection{R7 :  Cut-n-paste}
 \label{\detokenize{obsolescent/r7:r7-cut-n-paste}}\label{\detokenize{obsolescent/r7::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : not a rule
 
-\sphinxAtStartPar
-Cut\sphinxhyphen{}and\sphinxhyphen{}paste  of  existing  piece  of  code  should  be  avoided.
+Cut-and-paste  of  existing  piece  of  code  should  be  avoided.
 Common  code should be extracted to a separate subroutine or function.
-
-\sphinxstepscope
 
 
 \subsection{R8 :  LECMWF variable}
 \label{\detokenize{obsolescent/r8:r8-lecmwf-variable}}\label{\detokenize{obsolescent/r8::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : very far from true in current IFS?!
 
-\sphinxAtStartPar
 The variable LECMWF should be used only in setup subroutines.
-
-\sphinxstepscope
 
 
 \subsection{R9 : LELAM variable}
 \label{\detokenize{obsolescent/r9:r9-lelam-variable}}\label{\detokenize{obsolescent/r9::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : very far from true in current IFS?!
 
-\sphinxAtStartPar
 The variable LELAM is not to be used below SCAN2M.
-
-\sphinxstepscope
 
 
 \subsection{R10 :  LFI or GRIB}
 \label{\detokenize{obsolescent/r10:r10-lfi-or-grib}}\label{\detokenize{obsolescent/r10::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : not a lintable rule, so moved to preamble
 
-\sphinxAtStartPar
 The  choice between  LFI/LFA  or  GRIB  format  should  be  made  using  the variables
-LARPEGEF or LARPEGEF\sphinxhyphen{}xx (and not LECMWF).
-
-\sphinxstepscope
+LARPEGEF or LARPEGEF-xx (and not LECMWF).
 
 
 \subsection{R11 :  message passing}
 \label{\detokenize{obsolescent/r11:r11-message-passing}}\label{\detokenize{obsolescent/r11::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned elsewhere (I4)
 
-\sphinxAtStartPar
 The MPL package must be used as the interface for any message passing.
-
-\sphinxstepscope
 
 
 \subsection{R12 :  Derived types in a module}
 \label{\detokenize{obsolescent/r12:r12-derived-types-in-a-module}}\label{\detokenize{obsolescent/r12::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned elsewhere (I5)
 
-\sphinxAtStartPar
 Derived types should be declared in a module.
-
-\sphinxstepscope
 
 
 \subsection{R13 :  Code must be threadsafe}
 \label{\detokenize{obsolescent/r13:r13-code-must-be-threadsafe}}\label{\detokenize{obsolescent/r13::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : not a lintable rule, and should be enforced via testing!
-
-\sphinxstepscope
 
 
 \subsection{R14 :  Abnormal termination}
 \label{\detokenize{obsolescent/r14:r14-abnormal-termination}}\label{\detokenize{obsolescent/r14::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned in preamble
 
-\sphinxAtStartPar
 Abnormal termination must be invoked by ABOR1.
-
-\sphinxstepscope
 
 
 \subsection{R15 :  The save statement}
 \label{\detokenize{obsolescent/r15:r15-the-save-statement}}\label{\detokenize{obsolescent/r15::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : no longer applicable
 
-\sphinxAtStartPar
 Variables in data modules must be saved using the SAVE statement.
-
-\sphinxstepscope
 
 
 \subsection{R16 : argument passing characteristics}
 \label{\detokenize{obsolescent/r16:r16-argument-passing-characteristics}}\label{\detokenize{obsolescent/r16::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : until MPL uses F08 bindings, this is not fully respected in IFS
 
-\sphinxAtStartPar
 Array shape and Variable type must not be changed when passed to a subroutine.
-
-\sphinxstepscope
 
 
 \subsection{R17 :  SELECT CASE}
 \label{\detokenize{obsolescent/r17:r17-select-case}}\label{\detokenize{obsolescent/r17::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned in preamble
 
-\sphinxAtStartPar
 Use SELECT CASE when possible instead of IF/ELSEIF/ELSE/ENDIF.
-
-\sphinxstepscope
 
 
 \subsection{R18 : include interfaces}
 \label{\detokenize{obsolescent/r18:r18-include-interfaces}}\label{\detokenize{obsolescent/r18::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : reworded, mentioned elsewhere (L9)
 
-\sphinxAtStartPar
 For each called routine there must be a “”\#include” statement that includes an explicit interface block for the routine.
 Note that the files containing the explicit interface blocks are automatically generated during compilation.
-
-\sphinxstepscope
 
 
 \subsection{R19 : number of arguments to routines}
 \label{\detokenize{obsolescent/r19:r19-number-of-arguments-to-routines}}\label{\detokenize{obsolescent/r19::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned elsewhere (I3)
 
-\sphinxAtStartPar
 Routines should have a small number of dummy arguments.
 Routine with more than 50 dummy arguments are not allowed.
-
-\sphinxstepscope
 
 
 \subsection{R20 : names of variables}
 \label{\detokenize{obsolescent/r20:r20-names-of-variables}}\label{\detokenize{obsolescent/r20::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned in preamble
 
-\sphinxAtStartPar
 Variable names should be meaningful to an English reader.
 Very short names should be reserved for loop indices.
-
-\sphinxstepscope
 
 
 \subsection{R21 :  Name prefixes and suffixes}
 \label{\detokenize{obsolescent/r21:r21-name-prefixes-and-suffixes}}\label{\detokenize{obsolescent/r21::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere (I1)
 
-\sphinxAtStartPar
 Conventional prefixes or suffixes are to be used for all variables except derived types,
 as described in table 1 in section 4.
 There is no naming convention for derived types.
 
-\sphinxstepscope
-
 
 \subsection{R22 : Aladin routine names}
 \label{\detokenize{obsolescent/r22:r22-aladin-routine-names}}\label{\detokenize{obsolescent/r22::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere
 
-\sphinxAtStartPar
 Aladin subroutines that are counterparts of IFS/Arpege ones should have the same name but prefixed
 with E.
 Aladin setup routines that are counterparts of IFS/Arpege (prefixed SU) should be prefixed SUE.
 
-\sphinxstepscope
-
 
 \subsection{R23 :  NULOUT \& NULERR usage}
 \label{\detokenize{obsolescent/r23:r23-nulout-nulerr-usage}}\label{\detokenize{obsolescent/r23::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned in preamble
 
-\sphinxAtStartPar
 The logical unit for output listing is NULOUT.
 Output to NULOUT must be deterministic and should not change according to the
 parallel distribution or the time at which the job is run.
 Error messages should be written to unit NULERR.
 
-\sphinxstepscope
-
 
 \subsection{R24 : universal constants}
 \label{\detokenize{obsolescent/r24:r24-universal-constants}}\label{\detokenize{obsolescent/r24::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : no longer applicable, yomcst is being passed as argument
 
-\sphinxAtStartPar
 Universal  constants  must  be  stored,  saved  and initialized  in  data  module YOMCST.
 They cannot be modified elsewhere and should not be accessed via dummy arguments.
-
-\sphinxstepscope
 
 
 \subsection{R25 :  MPL string argument}
 \label{\detokenize{obsolescent/r25:r25-mpl-string-argument}}\label{\detokenize{obsolescent/r25::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere (I6)
 
-\sphinxAtStartPar
 Calls to MPL subroutines should provide a CDSTRING identifying the caller.
-
-\sphinxstepscope
 
 
 \subsection{R26 :  code structure and file location}
 \label{\detokenize{obsolescent/r26:r26-code-structure-and-file-location}}\label{\detokenize{obsolescent/r26::doc}}
-\sphinxAtStartPar
-\sphinxstylestrong{status} : non\sphinxhyphen{}lintable, but mentioned in preamble
+\sphinxstylestrong{status} : non-lintable, but mentioned in preamble
 
-\sphinxAtStartPar
 Source code is partitioned into projects.
 Each source file must be put in the proper directory for its project.
-
-\sphinxstepscope
 
 
 \subsection{R27 : namelist usage}
 \label{\detokenize{obsolescent/r27:r27-namelist-usage}}\label{\detokenize{obsolescent/r27::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : scope of this is unclear; IFS picks up a lot of environment variables for example
 \begin{quote}
 
-\sphinxAtStartPar
-Runtime specification of variables must be done using name\sphinxhyphen{}lists.
+Runtime specification of variables must be done using name-lists.
 \end{quote}
-
-\sphinxstepscope
 
 
 \subsection{R28 :  DATA statement}
 \label{\detokenize{obsolescent/r28:r28-data-statement}}\label{\detokenize{obsolescent/r28::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere
 
-\sphinxAtStartPar
 DATA statement should be avoided if possible and is allowed only for small lists.
-
-\sphinxstepscope
 
 
 \subsection{R29 :  F90 free format}
 \label{\detokenize{obsolescent/r29:r29-f90-free-format}}\label{\detokenize{obsolescent/r29::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : is mention of free format still necessary? Fortran 90 is also perhaps misleading.
 
-\sphinxAtStartPar
 The code should be Fortran 90 free format.
-
-\sphinxstepscope
 
 
 \subsection{R30 :  consistent style}
 \label{\detokenize{obsolescent/r30:r30-consistent-style}}\label{\detokenize{obsolescent/r30::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : not a lintable rule, but suggested in preamble.
 
-\sphinxAtStartPar
 Use a consistent style throughout each module and subroutine.
-
-\sphinxstepscope
 
 
 \subsection{R31 :  no TAB usage}
 \label{\detokenize{obsolescent/r31:r31-no-tab-usage}}\label{\detokenize{obsolescent/r31::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned elsewhere (I7)
 
-\sphinxAtStartPar
 The TAB character is not allowed.
-
-\sphinxstepscope
 
 
 \subsection{R32 : IMPLICIT NONE}
 \label{\detokenize{obsolescent/r32:r32-implicit-none}}\label{\detokenize{obsolescent/r32::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned elsewhere (L1)
 
-\sphinxAtStartPar
 IMPLICIT NONE is mandatory in all routines
 
-\sphinxstepscope
 
-
-\subsection{R33 : no hard\sphinxhyphen{}coded array dimensions}
+\subsection{R33 : no hard-coded array dimensions}
 \label{\detokenize{obsolescent/r33:r33-no-hard-coded-array-dimensions}}\label{\detokenize{obsolescent/r33::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : ambiguous, possibly no longer relevant
 
-\sphinxAtStartPar
-Array dimensions must not be hard\sphinxhyphen{}coded.
-
-\sphinxstepscope
+Array dimensions must not be hard-coded.
 
 
 \subsection{R34 : “::” notation}
 \label{\detokenize{obsolescent/r34:r34-notation}}\label{\detokenize{obsolescent/r34::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned elsewehere (L10)
 
-\sphinxAtStartPar
 Declarations must use the notation “::”.
-
-\sphinxstepscope
 
 
 \subsection{R35 : mandatory KIND specification}
 \label{\detokenize{obsolescent/r35:r35-mandatory-kind-specification}}\label{\detokenize{obsolescent/r35::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : updated and mentioned elsewhere (I8)
 
-\sphinxAtStartPar
 Variables and constants must be declared with explicit kind, using the kinds defined
 in PARKIND1 and PARKIND2.
-
-\sphinxstepscope
 
 
 \subsection{R36 :  USE, ONLY}
 \label{\detokenize{obsolescent/r36:r36-use-only}}\label{\detokenize{obsolescent/r36::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : updated and mentioned elsewhere (L2)
 
-\sphinxAtStartPar
 All USE statements must include an “ONLY” clause, except for modules that override ASSIGNMENT,
 where this is dangerous.
-
-\sphinxstepscope
 
 
 \subsection{R37 : PARAMETER wherever possible}
 \label{\detokenize{obsolescent/r37:r37-parameter-wherever-possible}}\label{\detokenize{obsolescent/r37::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : guideline rather than lintable rule; placed in preamble
 
-\sphinxAtStartPar
 Constants should be PARAMETERs wherever as possible
-
-\sphinxstepscope
 
 
 \subsection{R38 :  variable name prefixes}
 \label{\detokenize{obsolescent/r38:r38-variable-name-prefixes}}\label{\detokenize{obsolescent/r38::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere
 
-\sphinxAtStartPar
 Variable names should follow the prefix convention defined in table 1.
-
-\sphinxstepscope
 
 
 \subsection{R39 :  banned statements}
 \label{\detokenize{obsolescent/r39:r39-banned-statements}}\label{\detokenize{obsolescent/r39::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : we actually use DIMENSION a \sphinxstylestrong{lot}
 
-\sphinxAtStartPar
 The following statements are banned :(a)STOP (b)PRINT (c)RETURN (d)ENTRY (e)DIMENSION (f)DOUBLE PRECISION (g)COMPLEX
 (h)GO TO (i)CONTINUE (j)FORMAT (k)COMMON (l)EQUIVALENCE
-
-\sphinxstepscope
 
 
 \subsection{R40 :  no implicit array sizing}
 \label{\detokenize{obsolescent/r40:r40-no-implicit-array-sizing}}\label{\detokenize{obsolescent/r40::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : is this still actually valid?
 
-\sphinxAtStartPar
 Arrays should not be declared with implicit size : “A(*)”.
-
-\sphinxstepscope
 
 
 \subsection{R41 :  automatic and allocatable arrays}
 \label{\detokenize{obsolescent/r41:r41-automatic-and-allocatable-arrays}}\label{\detokenize{obsolescent/r41::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : not a lintable rule, mentioned in preamble
 
-\sphinxAtStartPar
-Large arrays should be allocatable. Small or low\sphinxhyphen{}level arrays should be automatic.
-
-\sphinxstepscope
+Large arrays should be allocatable. Small or low-level arrays should be automatic.
 
 
 \subsection{R42 : deallocation of allocatables}
 \label{\detokenize{obsolescent/r42:r42-deallocation-of-allocatables}}\label{\detokenize{obsolescent/r42::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : is this still valid? Would also be extremely difficult to check automatically
 
-\sphinxAtStartPar
 All allocated arrays should be explicitly deallocated.
-
-\sphinxstepscope
 
 
 \subsection{R43 : comparison operators}
 \label{\detokenize{obsolescent/r43:r43-comparison-operators}}\label{\detokenize{obsolescent/r43::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : mentioned elsewhere, but … WHYYYYYY?
 
-\sphinxAtStartPar
 Use Fortran 90 comparison operators (e.g. == rather than .EQ.).
-
-\sphinxstepscope
 
 
 \subsection{R44 : value comparisons}
 \label{\detokenize{obsolescent/r44:r44-value-comparisons}}\label{\detokenize{obsolescent/r44::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : guideline rather than rule, mentioned in preamble
 
-\sphinxAtStartPar
 Explicitly set variables (parameters, constants, namelist variables,…) should be always exactly
 compared (using==or=, etc).
 Evaluated variables (that might be subject to roundoff error) should be tested against a reference using a threshold.
 
-\sphinxstepscope
-
 
 \subsection{R45 : argument intents are compulsory}
 \label{\detokenize{obsolescent/r45:r45-argument-intents-are-compulsory}}\label{\detokenize{obsolescent/r45::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere
 
-\sphinxAtStartPar
 All dummy arguments must specify the INTENT attribute
-
-\sphinxstepscope
 
 
 \subsection{R46 : order of optional arguments}
 \label{\detokenize{obsolescent/r46:r46-order-of-optional-arguments}}\label{\detokenize{obsolescent/r46::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere
 
-\sphinxAtStartPar
 Optional arguments must be called in the same order they are declared.
-
-\sphinxstepscope
 
 
 \subsection{R47 :  ENDIF / END IF}
 \label{\detokenize{obsolescent/r47:r47-endif-end-if}}\label{\detokenize{obsolescent/r47::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere
 
-\sphinxAtStartPar
 END statements for blocks should not have a space after END. For example an IF block
 should end with ENDIF, not “END IF”.
-
-\sphinxstepscope
 
 
 \subsection{R48 :  removal of dead code}
 \label{\detokenize{obsolescent/r48:r48-removal-of-dead-code}}\label{\detokenize{obsolescent/r48::doc}}
-\sphinxAtStartPar
 \sphinxstylestrong{status} : covered elsewhere
 
-\sphinxAtStartPar
-Inactive (e.g. commented\sphinxhyphen{}out) code must be removed.
+Inactive (e.g. commented-out) code must be removed.
 
 
 \chapter{Indices and tables}
 \label{\detokenize{index:indices-and-tables}}\begin{itemize}
 \item {} 
-\sphinxAtStartPar
 \DUrole{xref,std,std-ref}{genindex}
 
 \item {} 
-\sphinxAtStartPar
 \DUrole{xref,std,std-ref}{modindex}
 
 \item {} 
-\sphinxAtStartPar
 \DUrole{xref,std,std-ref}{search}
 
 \end{itemize}

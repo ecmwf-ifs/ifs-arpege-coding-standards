@@ -1,0 +1,19 @@
+L12 : array declarations in NPROMA routines
+*******************************************
+
+NPROMA routines (those processing a single NPROMA block) should only declare arrays of basic 
+data types whose kinds are taken from parkind1.F90 and parkind2.F90, eg:
+
+* ``REAL(KIND=JPRB)``
+* ``REAL(KIND=JPRD)``
+* ``INTEGER(KIND=JPIM)``
+* ``LOGICAL``
+
+The leading dimensions of these array should be ``NPROMA``.
+
+Any other arrays are forbidden in NPROMA routines. These other arrays (not depending on 
+the meteorological situation) should be computed in the setup and passed as arguments
+to NPROMA compute routines, or integrated into sub-components of YDMODEL.
+
+Arrays declared in NPROMA routines be automatic arrays; ALLOCATABLEs and POINTERs are
+forbidden.

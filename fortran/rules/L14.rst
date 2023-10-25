@@ -1,0 +1,9 @@
+L14 : notations
+***************
+
+Notations should homogeneous for the loop index, NPROMA array leading dimension, first iteration, last iteration:
+
+* ``JLON/KLON/KIDIA/KFDIA`` in ARPEGE physics
+* ``JL/KLON/KIDIA/KFDIA`` in ECMWF physics
+* ``JROF/NPROMA/KST/KEND`` in dynamics routines (call_sl.F90, cpg_gp.F90, cpg_dyn.F90)
+
