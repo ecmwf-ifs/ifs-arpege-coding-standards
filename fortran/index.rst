@@ -107,6 +107,8 @@ points (Sy), and Single-Column related rules (SCz).
    rules/L15
    rules/L16
    rules/L17
+   rules/L18
+   rules/L19
    rules/I1
    rules/I2
    rules/I3

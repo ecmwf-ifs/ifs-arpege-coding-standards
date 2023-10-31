@@ -287,6 +287,9 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrro8r.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrr8c.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8t.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr8t.vf
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmr8r.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/courier/pcrr8c.vf
 INPUT IFS_coding_guidelines.ind
 INPUT IFS_coding_guidelines.ind

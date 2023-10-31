@@ -61,7 +61,7 @@
 
 
 \title{IFS\_coding\_guidelines Documentation}
-\date{Oct 25, 2023}
+\date{Oct 31, 2023}
 \release{}
 \author{ECMWF}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -417,8 +417,14 @@ Notations should homogeneous for the loop index, NPROMA array leading dimension,
 \section{L15 : dummy/actual array dimensions}
 \label{\detokenize{rules/L15:l15-dummy-actual-array-dimensions}}\label{\detokenize{rules/L15::doc}}
 If an actual argument is an array, then :
-- its rank should match the rank of the corresponding dummy argument
-- its dimensions should match those of the corresponding dummy argument
+\begin{itemize}
+\item {} 
+its rank should match the rank of the corresponding dummy argument
+
+\item {} 
+its dimensions should match those of the corresponding dummy argument
+
+\end{itemize}
 
 Notable exceptions are the interpolation routines of the Semi-Lagrangian:
 \begin{itemize}
@@ -481,6 +487,38 @@ The use of Fortran pointers in compute NPROMA routines should be forbidden excep
 \end{sphinxVerbatim}
 
 And such pointers should always point to arrays with the same shapes.
+
+
+\section{L18 : Design of NPROMA routines}
+\label{\detokenize{rules/L18:l18-design-of-nproma-routines}}\label{\detokenize{rules/L18::doc}}
+NPROMA routines should be individual subroutines, allowing for :
+\begin{itemize}
+\item {} 
+automatic interface generation
+
+\item {} 
+separate compilation
+
+\item {} 
+easiness of automatic analysis and transformation
+
+\end{itemize}
+
+In particular implementing a routine or a set of subroutines inside a module in
+order to benefit from the automatic generation of an interface in a .mod file
+should be prohibited.
+
+The use of modules should be restricted to derived types definition and implementation (methods).
+
+
+\section{L19 : Design of derived types}
+\label{\detokenize{rules/L19:l19-design-of-derived-types}}\label{\detokenize{rules/L19::doc}}
+Dervived types should be implemented in modules. Their methods (the minimal code accessing their private attributes)
+should be implemented in the module where they are defined.
+
+The SEQUENCE statement is forbidden in the definition of complex (embedding some POINTER or ALLOCATABLE members) derived types
+meant to be used on accelerators, as the SEQUENCE statement
+forbids the implementation of object methods.
 
 
 \section{I1 : naming of variables, subroutines, modules}
