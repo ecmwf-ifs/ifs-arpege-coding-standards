@@ -1,7 +1,0 @@
-R39 :  banned statements
-************************
-
-**status** : we actually use DIMENSION a **lot**
-
-The following statements are banned :(a)STOP (b)PRINT (c)RETURN (d)ENTRY (e)DIMENSION (f)DOUBLE PRECISION (g)COMPLEX 
-(h)GO TO (i)CONTINUE (j)FORMAT (k)COMMON (l)EQUIVALENCE

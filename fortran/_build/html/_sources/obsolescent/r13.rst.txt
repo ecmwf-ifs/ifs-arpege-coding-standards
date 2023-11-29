@@ -1,4 +1,0 @@
-R13 :  Code must be threadsafe
-******************************
-
-**status** : not a lintable rule, and should be enforced via testing!

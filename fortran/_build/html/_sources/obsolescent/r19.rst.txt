@@ -1,7 +1,0 @@
-R19 : number of arguments to routines
-*************************************
-
-**status** : mentioned elsewhere (I3)
-
-Routines should have a small number of dummy arguments. 
-Routine with more than 50 dummy arguments are not allowed.

@@ -1,6 +1,0 @@
-R41 :  automatic and allocatable arrays
-***************************************
-
-**status** : not a lintable rule, mentioned in preamble
-
-Large arrays should be allocatable. Small or low-level arrays should be automatic.

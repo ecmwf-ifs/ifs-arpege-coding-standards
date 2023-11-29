@@ -1,9 +1,0 @@
-R23 :  NULOUT & NULERR usage
-****************************
-
-**status** : mentioned in preamble
-
-The logical unit for output listing is NULOUT. 
-Output to NULOUT must be deterministic and should not change according to the 
-parallel distribution or the time at which the job is run. 
-Error messages should be written to unit NULERR.

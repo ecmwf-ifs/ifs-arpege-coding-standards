@@ -1,8 +1,0 @@
-L1 : implicit none
-******************
-
-``IMPLICIT NONE`` must figure in all scoping units
-
-Once per module is sufficient
-
-

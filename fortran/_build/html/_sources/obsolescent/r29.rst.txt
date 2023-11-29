@@ -1,6 +1,0 @@
-R29 :  F90 free format
-**********************
-
-**status** : is mention of free format still necessary? Fortran 90 is also perhaps misleading.
-
-The code should be Fortran 90 free format.
