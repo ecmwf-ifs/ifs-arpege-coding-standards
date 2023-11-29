@@ -1,8 +1,0 @@
-R44 : value comparisons
-***********************
-
-**status** : guideline rather than rule, mentioned in preamble
-
-Explicitly set variables (parameters, constants, namelist variables,...) should be always exactly 
-compared (using==or\=, etc). 
-Evaluated variables (that might be subject to roundoff error) should be tested against a reference using a threshold.

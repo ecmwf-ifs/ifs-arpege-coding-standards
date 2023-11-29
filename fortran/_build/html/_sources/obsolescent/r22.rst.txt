@@ -1,8 +1,0 @@
-R22 : Aladin routine names
-**************************
-
-**status** : covered elsewhere
-
-Aladin subroutines that are counterparts of IFS/Arpege ones should have the same name but prefixed 
-with E. 
-Aladin setup routines that are counterparts of IFS/Arpege (prefixed SU) should be prefixed SUE.

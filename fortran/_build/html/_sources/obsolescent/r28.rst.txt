@@ -1,6 +1,0 @@
-R28 :  DATA statement
-*********************
-
-**status** : covered elsewhere
-
-DATA statement should be avoided if possible and is allowed only for small lists.

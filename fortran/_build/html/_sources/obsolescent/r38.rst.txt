@@ -1,6 +1,0 @@
-R38 :  variable name prefixes
-*****************************
-
-**status** : covered elsewhere
-
-Variable names should follow the prefix convention defined in table 1. 

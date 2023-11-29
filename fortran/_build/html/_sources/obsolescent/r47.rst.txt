@@ -1,7 +1,0 @@
-R47 :  ENDIF / END IF
-*********************
-
-**status** : covered elsewhere
-
-END statements for blocks should not have a space after END. For example an IF block 
-should end with ENDIF, not “END IF”.

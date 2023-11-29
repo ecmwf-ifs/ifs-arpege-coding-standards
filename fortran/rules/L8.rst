@@ -7,4 +7,3 @@ For example, copy 1D array as ``PARR2(:)=PARR1(:)``, and *not* ``PARR2=PARR1``.
 The latter form may lead to reallocation of the left-hand-side target array at runtime, which 
 is error-prone, and costly.
 
-Inside computational kernels, explicit looping over array elements is preferred. 

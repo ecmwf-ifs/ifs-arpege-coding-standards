@@ -1,6 +1,0 @@
-R37 : PARAMETER wherever possible
-*********************************
-
-**status** : guideline rather than lintable rule; placed in preamble
-
-Constants should be PARAMETERs wherever as possible

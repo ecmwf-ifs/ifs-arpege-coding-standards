@@ -1,4 +1,2 @@
-L1 : PEP8 naming conventions
+L1 :
 ******************
-
-JFDI.

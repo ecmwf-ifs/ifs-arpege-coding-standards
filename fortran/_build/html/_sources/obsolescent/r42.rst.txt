@@ -1,6 +1,0 @@
-R42 : deallocation of allocatables
-**********************************
-
-**status** : is this still valid? Would also be extremely difficult to check automatically
-
-All allocated arrays should be explicitly deallocated.

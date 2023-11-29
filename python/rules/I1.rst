@@ -1,20 +1,3 @@
-I1 : naming of variables, subroutines, modules
+I1 : naming of variables,
 **********************************************
 
-The IFS has a historical naming convention, which should be adhered to
-where sensible.
-
-Variable naming
-================
-* Local variables
-
- * derived type : ``YRxxx``
-
-* Argument variables
-
-
-* Name suffixes
-
-
-Routine naming
-==============

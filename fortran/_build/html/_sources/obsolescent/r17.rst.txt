@@ -1,6 +1,0 @@
-R17 :  SELECT CASE
-******************
-
-**status** : mentioned in preamble
-
-Use SELECT CASE when possible instead of IF/ELSEIF/ELSE/ENDIF.

@@ -1,7 +1,0 @@
-R18 : include interfaces
-************************
-
-**status** : reworded, mentioned elsewhere (L9)
-
-For each called routine there must be a “"#include" statement that includes an explicit interface block for the routine. 
-Note that the files containing the explicit interface blocks are automatically generated during compilation.

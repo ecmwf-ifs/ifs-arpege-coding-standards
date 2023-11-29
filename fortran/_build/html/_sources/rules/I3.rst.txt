@@ -1,7 +1,0 @@
-I3 : derived types in modules
-*****************************
-
-Derived type definitions shall not be outside of a module
-
-A module may contain multiple type definitions, but a subroutine should
-not contain a type definition.

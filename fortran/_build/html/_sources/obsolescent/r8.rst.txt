@@ -1,6 +1,0 @@
-R8 :  LECMWF variable
-**********************
-
-**status** : very far from true in current IFS?!
-
-The variable LECMWF should be used only in setup subroutines.

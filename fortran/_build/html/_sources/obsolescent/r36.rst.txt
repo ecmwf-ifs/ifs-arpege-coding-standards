@@ -1,7 +1,0 @@
-R36 :  USE, ONLY
-****************
-
-**status** : updated and mentioned elsewhere (L2)
-
-All USE statements must include an “ONLY” clause, except for modules that override ASSIGNMENT, 
-where this is dangerous.

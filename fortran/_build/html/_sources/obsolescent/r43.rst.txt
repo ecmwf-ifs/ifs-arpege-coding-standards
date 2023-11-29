@@ -1,6 +1,0 @@
-R43 : comparison operators
-**************************
-
-**status** : mentioned elsewhere, but ... WHYYYYYY?
-
-Use Fortran 90 comparison operators (e.g. == rather than .EQ.).

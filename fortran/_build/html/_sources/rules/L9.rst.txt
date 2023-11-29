@@ -1,8 +1,0 @@
-L9 : interfaces for routines
-****************************
-
-Calls to subroutines and functions that are provided neither by a module nor by a CONTAINS statement, 
-must have a matching explicit interface block.
-
-Routines that may be called from outside the IFS should have an interface in the codebase, while 
-routines called exclusively internally have their interfaces generated at build time.

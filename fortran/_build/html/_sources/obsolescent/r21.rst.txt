@@ -1,8 +1,0 @@
-R21 :  Name prefixes and suffixes
-*********************************
-
-**status** : covered elsewhere (I1)
-
-Conventional prefixes or suffixes are to be used for all variables except derived types, 
-as described in table 1 in section 4. 
-There is no naming convention for derived types.

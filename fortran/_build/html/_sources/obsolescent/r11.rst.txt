@@ -1,6 +1,0 @@
-R11 :  message passing
-**********************
-
-**status** : mentioned elsewhere (I4)
-
-The MPL package must be used as the interface for any message passing.
