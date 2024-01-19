@@ -22,6 +22,9 @@ Guidelines and recommendations
   Nevertheless targeted explanations of particular segments of interest are desirable.
   Each source file should have a homogeneous coding style.
 
+>>PM: suggestion: remove all history comments at the beginning of each routine; these can
+be obtained from git history.<<
+
 * Contours of a routine or module should be considered with care, avoiding excessive length
   or complexity.
 
@@ -29,12 +32,17 @@ Guidelines and recommendations
   contouring. Interfaces that are not internal to a component should privilege as much as 
   possible native fortran datatypes rather than derived types.
 
+>>PM: this does not make sense; most modern libraries (eg Atlas) use derived types.<<
+
 * Naming of new variables, routines and modules should help the reader understand code as efficiently 
   as possible. *Renaming of legacy / existing code?*
 
 * Large arrays should be declared as allocatable, to avoid excessive stack usage. 
   Small arrays, and in particular those declared in tight code (this should be avoided wherever 
   possible!) should be automatic, to benefit from faster stack handling.
+
+>>PM: definition of large and small arrays ? I recommand banning ALLOCATABLEs in all NPROMA routines
+(ie those which process a single NPROMA block).<<
 
 * If an allocatable variable can be used rather than a pointer, opt for the allocatable for 
   safety reasons.
@@ -61,8 +69,10 @@ Guidelines and recommendations
 * If execution is to be aborted by the code, a call to ABOR1, with a meaningful message, 
   should be used.
  
+>>PM: I think we should also discuss how source files are organized in the git repository;
+in particular, having an arpifs/module directory with all the modules does not make 
+sense.<<
 
- 
 
 Rules (as checked by norms checker)
 -----------------------------------
@@ -90,6 +100,15 @@ points (Sy), and Single-Column related rules (SCz).
    rules/L8
    rules/L9
    rules/L10
+   rules/L11
+   rules/L12
+   rules/L13
+   rules/L14
+   rules/L15
+   rules/L16
+   rules/L17
+   rules/L18
+   rules/L19
    rules/I1
    rules/I2
    rules/I3

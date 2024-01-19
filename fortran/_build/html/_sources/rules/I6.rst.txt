@@ -1,4 +1,0 @@
-I6 : MPL and string argument
-****************************
-
-Calls to MPL methods should have string argument identifying call site

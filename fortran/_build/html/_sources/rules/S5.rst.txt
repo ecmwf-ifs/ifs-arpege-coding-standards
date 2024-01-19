@@ -1,8 +1,0 @@
-S5 : unused variables
-*********************
-
-Variables that are declared and not used, or included and not used, should be pruned.
-
-*Warning:*
-the use of statement functions can lead to module variables that appear unused, but that are 
-referenced in statement function.

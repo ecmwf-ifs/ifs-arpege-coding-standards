@@ -1,7 +1,0 @@
-R26 :  code structure and file location
-***************************************
-
-**status** : non-lintable, but mentioned in preamble
-
-Source code is partitioned into projects. 
-Each source file must be put in the proper directory for its project.

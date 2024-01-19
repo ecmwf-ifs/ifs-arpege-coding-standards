@@ -1,4 +1,3 @@
-S1 : Black
+S1 :
 **********
 
-Just use Black. Don't argue.

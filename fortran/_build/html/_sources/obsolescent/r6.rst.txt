@@ -1,6 +1,0 @@
-R6 :  Array syntax
-******************
-
-**status** : covered in L8
-
-The use of array syntax is not recommended except for initialization and very basic computations.

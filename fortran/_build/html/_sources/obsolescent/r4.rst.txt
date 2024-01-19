@@ -1,6 +1,0 @@
-R4 :  Unused variables
-**********************
-
-**status** : covered in S5
-
-Declarations of unused variables must be removed

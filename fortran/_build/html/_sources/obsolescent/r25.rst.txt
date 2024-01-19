@@ -1,6 +1,0 @@
-R25 :  MPL string argument
-**************************
-
-**status** : covered elsewhere (I6)
-
-Calls to MPL subroutines should provide a CDSTRING identifying the caller.

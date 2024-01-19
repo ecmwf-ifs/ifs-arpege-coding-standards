@@ -1,6 +1,0 @@
-R34 : "::" notation
-*******************
-
-**status** : mentioned elsewehere (L10)
-
-Declarations must use the notation “::”.

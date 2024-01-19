@@ -1,7 +1,0 @@
-R2 : Subroutine length
-**********************
-
-**status** : can this remotely be considered enforceable, from current IFS?!
-
-Subroutines should have no more than 300 executable statements. 
- For a module containing several entities, this limit of 300 executable statements is applicable for each inner subroutine.

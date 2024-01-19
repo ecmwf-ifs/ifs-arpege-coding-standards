@@ -11,7 +11,7 @@ Variable naming
  * integer : ``Ixxx``
  * real : ``Zxxx``
  * logical : ``LLxxx``
- * derived type : ``YRxxx``
+ * derived type : ``YLxxx``
 
 * Argument variables
 

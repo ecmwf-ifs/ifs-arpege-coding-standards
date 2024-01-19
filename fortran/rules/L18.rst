@@ -1,0 +1,16 @@
+L18 : Design of NPROMA routines
+*******************************
+
+NPROMA routines should be individual subroutines, allowing for :
+
+- automatic interface generation
+- separate compilation
+- easiness of automatic analysis and transformation
+
+In particular implementing a routine or a set of subroutines inside a module in
+order to benefit from the automatic generation of an interface in a .mod file
+should be prohibited.
+
+The use of modules should be restricted to derived types definition and implementation (methods).
+
+

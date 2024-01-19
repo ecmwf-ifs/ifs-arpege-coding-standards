@@ -1,6 +1,0 @@
-R45 : argument intents are compulsory
-*************************************
-
-**status** : covered elsewhere
-
-All dummy arguments must specify the INTENT attribute

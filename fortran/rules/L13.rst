@@ -1,0 +1,11 @@
+L13 : array declarations in parallel routines
+*********************************************
+
+Parallel routines (those processing a list of NPROMA blocks) should wrap their field data 
+into Field API objects.
+
+In particular the legacy data representation for model state (PGMV/PGFL arrays) should be 
+considered obsolescent and replaced by YDVARS wherever possible.
+
+Parallel routines should never declare an array that will be involved in calculations
+(ie passed to NPROMA routines or used in OpenMP sections).

@@ -1,6 +1,0 @@
-R40 :  no implicit array sizing
-*******************************
-
-**status** : is this still actually valid?
-
-Arrays should not be declared with implicit size : “A(*)”.

@@ -1,6 +1,0 @@
-R27 : namelist usage
-********************
-
-**status** : scope of this is unclear; IFS picks up a lot of environment variables for example
-
- Runtime specification of variables must be done using name-lists.
