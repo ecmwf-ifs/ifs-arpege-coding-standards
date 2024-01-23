@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = 'IFS_python_guidelines'
-copyright = '2022, ECMWF'
+copyright = '2024-, ECMWF'
 author = 'ECMWF'
 
 # The short X.Y version
