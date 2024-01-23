@@ -43,7 +43,7 @@ jobs:
                 ~/bin/sites content \
                     --debug \
                     --space docs \
-                    --name ifs-coding-standards \
+                    --name ifs-arpege-coding-standards \
                     --api-authentication-token="${SITES_TOKEN}" \
                     upload \
                         --force \

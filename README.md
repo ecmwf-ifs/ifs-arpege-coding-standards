@@ -38,7 +38,7 @@ The standards and their applicability are as follows:
 ## Deployment (ECMWF)
 
 Build and deployment of all the coding standards to
-<https://sites.ecmwf.int/docs/ifs-coding-standards/>
+<https://sites.ecmwf.int/docs/ifs-arpege-coding-standards/>
 is triggered automatically by pushing to `main`. See
 <https://github.com/ecmwf-ifs/ifs-arpege-coding-standards/blob/main/.github/workflows/build.yml>.
 
