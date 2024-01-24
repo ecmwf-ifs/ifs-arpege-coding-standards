@@ -7,20 +7,9 @@ All arguments to routines shall be declared with an INTENT.
 * ``INTENT(OUT)`` : variables whose previous content is irrelevant, and which are written to in the scope
 * ``INTENT(INOUT)`` : all other variables
 
->>PM: Structures like YDVARS which contain some pointers can have the INTENT(IN) attribute, and
-have their pointed values modified. This is a problem, as we will have such structures everywhere
-in the code.
-Furthermore, using the ``INTENT(OUT)`` attribute for such variables may cause some compilers 
-(eg NAG) to wipe their contents.
-And YDVARS also contains some metadata that should remain constant. I think we do not have any
-other choice but to declare YDVARS (and other similar structures) with ``INTENT(IN)`` everywhere.
-<<
-
 *warning*
 Particular care should be paid to intent of array variables:
 * arrays where only a few locations are updated but other locations 
 contain required values, *must* be declared as INTENT(INOUT)
-
->>PM: no compiler can make the difference between INTENT(INOUT) and INTENT(OUT).<<
 
 * arguments declared as allocatable may be deallocated at entry if declared as INTENT(OUT)

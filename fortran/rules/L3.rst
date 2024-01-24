@@ -3,8 +3,6 @@ L3 : global variables
 
 Only parameters to be declared as global variables.
 
->>PM: Does this mean that global variables are forbidden ? I think it is a good idea, but there is a lot of work to do to get there.<<
-
 Example : 
 
 
