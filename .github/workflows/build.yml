@@ -1,0 +1,52 @@
+name: build
+
+# Controls when the workflow will run
+on:
+    # Triggers the workflow on push events
+    push:
+        branches: [ 'main' ]
+        tags-ignore: [ '**' ]
+
+    # Triggers the workflow on pull request events
+    pull_request:
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+jobs:
+    build_language:
+        name: Build and deploy coding standard
+        runs-on: ubuntu-latest
+        strategy:
+            fail-fast: true
+            matrix:
+                language: ["fortran", "python"]
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Build Sphinx documentation
+              uses: ammaraskar/sphinx-action@master
+              with:
+                  docs-folder: "${{ matrix.language }}/"
+                  pre-build-command: "pip install -r requirements.txt"
+                  build-command: "make html"
+
+            - name: Deploy to sites
+              if: github.event_name != 'pull_request'
+              env:
+                  SITES_TOKEN: ${{ secrets.SITES_TOKEN_IFS_CODING_STANDARDS }}
+              run: |
+                mkdir -p ~/bin
+                curl -o ~/bin/sites -L \
+                    "https://get.ecmwf.int/service/rest/v1/search/assets/download?sort=name&direction=desc&q=linux&repository=sites-cli"
+                chmod a+x ~/bin/sites
+                ~/bin/sites content \
+                    --debug \
+                    --space docs \
+                    --name ifs-arpege-coding-standards \
+                    --api-authentication-token="${SITES_TOKEN}" \
+                    upload \
+                        --force \
+                        --source "${{ matrix.language }}/_build/html/" \
+                        --destination "${{ matrix.language }}/" \
+                        --recursive
