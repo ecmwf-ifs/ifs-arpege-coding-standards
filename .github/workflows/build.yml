@@ -32,7 +32,7 @@ jobs:
                   build-command: "make html"
 
             - name: Deploy to sites
-              if: github.event_name != 'pull_request'
+              if: github.repository == 'ecmwf-ifs/ifs-arpege-coding-standards' && github.event_name != 'pull_request'
               env:
                   SITES_TOKEN: ${{ secrets.SITES_TOKEN_IFS_CODING_STANDARDS }}
               run: |
