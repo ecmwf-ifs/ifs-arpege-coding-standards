@@ -1,18 +1,13 @@
-.. IFS_coding_guidelines documentation master file, created by
-   sphinx-quickstart on Wed Aug 31 09:39:39 2022.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to the IFS Python standard!
-============================================
+===================================
 
-Developments to the IFS codebase should aim to adhere to the guidelines
+Developments to the IFS codebase should aim to adhere to the standards
 and rules presented in this document.
 
-Guidelines and rules described here are designed to make code easier to read,
+Standards and rules described here are designed to make code easier to read,
 easier to maintain, easier to extend, and less prone to bugs.
-The code review process for submissions to IFS could aim to check
-code against these guidelines.
+The code review process for submissions to IFS should aim to check
+code against these standards.
 Rules are also written so as to allow implementation of automatic checking.
 
 Guidelines and recommendations
