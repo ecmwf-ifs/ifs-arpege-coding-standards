@@ -4,14 +4,16 @@ S4: no unqualified END statements
 END statements shall all be qualified. 
 END SUBROUTINE shall state subroutine name.
 
-To be avoided : 
+Correct use of end statement : 
 
 .. code-block:: fortran
-   :caption: declaration order
+   :caption: end statements
 
-   SUBROUTINE WRONG_ORDER( ARG3, ARG2, ARG1)
+   SUBROUTINE SOME_SUBROUTINE( ARG1, ARG2, ARG3)
    
-   INTEGER(KIND=JPIM), INTENT(IN)  :: ARG3
+   INTEGER(KIND=JPIM), INTENT(IN)  :: ARG1
    INTEGER(KIND=JPIM), INTENT(IN)  :: ARG2
-   INTEGER(KIND=JPIM), INTENT(OUT) :: ARG1
+   INTEGER(KIND=JPIM), INTENT(OUT) :: ARG3
+
+   END SUBROUTINE SOME_SUBROUTINE
 
