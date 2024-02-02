@@ -20,7 +20,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                language: ["fortran", "python"]
+                language: ["fortran", "shell", "python"]
         steps:
             - uses: actions/checkout@v4
 
