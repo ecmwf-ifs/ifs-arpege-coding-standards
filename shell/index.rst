@@ -6,6 +6,7 @@ IFS shell scripting guidelines
    :maxdepth: 2
 
    foreword
+   principles
    guidelines/index
 
 Indices and tables
