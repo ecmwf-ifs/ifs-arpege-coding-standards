@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'IFS Fortran standard'
+project = 'IFS Fortran Standard'
 copyright = '2024-, ECMWF, Météo-France'
 author = 'ECMWF'
 

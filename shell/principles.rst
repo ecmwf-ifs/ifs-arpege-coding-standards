@@ -2,7 +2,7 @@
 Guiding principles
 ==================
 
-These indicate the high-level direction of what these guidelines are
+These indicate the high-level direction of what this standard is
 intended to promote, with the detail of how to achieve this covered in
 the subsequent sections.
 
