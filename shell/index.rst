@@ -1,6 +1,6 @@
-==============================
-IFS shell scripting guidelines
-==============================
+============================
+IFS shell scripting standard
+============================
 
 .. toctree::
    :maxdepth: 2

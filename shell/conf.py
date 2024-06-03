@@ -19,8 +19,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'IFS_shell_guidelines'
-copyright = '2023-, ECMWF'
+project = 'IFS Shell Standard'
+copyright = '2024-, ECMWF'
 author = 'ECMWF'
 
 # The short X.Y version
@@ -47,8 +47,8 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-source_suffix = ['.rst', '.md']
-# source_suffix = '.rst'
+# source_suffix = ['.rst', '.md']
+source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
@@ -105,7 +105,7 @@ html_static_path = []
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'IFS_shell_guidelinesdoc'
+htmlhelp_basename = 'IFS_shell_standarddoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -132,7 +132,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'IFS_shell_guidelines.tex', 'IFS\\_shell\_guidelines Documentation',
+    (master_doc, 'IFS_shell_standard.tex', 'IFS\\_shell\_standard Documentation',
      'ECMWF', 'manual'),
 ]
 
@@ -142,7 +142,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ifs_shell_guidelines', 'IFS_shell_guidelines Documentation',
+    (master_doc, 'ifs_shell_standard', 'IFS_shell_standard Documentation',
      [author], 1)
 ]
 
@@ -153,8 +153,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'IFS_coding_guidelines', 'IFS_coding_guidelines Documentation',
-     author, 'IFS_coding_guidelines', 'One line description of project.',
+    (master_doc, 'IFS_coding_standard', 'IFS_coding_standard Documentation',
+     author, 'IFS_coding_standard', 'One line description of project.',
      'Miscellaneous'),
 ]
 
