@@ -1,4 +1,11 @@
-L10 : declaration syntax
-************************
+L10 : preprocessing of interfaces
+**********************************
 
-All declarations shall use the “::” notation.
+Subroutine signatures shall not require preprocessing to be valid.
+
+Interfaces to routines internal to the IFS/Arpege codebase are auto-generated
+by a script which reads 
+* ```USE XXX_MOD``` module statements
+* argument declarations
+
+These two code sections should be valid fortran without requiring preprocessing.

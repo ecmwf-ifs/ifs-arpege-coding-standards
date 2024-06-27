@@ -1,27 +1,23 @@
-L17 : Pointers in NPROMA routines
-*********************************
+L17 : INTENT attribute in NPROMA routines
+*****************************************
 
-The use of Fortran pointers in compute NPROMA routines should be forbidden except for the following pattern:
+In NPROMA routines (those processing a single NPROMA block), only NPROMA data should
+be allowed to have an INTENT different of IN.
+All other argument data should have the ``INTENT(IN)`` attribute.
 
+This, for instance should be forbidden:
 
 .. code-block:: fortran
 
-   SUBROUTINE GPRCP_EXPL (YDCST, YDCPG_BNDS, YDCPG_OPTS, PCP, PR, PKAP, YDVARS, KGFLTYP)
+   SUBROUTINE LAPINEA(&
+   & YDGEOMETRY, YDML_GCONF,YDML_DYN,KST,KPROF,YDSL,KIBL,PB1,PB2,PWRL9,&
+   & KVSEPC,KVSEPL,&
+   & PSAVEDP,PCCO,PUF,PVF,KL0,KLH0,PLSCAW,PRSCAW,KL0H,PLSCAWH,PRSCAWH,&
+   & PSCO,PGFLT1,KNOWENO)
 
-   REAL(KIND=JPRB),OPTIONAL,TARGET,INTENT(OUT)   :: PCP(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
-   REAL(KIND=JPRB),OPTIONAL,TARGET,INTENT(OUT)   :: PR(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
-   REAL(KIND=JPRB),OPTIONAL,       INTENT(OUT)   :: PKAP(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
+   INTEGER(KIND=JPIM),INTENT(INOUT) :: KVSEPC
+   INTEGER(KIND=JPIM),INTENT(INOUT) :: KVSEPL
 
-   REAL(KIND=JPRB), POINTER :: ZR(:,:)
-   REAL(KIND=JPRB), TARGET  :: ZR0(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
+In particular, ``YDMODEL`` and ``YDGEOMETRY`` as well as all their sub-components passed as arguments (eg ``YDDYNA``) should 
+have the ``INTENT(IN)`` attribute in NPROMA routines.
 
-   IF (PRESENT (PR)) THEN
-     ZR => PR
-   ELSEIF (PRESENT (PKAP)) THEN
-     ZR => ZR0
-   ELSE
-     CALL ABOR1 ('GPRCP_EXPL: EXPECTED PR OR PKAP')
-   ENDIF
-
-
-And such pointers should always point to arrays with the same shapes.
