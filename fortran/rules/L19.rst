@@ -1,9 +1,16 @@
-L19 : Design of derived types
-*****************************
+L19 : Design of NPROMA routines
+*******************************
 
-Dervived types should be implemented in modules. Their methods (the minimal code accessing their private attributes) 
-should be implemented in the module where they are defined.
+NPROMA routines should be individual subroutines, allowing for :
 
-The SEQUENCE statement is forbidden in the definition of complex (embedding some POINTER or ALLOCATABLE members) derived types 
-meant to be used on accelerators, as the SEQUENCE statement
-forbids the implementation of object methods.
+- automatic interface generation
+- separate compilation
+- easiness of automatic analysis and transformation
+
+In particular implementing a routine or a set of subroutines inside a module in
+order to benefit from the automatic generation of an interface in a .mod file
+should be prohibited.
+
+The use of modules should be restricted to derived types definition and implementation (methods).
+
+
