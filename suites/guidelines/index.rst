@@ -8,7 +8,11 @@ Guidelines for well-designed ecFlow suites
 
    general
    documentation
-   data
+   structure
    tasks
    families
-   barrier
+   software_dependencies
+   data
+   external_dependencies
+   non_time_critical_tasks
+   suite_construction
