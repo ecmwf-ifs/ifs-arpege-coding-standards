@@ -1,5 +1,5 @@
 Documentation
--------------
+=============
 
 Documenting the Suite for Different Audiences
 ---------------------------------------------
@@ -34,10 +34,9 @@ Scientists require a high-level description of the suite, which should be docume
 
 Operators Perspective
 ---------------------
-.. image:: path/to/screenshot.png
+.. image:: suites/_img/screenshot.png
    :alt: Screenshot of Operator's Screen
    :align: center
-
 
 Document What Each Task Does, How Critical It Is, and What to Do When It Fails
 ------------------------------------------------------------------------------
