@@ -5,12 +5,15 @@ Link to Filesystems page: https://confluence.ecmwf.int/display/UDOC/HPC2020%3A+F
 
 - retrieving
     - MARS
-        - https://confluence.ecmwf.int/display/MARS/Guidelines+for+writing+MARS+requests+in+suite+scripts
+        - User Documentation: https://confluence.ecmwf.int/display/UDOC/MARS+user+documentation
+        - examples: https://confluence.ecmwf.int/display/UDOC/MARS+example+requests
+        - writing a request: https://confluence.ecmwf.int/display/MARS/Guidelines+for+writing+MARS+requests+in+suite+scripts
     - FDB
+        - Documentation and examples: https://confluence.ecmwf.int/display/FDB/Home
     - ECFS
+        - User Documentation: https://confluence.ecmwf.int/display/UDOC/ECFS+user+documentation
     - ECPDS
         - ECMWF Production Data Store (ECPDS): https://confluence.ecmwf.int/pages/viewpage.action?pageId=118831332
-        - 
 
 - archiving
     - efficiency of ecfs and mars can impact suite design/structure
