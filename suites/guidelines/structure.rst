@@ -7,19 +7,16 @@ Structure
 
 
 - A typical suite that runs over a range of dates might consist of:
-    - A "setup" or "make" family: runs once to compile sources, prepare
+    - A "setup" or "init" family: runs once to compile sources, prepare
       invariant input data etc.
     - A "fetch", "prepare" or "initial data" family: runs with a repeat over
-      dates to fetch and prepare input data.
-        - May have external triggers for upstream data availability.
+      dates to fetch and prepare input data. May have external triggers for upstream data availability.
     - A "main" family: runs with a repeat over dates to do the main
       computational work (analysis, forecast etc.)
     - A "lag" family: runs with a repeat over dates to do non-time-critical
       post-processing (archiving outputs, offline diagnostics) and cleanup.
     - A "cancel" family: runs once when everything is finished for all dates,
-      to cleanly remove the suite from ecFlow.
-        - This is typically found in research suites rather than operational
-          ones.
+      to cleanly remove the suite from ecFlow. This is typically found in research suites rather than operational ones.
 
 
 - Repeat families can be split or "unrolled" to improve throughput
@@ -27,13 +24,8 @@ Structure
       previous one has finished, critical-path throughput in non-real-time
       mode (e.g. catch-up, reanalysis, hindcast) may be improved by
       one of two approaches:
-        - Splitting parts that run sequentially to cycle independently (e.g.
-          an analysis and the forecast from it generating the first guess for
-          the next one).
-        - "Unrolling" the repeat so that alternate cycles can overlap.
-          Excessive unrolling can make the suite hard to manage, but separate
-          repeating families for e.g. 0Z and 12Z cycles when running two
-          cycles per day is clean and effective.
+        - Splitting parts that run sequentially to cycle independently (e.g. an analysis and the forecast from it generating the first guess for the next one).
+        - "Unrolling" the repeat so that alternate cycles can overlap. Excessive unrolling can make the suite hard to manage, but separate repeating families for e.g. 0Z and 12Z cycles when running two cycles per day is clean and effective.
 
 
 - Manually-run administrative tasks should be included in the suite where appropriate.
