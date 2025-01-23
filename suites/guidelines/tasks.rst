@@ -1,5 +1,5 @@
 Tasks
------
+=====
 
 - In principle, tasks should perform a single logical function.
     - The task name should clearly indicate this function without
