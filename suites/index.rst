@@ -3,7 +3,7 @@ ECMWF ecFlow suite design standars
 ==================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
    foreword
    guidelines/index
