@@ -1,22 +1,19 @@
-Structure
----------
+Structure and families
+======================
 
-- Suites should be laid out in a consistent and logical structure.
-    - Families should be used to group related tasks, both for clarity and to
-      simplify the required triggers.
+Families are used to structure the tasks of the suite, providing both a visual and
+execution hierarchy. It is important to use
+descriptive but concise names for families. Suites should be laid out in a consistent and
+logical structure, with families grouping related tasks for clarity and to simplify the
+required triggers. 
 
+Standard families that most suites should include are:
 
-- A typical suite that runs over a range of dates might consist of:
-    - A "setup" or "init" family: runs once to compile sources, prepare
-      invariant input data etc.
-    - A "fetch", "prepare" or "initial data" family: runs with a repeat over
-      dates to fetch and prepare input data. May have external triggers for upstream data availability.
-    - A "main" family: runs with a repeat over dates to do the main
-      computational work (analysis, forecast etc.)
-    - A "lag" family: runs with a repeat over dates to do non-time-critical
-      post-processing (archiving outputs, offline diagnostics) and cleanup.
-    - A "cancel" family: runs once when everything is finished for all dates,
-      to cleanly remove the suite from ecFlow. This is typically found in research suites rather than operational ones.
+  - **setup**: tasks to install the suite's software and data dependencies
+  - **admin**: tasks for suite maintenance and other manually run tasks or toggles
+  - **barrier**: a family to hold the next execution date for operational suites
+  - **lag**: tasks that lag behind time-critical tasks, such as archiving and cleaning
+  - **cancel**: tasks to clean up the suite after it has finished
 
 
 - Repeat families can be split or "unrolled" to improve throughput
@@ -24,6 +21,7 @@ Structure
       previous one has finished, critical-path throughput in non-real-time
       mode (e.g. catch-up, reanalysis, hindcast) may be improved by
       one of two approaches:
+
         - Splitting parts that run sequentially to cycle independently (e.g. an analysis and the forecast from it generating the first guess for the next one).
         - "Unrolling" the repeat so that alternate cycles can overlap. Excessive unrolling can make the suite hard to manage, but separate repeating families for e.g. 0Z and 12Z cycles when running two cycles per day is clean and effective.
 

@@ -1,6 +1,6 @@
-==========================================
-Guidelines for well-designed ecFlow suites
-==========================================
+==========
+Guidelines
+==========
 
 .. toctree::
    :maxdepth: 1
@@ -10,7 +10,6 @@ Guidelines for well-designed ecFlow suites
    documentation
    structure
    tasks
-   families
    software_dependencies
    data
    external_dependencies
