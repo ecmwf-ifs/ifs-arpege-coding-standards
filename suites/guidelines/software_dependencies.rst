@@ -1,5 +1,5 @@
 Software dependencies
-==================
+=====================
 
 Software dependencies are an important part of the suite design as they drive the reproducibility of the suite.
 If software dependencies are not managed properly, it becomes very difficult to reproduce previous suite runs or test new versions of the software.
@@ -11,7 +11,7 @@ A suite usually interacts with software in two ways:
     - Loading the environment containing the software within the suite
 
 Software deployment
-----------------
+-------------------
 
 Software deployment is usually handled in a "setup" or "init" family of the suite, which runs only once at the beginning of the suite.
 Deployment should be driven by the suite configuration.
@@ -24,7 +24,7 @@ This approach allows testing in a shared environment, reduces software duplicati
 Additionally, the suite can be used to deploy the software to a shared environment. In this case, the software should first be built and tested locally in a separate task and deployed to the shared location only if the tests are successful.
 
 Loading the software environment
-----------------
+--------------------------------
 
 As with software deployment, loading the software environment within the ecFlow task should be driven by the suite configuration.
 The suite configuration should support different environment versions and types (e.g., modules, conda environments, Python virtual environments).
@@ -32,7 +32,7 @@ The suite configuration should support different environment versions and types 
 Loading the environment should be straightforward, and software dependencies should be loaded automatically. Complex environment setups, such as setting numerous environment variables or modifying the PATH, should be avoided.
 
 To avoid
-----------------
+--------
 
 Avoid compiling or building software within the tasks where it runs. This reduces the suite’s reproducibility and makes isolated testing of the software challenging.
 If software compilation is necessary, it should be done within the "setup" or "init" family of the suite. Loading the environment containing the software should then be a straightforward process.
