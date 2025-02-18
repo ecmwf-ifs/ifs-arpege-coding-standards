@@ -1,14 +1,14 @@
-ecFlow Suite Builders
+ecFlow suite builders
 ======================
 
 Overview
 --------
 
-ecFlow suites can be built in many ways, including by directly composing a [definition file](https://ecflow.readthedocs.io/en/latest/glossary.html#term-suite-definition)
+ecFlow suites can be built in many ways, including by directly composing a `definition file <https://ecflow.readthedocs.io/en/latest/glossary.html#term-suite-definition>`_
 or using ecFlow's Python API to generate suites programmatically. These methods can be combined with various tools and frameworks to facilitate the construction and management
 of more complex workflows. This chapter introduces various tools and methodologies for building ecflow suites, emphasizing the importance of standardization and best practices.
 
-Types of ecflow Suites
+Types of ecflow suites
 ----------------------
 
 1. **Native Python ecflow suites**: Directly written in Python.
@@ -17,7 +17,7 @@ Types of ecflow Suites
 4. **Pure pyFlow suites**: Object-oriented, Pythonic ecflow suites.
 5. **pyFlow suites with interface layers**: Enhanced with tools like Pysuite, Wellies, and Tracksuite.
 
-Tools for Suite Design
+Tools for suite design
 ----------------------
 
 - **pyFlow**: A high-level language for generating suites and scripts, promoting maintainability and best practices.
@@ -35,7 +35,7 @@ The main aspects to be considered when building ecFlow suites with pyFlow are:
 - **Script Handling**: Maintain scripts with suites, avoid side-effects, and ensure scripts are testable in isolation.
 - **Script Sources**: Use templated and composable scripts for flexibility and maintainability, but avoid excessive complexity.
 
-Key Messages
+Key messages
 ------------
 
 1. Treat suites as software; use pyFlow as a compiler.

@@ -11,6 +11,9 @@ only at working group level, thus serve mostly specific use cases and are not tr
 across ECMWF. Especially the different requirements for research and operational suites
 presents challenges in maintaining a consistent approach.
 
+Requirements of research and operational suites
+-----------------------------------------------
+
 - Research
     - Runs on historical dates, retrieved from archive or another experiment
     - Requires configurability and flexibility
@@ -30,6 +33,8 @@ Designing suites that are incompatible in either can lead to inefficiencies and
 difficulties in collaboration, debugging, and transitioning between the two stages of the
 suite lifecycle.
 
+Aim of these guidelines
+-----------------------
 This document aims to provide a coherent set of guidelines for suite development across
 ECMWF. They were developed by suite developers and users from across the centre to promote
 a consistent, structured, and modern approach that is applicable across 

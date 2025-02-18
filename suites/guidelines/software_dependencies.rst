@@ -31,8 +31,8 @@ The suite configuration should support different environment versions and types 
 
 Loading the environment should be straightforward, and software dependencies should be loaded automatically. Complex environment setups, such as setting numerous environment variables or modifying the PATH, should be avoided.
 
-To avoid
---------
+Best practices for software compilation
+---------------------------------------
 
 Avoid compiling or building software within the tasks where it runs. This reduces the suite’s reproducibility and makes isolated testing of the software challenging.
 If software compilation is necessary, it should be done within the "setup" or "init" family of the suite. Loading the environment containing the software should then be a straightforward process.

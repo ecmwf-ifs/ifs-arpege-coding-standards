@@ -9,7 +9,7 @@ What is a suite?
 - **Scripts and software to run the tasks:** Each tasks needs a *.ecf* script which is
   expanded by ECFlow and can call other shell scripts or executables.
 - **Code to generate and deploy the definition and scripts:** This is typically a Python
-  script based on `suite building packages <suite_construction>`_ which reads a
+  script based on :doc:`suite building packages <suite_construction>` which reads a
   configuration file and generates the ECFlow *.def* file and the *.ecf* scripts.
 
 TL;DR recommendations

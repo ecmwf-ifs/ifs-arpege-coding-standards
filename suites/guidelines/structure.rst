@@ -5,7 +5,7 @@ Families are used to structure the tasks of the suite, providing both a visual a
 execution hierarchy. It is important to use
 descriptive but concise names for families. Suites should be laid out in a consistent and
 logical structure, with families grouping related tasks for clarity and to simplify the
-required triggers. 
+required triggers.
 
 Standard families that most suites should include are:
 
