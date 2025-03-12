@@ -1,19 +1,12 @@
-L12 : array declarations in NPROMA routines
-*******************************************
+L12 : array syntax
+******************
 
-NPROMA routines (those processing a single NPROMA block) should only declare arrays of basic 
-data types whose kinds are taken from parkind1.F90 and parkind2.F90, eg:
+Fortran array syntax, eg : 
 
-* ``REAL(KIND=JPRB)``
-* ``REAL(KIND=JPRD)``
-* ``INTEGER(KIND=JPIM)``
-* ``LOGICAL``
+``ZX(:)=ZY(:)+ZZ(:)`` 
 
-The leading dimensions of these array should be ``NPROMA``.
+is forbidden, except for the two following trivial cases:
 
-Any other arrays are forbidden in NPROMA routines. These other arrays (not depending on 
-the meteorological situation) should be computed in the setup and passed as arguments
-to NPROMA compute routines, or integrated into sub-components of YDMODEL.
+* Array initialization: ``X(:)=constant``
 
-Arrays declared in NPROMA routines be automatic arrays; ALLOCATABLEs and POINTERs are
-forbidden.
+* Array copy : ``X(:)=Y(:)``

@@ -1,12 +1,4 @@
-L11 : array syntax
-******************
+L11 : declaration syntax
+************************
 
-Fortran array syntax, eg : 
-
-``ZX(:)=ZY(:)+ZZ(:)`` 
-
-is forbidden, except for the two following trivial cases:
-
-* Array initialization: ``X(:)=constant``
-
-* Array copy : ``X(:)=Y(:)``
+All declarations shall use the “::” notation.

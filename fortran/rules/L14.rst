@@ -1,9 +1,11 @@
-L14 : notations
-***************
+L14 : array declarations in parallel routines
+*********************************************
 
-Notations should homogeneous for the loop index, NPROMA array leading dimension, first iteration, last iteration:
+Parallel routines (those processing a list of NPROMA blocks) should wrap their field data 
+into Field API objects.
 
-* ``JLON/KLON/KIDIA/KFDIA`` in ARPEGE physics
-* ``JL/KLON/KIDIA/KFDIA`` in ECMWF physics
-* ``JROF/NPROMA/KST/KEND`` in dynamics routines (call_sl.F90, cpg_gp.F90, cpg_dyn.F90)
+In particular the legacy data representation for model state (PGMV/PGFL arrays) should be 
+considered obsolescent and replaced by YDVARS wherever possible.
 
+Parallel routines should never declare an array that will be involved in calculations
+(ie passed to NPROMA routines or used in OpenMP sections).
