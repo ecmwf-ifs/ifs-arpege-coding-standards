@@ -28,7 +28,7 @@ The standards and their applicability are as follows:
    ```bash
    make -C <language> html
    ```
-   where `<language>` is one of `fortran`, `python` or `shell`.
+   where `<language>` is one of `suites`, `fortran`, `python` or `shell`.
 1. View the result:
    ```bash
    open <language>/_build/html/index.html
