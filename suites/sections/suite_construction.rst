@@ -4,50 +4,89 @@ ecFlow suite builders
 Overview
 --------
 
-ecFlow suites can be built in many ways, including by directly composing a `definition file <https://ecflow.readthedocs.io/en/latest/glossary.html#term-suite-definition>`_
-or using ecFlow's Python API to generate suites programmatically. These methods can be combined with various tools and frameworks to facilitate the construction and management
-of more complex workflows. This chapter introduces various tools and methodologies for building ecflow suites, emphasizing the importance of standardization and best practices.
+ecFlow suites can be built in many ways, including by directly composing a 
+`definition file <https://ecflow.readthedocs.io/en/latest/glossary.html#term-suite-definition>`_
+or using ecFlow's Python API to generate suites programmatically. 
+These methods can be combined with various tools and frameworks to facilitate the construction and management
+of more complex workflows. This chapter will present what to consider when using one of these tools to build more 
+stardadized and maintainable suites.
 
-Types of ecflow suites
-----------------------
+Developing ecflow suites
+------------------------
 
-1. **Native Python ecflow suites**: Directly written in Python.
-2. **Python-generated .def files**: Suites generated with scripts using ecFlow's Python API.
-3. **Native Python ecflow suites with interface layers**: Enhanced with additional layers like `ecf.py` or `comfies`.
-4. **Pure pyFlow suites**: Object-oriented, Pythonic ecflow suites.
-5. **pyFlow suites with interface layers**: Enhanced with tools like Pysuite, Wellies, and Tracksuite.
+`ecFlow` workflows can be defined in a very generic way. While the structure and dependencies across nodes are all well-defined 
+in the various attributes and expressions provided by the ecFlow API, the application complexity can be hidden in the scripts and headers
+used in each one of the tasks. For simple workflows, just a handfull of files would be enough to define the whole suite. However, as the
+complexity of the application grows the use of tools and frameworks can help to manage the complexity and make the suite more maintainable.
 
-Tools for suite design
-----------------------
+As ecFlow has been used at ECMWF for many years, several tools and frameworks are used in operations for building and managing various applications. 
+For new developments, `pyflow <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introduction.html>`_ is the recommended 
+framework to follow and it is the one that will be presented in this chapter. 
+`pyflow` provides an extensive documentation with many examples and best practices recommendations and it is, therefore, a good starting point for 
+those not familiar with the framework. This document is not a replacement for the official documentation, but rather a summary of the key points to consider when 
+building ecFlow suites.
 
-- **pyFlow**: A high-level language for generating suites and scripts, promoting maintainability and best practices.
-- **Wellies**: Provides extension tools for configuring and deploying pyFlow suites.
-- **Tracksuite**: A deployment tool that tracks suite deployment in shared environment through Git.
-- **Pysuites**: A framework for building IFS experiments.
+When using a suite building framework, it's important to treat it as a development project. This generally means that:
 
-Main features
--------------
+- The suite should be version controlled, tested, and documented.
+- The suite should be treated as a software project, with the suite building framework as a compiler to generate both the definition file and scripts.
+- The suite should be developed in a modular way, with each part of the suite being testable in isolation where possible. 
 
-The main aspects to be considered when building ecFlow suites with pyFlow are:
+More specifically, `pyflow` encourages some key principles to follow when building suites:
 
-- **Object-Oriented Design**: Encapsulate behavior in Python classes, use inheritance and composition.
-- **Configuration Management**: Use configurator objects to manage suite configurations.
-- **Script Handling**: Maintain scripts with suites, avoid side-effects, and ensure scripts are testable in isolation.
-- **Script Sources**: Use templated and composable scripts for flexibility and maintainability, but avoid excessive complexity.
+1. **Object-Oriented Design**: Encapsulate behavior in Python classes, use inheritance and composition. `Examples <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/object-oriented-suites.html>`_ and `here <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/additional-examples.html>`_
 
-Key messages
-------------
+.. code-block:: python
+    with pyflow.Suite("suite"):
+        DeploymentFamily(config)
+        with pyflow.Family("tests", FLAG=123) as f:
+            (
+                RunUnitTests(config)
+                >>
+                IntegrationTests(config, name="localhost", host="localhost")
+                >>
+                IntegrationTests(config, name="cloudserver", host="cloudserver")
+            )
 
-1. Treat suites as software; use pyFlow as a compiler.
-2. Manage complexity with object-oriented design.
-3. Parameterize using Python objects, not script conditionals.
-4. Ensure scripts are testable in isolation.
-5. Migrate sub-trees (AnchorFamilies) independently.
-6. Separate deployment concerns from suite generation.
+Classes can inherit from base classes reusing the base structure and common functionality while overriding context specific ones.
 
-Resources
+.. code-block:: python
+    class BaseTest(pyflow.AnchorFamily):
+        def __init__(self, name, **kwargs):
+            super().__init__(name, **kwargs)
+            with self:
+                (
+                    Initialisation()
+                    >>
+                    self.build_test()
+                    >>
+                    Cleanup()
+                )
+
+    class CustomTest(BaseTest):
+        def build_test(self):
+            return pyflow.Task("run_test", script="run_test.sh")
+
+
+- **Configuration Management**: Use configurator objects to manage different suite deployments. Parameterize using Python objects, not script conditionals. `Examples <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/configuring-suites.html>`_
+- **Dettached Deployment**: Separate deployment concerns, where the workflow will be managed and executed, from suite generation. `See tracksuite <https://github.com/ecmwf/tracksuite>`_
+
+There are specific recommendations for writing `scripts <https://sites.ecmwf.int/docs/ifs-arpege-coding-standards/shell/guidelines/ecflow/structure.html>`_ and managing :ref:`tasks`, but the following are some general principles to follow when using `pyflow`:
+
+- **Script Handling**: Maintain scripts with suites, avoid side-effects, and ensure scripts are testable in isolation. `See more <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/script-handling.html>`_
+- **Script Sources**: Use templated and composable scripts for flexibility and maintainability, but avoid excessive complexity. Body may be composed of snippets assembled together by `pyflow`.
+- **Concise Deployment**: Use `AnchorFamily` only where necessary to avoid creating complex deployed file trees. [#f2]_
+- **ecFlow variables**: Use shell syntax for appropriate defaults. Define variables at the top most node level as possible to avoid redefinition of variables. [#f1]_
+
+Extra resources
 ---------
 
 - [pyFlow Documentation](https://pyFlow-workflow-generator.readthedocs.io/en/latest/content/introduction.html)
 - [Wellies Documentation](https://pyFlow-wellies.readthedocs.io/latest/)
 - [Tracksuite GitHub](https://github.com/ecmwf/tracksuite)
+
+
+.. rubric:: Footnotes
+
+.. [#f1] `pyflow` enforces the use of shell variables in the body of scripts and has its own inspection step to create appropriate environment variables.
+.. [#f2] `pyflow` enforces uniqueness of task names and script-to-task mapping and `AnchorFamily` creates a new "root" for the script file tree.
