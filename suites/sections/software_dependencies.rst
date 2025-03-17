@@ -23,6 +23,8 @@ This approach allows testing in a shared environment, reduces software duplicati
 
 Additionally, the suite can be used to deploy the software to a shared environment. In this case, the software should first be built and tested locally in a separate task and deployed to the shared location only if the tests are successful.
 
+Note that if the suite can run on multiple hosts, the software should be deployed on all the hosts.
+
 Loading the software environment
 --------------------------------
 
