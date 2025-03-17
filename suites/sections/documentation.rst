@@ -42,7 +42,7 @@ Operators perspective
 ---------------------
 In this section we give a view on all the pages and systems monitored by operators 24/7 as documented on https://confluence.ecmwf.int/display/PS/Suites+Monitored+by+Operators
 
-.. image:: suites/_img/ecflow.png
+.. figure:: _img/ecflow.png
    :alt: ecFlow Interface
    :align: center
    :target: https://confluence.ecmwf.int/display/PS/Suites+Monitored+by+Operators
@@ -50,39 +50,39 @@ In this section we give a view on all the pages and systems monitored by operato
 
    Overview of the ecFlow interface that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
 
-.. image:: suites/_img/ssh.png
+.. figure:: _img/ssh.png
    :alt: ecFlow Interface for SSH accesses
    :align: center
    :target: https://confluence.ecmwf.int/display/PS/Suites+Monitored+by+Operators
-   :width: 50%
+   :width: 200%
 
    Overview of the ecFlow interface that operators use to monitor and control suite ssh tasks in different categories of jobs.
 
-.. image:: suites/_img/hpc_users.png
+.. figure:: _img/hpc_users.png
    :alt: HPC Users Monitor
    :align: center
    :target: https://atos-stats.ecmwf.int:3000/d/AlbyPPf4z/hpc-users?orgId=1&from=now-6h&to=now&timezone=utc&var-username=.%2A
-   :width: 50%
+   :width: 200%
 
    Displays real-time usage statistics for HPC users. Allows operators to catch users who are (accidentally) draining resources and endangering operations.
 
-.. image:: suites/_img/hpc_elephant.png
+.. figure:: _img/hpc_elephant.png
    :alt: HPC Elephant View
    :align: center
    :target: https://atos-stats.ecmwf.int:3000/d/fdvdmcsmizxtsd/elephant?orgId=1&from=now%2Fd&to=now%2F1d&timezone=utc&var-clusters=aa&var-partition=all&refresh=1m
-   :width: 50%
+   :width: 200%
 
    Illustrates resource usage across HPC nodes (the so-called “Elephant” view) with a focus on the two operational clusters that contain the time-critical runs of the data assimilation, IFS forecast and dissemination.
 
-.. image:: suites/_img/hpc_node_usage.png
+.. figure:: _img/hpc_node_usage.png
    :alt: HPC Node Usage
    :align: center
    :target: https://atos-stats.ecmwf.int:3000/d/e13ab66a-5663-49b5-af7d-cf307a707aa0/node-usage?orgId=1&from=now-6h&to=now&timezone=utc&var-partition=par&refresh=1m
-   :width: 50%
+   :width: 200%
 
    Shows detailed CPU, memory, and job distribution on HPC nodes.
 
-.. image:: suites/_img/hpss_gui.png
+.. figure:: _img/hpss_gui.png
    :alt: HPSS GUI
    :align: center
    :target: https://confluence.ecmwf.int/display/SHIFT/Starting+HPSSGUI+and+HPSSMON
@@ -90,193 +90,193 @@ In this section we give a view on all the pages and systems monitored by operato
 
    Graphical interface for the HPSS (High Performance Storage System).
 
-.. image:: suites/_img/hpss.png
+.. figure:: _img/hpss.png
    :alt: HPSS Monitor
    :align: center
    :target: http://hpssmon.ecmwf.int:5001
-   :width: 50%
+   :width: 300%
 
    Monitoring tool for ongoing HPSS (High Performance Storage System) transfers and storage usage.
 
-.. image:: suites/_img/acq_monitor.png
+.. figure:: _img/acq_monitor.png
    :alt: Acquisition Monitor
    :align: center
    :target: https://acq-monitor.ecmwf.int/do/monitoring
-   :width: 50%
+   :width: 200%
 
    Monitors the acq ECPDS server used for SAPP (observation data acquisition).
 
-.. image:: suites/_img/diss_monitor.png
+.. figure:: _img/diss_monitor.png
    :alt: DISS Monitor
    :align: center
    :target: https://diss-monitor.ecmwf.int/do/monitoring
-   :width: 50%
+   :width: 200%
 
    Monitors the diss ECPDS server used for the main dissemination.
 
-.. image:: suites/_img/aux_monitor.png
+.. figure:: _img/aux_monitor.png
    :alt: Auxiliary Monitor
    :align: center
    :target: https://aux-monitor.ecmwf.int/do/monitoring
-   :width: 50%
+   :width: 200%
 
    Monitors the aux ECPDS server used for opendata and CAMS.
 
-.. image:: suites/_img/xdis_monitor.png
+.. figure:: _img/xdiss_monitor.png
    :alt: XDIS Monitor
    :align: center
    :target: https://xdiss-monitor.ecmwf.int/do/monitoring
-   :width: 50%
+   :width: 200%
 
    Specialized view for monitoring XDIS processes.
 
-.. image:: suites/_img/service_status.png
+.. figure:: _img/service_status.png
    :alt: Service Status
    :align: center
    :target: https://status.ecmwf.int
-   :width: 50%
+   :width: 200%
 
    High-level dashboard for various service statuses.
 
-.. image:: suites/_img/opsview.png
+.. figure:: _img/opsview.png
    :alt: Opsview Monitoring
    :align: center
    :target: https://opsview.ecmwf.int
-   :width: 50%
+   :width: 200%
 
    Comprehensive monitoring tool for all operational services and infrastructure with a simple color-coded health status.
 
-.. image:: suites/_img/infoboard.png
+.. figure:: _img/infoboard.png
    :alt: Service Status
    :align: center
    :target: https://infoboard.ecmwf.int
-   :width: 50%
+   :width: 200%
 
    Infoboard with announcements of system sessions and potential service degradations.
 
-.. image:: suites/_img/service_catalogue.png
+.. figure:: _img/service_catalogue.png
    :alt: Service Status
    :align: center
    :target: https://sites.ecmwf.int/services/catalogue/
-   :width: 50%
+   :width: 200%
 
    New interface portal which will serve as gateway to all other services' monitoring in the near future.
 
-.. image:: suites/_img/jira.png
+.. figure:: _img/jira.png
    :alt: Jira Integration
    :align: center
    :target: https://jira.ecmwf.int/secure/Dashboard.jspa?selectPageId=12722
-   :width: 50%
+   :width: 200%
 
    Shows JIRA tickets from users of importance to the shift teams.
 
-.. image:: suites/_img/confluence.png
+.. figure:: _img/confluence.png
    :alt: Confluence Documentation
    :align: center
    :target: https://confluence.ecmwf.int/display/SHIFT/Dissemination+Products+new
-   :width: 50%
+   :width: 200%
 
    Confluence page references for detailed suite documentation.
 
-.. image:: suites/_img/eccharts.png
+.. figure:: _img/eccharts.png
    :alt: ecCharts Interface
    :align: center
    :target: https://eccharts.ecmwf.int
-   :width: 50%
+   :width: 150%
 
    The ecCharts service.
 
-.. image:: suites/_img/preprocess_jobs.png
+.. figure:: _img/preprocess_jobs.png
    :alt: Preprocess Jobs
    :align: center
    :target: https://apps.ecmwf.int/data-layer/preprocess?status=aborted&action=all
-   :width: 50%
+   :width: 150%
 
    Shows the flow and status of preprocess jobs.
 
-.. image:: suites/_img/eccmd.png
+.. figure:: _img/eccmd.png
    :alt: ecmwf ec batch Jobs
    :align: center
    :target: http://boleccmd.ecmwf.int:8090
-   :width: 50%
+   :width: 200%
 
    Shows the monitoring of all batch jobs of the ecaccess interface for Member States and other users.
 
-.. image:: suites/_img/mars_web_api.png
+.. figure:: _img/mars_web_api.png
    :alt: MARS Web API
    :align: center
    :target: https://apps.ecmwf.int/webapi-activity/
-   :width: 50%
+   :width: 200%
 
    Interface for interacting with MARS via the Web API.
 
-.. image:: suites/_img/mars_activity.png
+.. figure:: _img/mars_activity.png
    :alt: MARS Activity
    :align: center
    :target: https://apps.ecmwf.int/mars-activity
-   :width: 50%
+   :width: 150%
 
    Real-time overview of MARS data retrieval and archiving activity.
 
-.. image:: suites/_img/splunk_webapi.png
+.. figure:: _img/splunk_webapi.png
    :alt: webMARS API splunk dashboard
    :align: center
    :target: https://splunk.ecmwf.int/en-US/app/ecmwf_mars/web_api_now?form.system=bol-webmars-private-prod
-   :width: 50%
+   :width: 200%
 
    Splunk dashboards for web MARS API.
 
-.. image:: suites/_img/mars_web_software.png
+.. figure:: _img/mars_web_software.png
    :alt: MARS Web API
    :align: center
    :target: https://bol-monitoring.ecmwf.int/monitoring/#!/hashtags/detail?h=va-webmars-service
-   :width: 50%
+   :width: 200%
 
    Application level monitoring of MARS services.
 
-.. image:: suites/_img/mars_web_hardware.png
+.. figure:: _img/mars_web_hardware.png
    :alt: MARS Web API
    :align: center
    :target: https://bol-monitoring.ecmwf.int/monitoring/#!/hashtags/detail?h=va-webmars-infra
-   :width: 50%
+   :width: 200%
 
    Hardware level monitoring of MARS services.
 
-.. image:: suites/_img/marsadm.png
+.. figure:: _img/marsadm.png
    :alt: MARS Administration
    :align: center
-   :width: 50%
+   :width: 200%
 
    Interface for monitoring MARS tasks running on each MARS instance, i.e. od, rd, er, th, ms and sc.
 
-.. image:: suites/_img/ecfsadm.png
+.. figure:: _img/ecfsadm.png
    :alt: ECFS Administration
    :align: center
-   :width: 50%
+   :width: 400%
 
    Interface for monitoring ECFS (ECMWF File Storage) tasks.
 
-.. image:: suites/_img/splunk_ecpds.png
+.. figure:: _img/splunk_ecpds.png
    :alt: Splunk Web API
    :align: center
-   :target: 
-   :width: 50%
+   :target: https://ecpds-metrics.ecmwf.int/d/rYdddlPWk2/hosts?orgId=1&from=now-24h&to=now&timezone=browser&var-datasource=PBFA97CFB590B2093&var-job=node_exporter&var-service=$__all&var-component=$__all&var-node=bodh1ecpdmv-04:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=1h
+   :width: 1000%
 
    Splunk dashboards for the full ECPDS system health.
 
-.. image:: suites/_img/necj.png
+.. figure:: _img/necj.png
    :alt: NECJ Monitor
    :align: center
    :target: https://confluence.ecmwf.int/display/SHIFT/ATOS+-+necj+%3A+new+tool
-   :width: 50%
+   :width: 200%
 
    Specialized monitoring of jobs running on the HPC and their runtime deviations from stored statistical averages.
 
-.. image:: suites/_img/open_nms.png
+.. figure:: _img/open_nms.png
    :alt: HPC Open NMS
    :align: center
    :target: http://hpc-opennms.ecmwf.int/
-   :width: 50%
+   :width: 200%
 
    Monitoring of the network's component health.
 
