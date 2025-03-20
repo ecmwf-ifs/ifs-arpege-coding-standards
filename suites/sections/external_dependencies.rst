@@ -10,16 +10,11 @@ Barrier
     The barrier family contains tasks that check if the starting conditions are available so the forecast can start running. When these start conditions are satisfied, \n 
 these tasks can change their state by setting an event, a trigger, or even an ecFlow state. Some exaples of barriers are:
 
-    - The barrier tasks wait for ECMWF's NWP forecast output: ensemble, control, seasonal, aifs (e.g mc, o, eda, seas5, aifs_single suites);
+    - The barrier tasks wait for ECMWF's NWP forecast output: ensemble, control, seasonal, AIFS (e.g mc, o, eda, seas5, aifs_single suites);
     - The tasks wait for input from other Centres: DWD, COSMOS, etc. In this case, the event can be triggered by data available on MARS or even on disk;
     - observations (BUFR, radar, etc.), data assimilation, ERA5 (https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation).
 
-    There are a number of ways the barrier tasks can be set, and they will be described in the following sections.
-    - by setting an event based on data avaialability in MARS (e.g. "data available");
-    - by runnin a cron job that checks the avaialability of the data on disk within a time range;
-    - by setting an event based on another suite's ecFlow status (e.g. "data_available" once /{control_suite}/main/12/fc/model is complete).
-
-    Some of these parts will be better described in the following sections.
+    There are a number of ways the barrier tasks can be set, and they will be described in the next sections.
 
 Events
 ------
@@ -29,7 +24,7 @@ Events
         - An event can be set based on the status of another task, which can be in the same suite or in another suite (e.g. "data ok" will be set if /{control_suite}/main/12/fc/model is complete);
     
     Once an event is set, it will then trigger other tasks to indicate the avaialability of the data, and the suite can progress or fail. It is also important to notice here that \n
-    events are not limited to the barrier family, and can be set in any task in the suite.
+    events are not limited to the barrier family, and can be set in any task in the suite. More information on events can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/events.html>`_.
 
 Triggers and alerts
 -------------------
@@ -40,8 +35,7 @@ Triggers and alerts
         - The users can then check if the data is missing/available on MARS/ECFS/ECPDS/disk, or if the suite can run without that specific data.
     
     As there are no rules on how many alerts/warnings tasks should be used, it will depend on how the suite runs, what KPIs are important, and how time-critical the suite is. \n
-    These triggers and extra tasks are important tools for debugging tasks and monitoring the suite, specially in operations.   
-
+    These triggers and extra tasks are important tools for debugging tasks and monitoring the suite, specially in operations. More information on triggers and alerts can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/triggers.html>`_.
 
 YMD
 ---
@@ -63,8 +57,13 @@ Mirrors
     - A practical example would be an operational suite that is mirrored to different servers so other suites that rely on it can check their progress;
     - In this case, the mirrored suites are seen as suspended in the new servers, and their status will be updated based on the original suite;
     - Example: https://confluence.ecmwf.int/display/~map/A+simple+mirror+example
+    - More information on mirrors can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/mirrors.html>`_.
 
 ECMWF software packages
 -----------------------
-    - https://confluence.ecmwf.int/display/UDOC/ECMWF+software+packages+-+FAQs
-    - Integrate ECMWF packages to your suite as they are more reliable when dealing with ECMWF products, grib files, BUFR, etc.
+    ECMWF has a number of software packages that can be used to retrieve, process, and disseminate data. When working with ecFlow suites, netCDF data, grb files, BUFR, etc., it is recommended to use \n
+    native tools suck as ecCodes, earthkit, pyflow, anemoi, Metview, and others. Some of the advantages of using ECMWF software packages are:
+      - They are more reliable when dealing with ECMWF products;
+      - Most of these packages are maintained by ECMWF and have a good support system;
+      - They are optimized to work with ECMWF data and products;
+      - There are a number of examples and tutorials on how to use these packages, which can be found on CDS or the ECMWF website;

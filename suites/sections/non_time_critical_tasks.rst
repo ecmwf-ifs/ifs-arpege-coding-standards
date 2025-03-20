@@ -1,5 +1,5 @@
-Time-crticial and Non-time-critical tasks
-=========================================
+Time-crticiality
+================
 This section is dedicated to time-critical and non-time-critical tasks of ecFlow suites. What tasks are cosidered critical or not will depend on what the suite is designed for, in what \n 
 part of the suite the tasks are running, and how relevant they are in terms of blocking the progress of the suite. Since there are no exact definitions, here we discuss some \n
 examples of tasks that are usually critical and some that, even though are not on the critical path, can still be used in a suite.
@@ -7,26 +7,19 @@ examples of tasks that are usually critical and some that, even though are not o
 Time-critical tasks
 -------------------
     Time-critical tasks are those that are essential for the suite to run, and that can block the progress of the suite if they are not completed. For these tasks, in case they fail \n 
-    or are not active/running at a certain, the user will have to manually check and fix the suite as soon as possible. Some examples of time-critical tasks are:
-        - Barrier tasks that check for the avaialability of the initial conditions so the forecast can start;
-        - Tasks under the **main** family:
-            - Can be divided in different cycles, e.g. main/12, main/18, main/00, etc.;
-            - Retrieval tasks that retrieve the forcing/initial conditions for the forecast, e.g. main/12/fc/mars_retrieve;
-            - Tasks that run the forecast, e.g main/12/fc/model;
-            - Tasks that post-process the output of the forecast, e.g. main/12/prodgen;
-            - Tasks that generate the plots that will be sent to the web (ecCharts, a specific website), e.g. main/12/prodgen/web_products;
-            - Time-critical dissemination tasks for users that rely on near-real-time data (e.g. main/12/diss/ecpds_diss);
-            - Alerts in the main family that will fail if the forecast is late, e.g. main/12/late_alert;
+    or are not active/running at a certain time/order, the user will have to manually check and fix the suite as soon as possible. Usually, these tasks are under the **main** family:
+        - Can be divided in different cycles, e.g. main/12, main/18, main/00, etc.;
+        - Retrieval tasks that retrieve the forcing/initial conditions for the forecast, e.g. main/12/fc/mars_retrieve;
+        - Tasks that run the forecast, e.g main/12/fc/model;
+        - Tasks that post-process the output of the forecast, e.g. main/12/prodgen;
+        - Tasks that generate the plots that will be sent to the web (ecCharts, a specific website), e.g. main/12/prodgen/web_products;
+        - Time-critical dissemination tasks for users that rely on near-real-time data (e.g. main/12/diss/ecpds_diss);
+        - Alerts in the main family that will fail if the forecast is late, e.g. main/12/late_alert;
     
     As mentioned before, there is no exact definition of what is time-critical or not, and the examples above are just some of the tasks that are usually considered critical. \n
     Apart from the specifics of these time-critical tasks, there are general rules that can be followed when designing yur critical path, specially in operations:
-        - Tasks should have a good man page, ideally with the following:
-            - Description of the task;
-            - Inputs and outputs;
-            - Dependencies;
-            - Instructions on how to run the task;
-            - Instructions on how to rerun the task in case of failure;
-            - Instructions on how to debug the task in case of failure;
+        - Tasks should have a good man page, ideally with a description of the task, its inputs and expected outputs, there should instructions on how to run/rerun/debug the task \n
+        in case of failure, and the dependencies of the task;
         - Tasks should be rerunnable, or at least include instructions on how to rerun it in case it fails;
         - Tasks should be able to run independently of the server, which includes having the necessary data and software dependencies on every server;
         - Tasks should have a trapping mechanisms so ecFlow can detect if they fail and send an alert to the user;
@@ -48,12 +41,11 @@ Non-Time-critical tasks
             - Can be used to retrieve the initial conditions that will be used by the first forecast, e.g. setup/get_ini;
             - Usually run once at the beginning of the suite or when a package nees to be reinstalled or updated;
 
-        - Tasks under the **admin** family:
-            - Can be used to run manually administrative tasks, such as:
-                - Set toggles that will be used to control the suite;
-                - Manage static files that are used by the suite;
-                - Run backups in case there is a need of transferring files to a different server;
-                - Genereate reports that will be used to monitor the suite;  
+        - Tasks under the **admin** family, which can be used to run manually administrative tasks:
+            - Set toggles that will be used to control the suite;
+            - Manage static files that are used by the suite;
+            - Run backups in case there is a need of transferring files to a different server;
+            - Genereate reports that will be used to monitor the suite;  
         
         - Tasks under the **lag** family:
             - Can also be divided in different cycles, e.g. lag/12, lag/18, lag/00, etc.;
@@ -63,9 +55,8 @@ Non-Time-critical tasks
             - Dissemination tasks that disseminate the output of the forecast to users that do not rely on near-real-time data, e.g. lag/12/diss/ecpds_diss;
             - Backup tasks that will transfer today's output to a different server, e.g. lag/12/backup_to_server;
 
-    When dealing with archiving and cleaning, it is important to consider the space availability on the filesystem you are using 
-
-Link to Filesystems page: https://confluence.ecmwf.int/display/UDOC/HPC2020%3A+Filesystems
+    When dealing with archiving and cleaning, it is important to consider the space availability on the filesystem you are using. Different filesystems have different quotas and \n
+    limitations, and the efficiency and stability of the filesystem can impact the suite's performance. More information on the filesystems used at ECMWF can be found `here <https://confluence.ecmwf.int/display/UDOC/HPC2020%3A+Filesystems>`_.
 
 Retrieving
 ----------
