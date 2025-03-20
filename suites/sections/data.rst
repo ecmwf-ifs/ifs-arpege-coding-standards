@@ -8,7 +8,9 @@ Data
 
 - Avoid accessing off-line data (e.g. MARS and ECFS) in time critical path
 
-  - Store frequently-accessed invariant data on disk
+  - Store frequently-accessed invariant data on disk and document expected structure
   - Fetch and archive in parallel with the main modelling/processing work
 
-- Back up critical data that is costly to recreate
+- Back up critical data that is costly to recreate and keep it synchronized with the suite
+
+  - Treat data as a dependency of the suite and use some form of version control or snapshots for reproducibility.

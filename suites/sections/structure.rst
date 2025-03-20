@@ -14,15 +14,16 @@ Standard families
 Due to the common tasks required in most suites, there are some standard families that
 most suites should include with the following names widely used at ECMWF:
 
-  - **setup/make**: tasks to install the suite's :doc:`software <software_dependencies>` and data dependencies
+  - **setup/make/init**: tasks to install the suite's :doc:`software <software_dependencies>` and data dependencies
   - **admin**: tasks for suite maintenance and other manually run tasks or toggles
   - :ref:`barrier <Barrier>`: a family to hold the next execution date for operational suites
+  - one or several families that contain the main, time-critical tasks of the suite (there is no accepted standard name, but **main** is often used)
   - **lag**: tasks that lag :doc:`behind time-critical tasks, such as archiving and cleaning <non_time_critical_tasks>`
   - **cancel**: tasks to clean up the suite after it has finished
 
 .. image:: _img/ifs_suite_structure.png
     :width: 300px
-    :alt: A IFS surface experiment suite.
+    :alt: An IFS surface experiment suite with the main family expanded.
 
 *Figure*: Example of a well-structured suite with standard families, here an IFS surface experiment suite.
 
@@ -72,6 +73,11 @@ For boolean configuration switches, it may be convenient to use ecFlow events on
 
 Execution structure
 -------------------
+As each task of a suite generates a separate compute job, the structure of the suite should reflect the most efficient
+way to run these jobs in terms of parallelism and optimal data chunking. For example, the retrieval of data from MARS
+should be chunked in a way to optimise the MARS request, rather than an according to the chunking used
+to process the retrieved data.
+
 Triggers are used to control the flow of the suite, ensuring that tasks are run in the correct order and at the correct time.
 Triggers should be kept as simple as possible while ensuring the required sequencing and timeliness.
 Where possible, triggers between separate families should be at the
@@ -82,7 +88,6 @@ that the critical path is kept as short as possible by starting `parts` of
 one family as soon as `those parts of the other it actually depends on`
 have completed. Nevertheless, such optimisations increase complexity, and should not be
 applied unnecessarily off the critical path.
-
 
 Limits should be used as necessary to prevent overloading HPC, ecFlow and other resources.
 Where a suite can potentially submit a large number of tasks at once,

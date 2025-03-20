@@ -7,7 +7,7 @@ Software versions should be explicit, meaning the version should be specified in
 Making the version explicit also allows testing the suite with different software versions, facilitating pre-operational testing of new software versions.
 
 A suite usually interacts with software in two ways:
-    - Deploying the software in a directory local to the suite or in a shared location
+    - Deploying the software in a directory local to the suite or in a shared location (in case the suite acts as a software deployer)
     - Loading the environment containing the software within the suite
 
 Software deployment
@@ -22,6 +22,8 @@ For operational suites, local deployment of the software should be minimised. Th
 This approach allows testing in a shared environment, reduces software duplication on the system, and improves reproducibility by making multiple software versions available simultaneously.
 
 Additionally, the suite can be used to deploy the software to a shared environment. In this case, the software should first be built and tested locally in a separate task and deployed to the shared location only if the tests are successful.
+
+Note that if the suite can run on multiple hosts, the software should be deployed on all the hosts.
 
 Loading the software environment
 --------------------------------
