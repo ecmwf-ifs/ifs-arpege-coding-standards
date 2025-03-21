@@ -87,13 +87,17 @@ There are specific recommendations for writing `:ifs-standards-docs: scripts <sh
 Extra resources
 ---------------
 
-- [pyFlow Documentation](https://pyFlow-workflow-generator.readthedocs.io/en/latest/content/introduction.html)
-- [Wellies Documentation](https://pyFlow-wellies.readthedocs.io/latest/)
-- [Tracksuite GitHub](https://github.com/ecmwf/tracksuite)
-- pySuite
+Here are some other references for other suite building tools that are available in the `ecFlow` ecosystem:
 
+    - :wellies-docs:`pyflow-wellies`: A library of common patterns and utilities for `pyflow` including YAML-based configuration, 
+      commonly used script snippets, and execution environment management.
+    
+    - `tracksuite <https://github.com/ecmwf/tracksuite>`_: A tool for git-based deployment of `ecFlow` suites, including support to multi-user 
+      environments, remote deployment and cloud-based backup of deployments.
+    
+    - `pySuite <https://confluence.ecmwf.int/display/IFS/pysuite%3A+IFS+suite+definitions+in+Python>`_: A modular object-oriented framework for generating IFS suites, built on pyFlow in a limited way. 
 
 .. rubric:: Footnotes
 
 .. [#f1] `pyflow` enforces the use of shell variables in the body of scripts and has its own inspection step to create appropriate environment variables.
-.. [#f2] `pyflow` enforces uniqueness of task names and script-to-task mapping and `AnchorFamily` creates a new "root" for the script file tree.
+.. [#f2] `pyflow` enforces uniqueness of task names and script-to-task mapping. The library's `AnchorFamily` class creates a new "root" for the script file tree, allowing scripts with same name to co-exist.
