@@ -1,5 +1,5 @@
-Data
-====
+Data management
+===============
 
 Intro paragraph
 How we handle data within suite, in tasks and between tasks

@@ -1,5 +1,5 @@
-ecFlow suite builders
-======================
+Suite construction
+==================
 
 ecFlow suites can be built in many ways, including by directly composing a 
 :ecflow-docs:`definition file <glossary.html#term-suite-definition>`
@@ -31,7 +31,7 @@ When using a suite building framework, it's important to treat it as a developme
 - The suite should be developed in a modular way, with each part of the suite being testable in isolation where possible. 
 
 Main principles
-^^^^^^^^^^^^^^^
+---------------
 
 More specifically, `pyflow` encourages some key principles to follow when building suites:
 
@@ -76,7 +76,7 @@ Classes can inherit from base classes reusing the base structure and common func
 - **Dettached Deployment**: Separate deployment concerns, where the workflow will be managed and executed, from suite generation. `See tracksuite <https://github.com/ecmwf/tracksuite>`_
 
 Script Handling
-^^^^^^^^^^^^^^^
+---------------
 
 There are specific recommendations for writing `:ifs-standards-docs: scripts <shell/guidelines/ecflow/structure.html>` and managing :ref:`tasks`, but the following are some general principles to follow when using `pyflow`:
 
@@ -91,6 +91,7 @@ Extra resources
 - [pyFlow Documentation](https://pyFlow-workflow-generator.readthedocs.io/en/latest/content/introduction.html)
 - [Wellies Documentation](https://pyFlow-wellies.readthedocs.io/latest/)
 - [Tracksuite GitHub](https://github.com/ecmwf/tracksuite)
+- pySuite
 
 
 .. rubric:: Footnotes
