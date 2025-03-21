@@ -40,7 +40,7 @@ This should include:
 
 Operators perspective
 ---------------------
-It has to be known that operators who monitor and support our operations 24/7 cannot have full understanding of the operational components that are running. They have limited visibility on the tasks run and can only consult higher level dashboards and GUIs to issue warnings and call out relevant analysts for remediary action. One should keep this into account when designing suites to be as self-explanatory as possible and simple in structure and instructions in the man pages. Here follows a few examples of such dashboards and GUIs.
+It has to be known that operators who monitor and support our operations 24/7 cannot have full understanding of the operational components that are running. They have limited visibility on the tasks run and can only consult higher level dashboards and GUIs to issue warnings and call out relevant analysts for remediary action. One should keep this into account when designing suites to be as self-explanatory as possible and simple in structure and provide simple, but precise instructions in the man pages. Here follows a few examples of such dashboards and GUIs.
 
 
 .. figure:: _img/ecflow.png
