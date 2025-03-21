@@ -1,8 +1,10 @@
 External dependencies
 =====================
 
-This section is dedicated to the external dependencies of ecflow suites. Suites can depend on tasks being completed in other suites, data on becoming available on disk/MARS, \n
-and observations. There are ways to check for the avaialability of data, as well as to trigger specific tasks depending on specific conditions. 
+This section is dedicated to the external workflow dependencies of ecflow suites (as opposed to software dependencies).
+This could be other ecFlow suites or external data sources. Suites can depend on tasks being completed in other suites,
+data on becoming available on disk or MARS and observations. There are ways to check for the avaialability of data, as
+well as to trigger specific tasks depending on specific conditions. 
 
 Barrier
 -------
@@ -58,12 +60,3 @@ Mirrors
     - In this case, the mirrored suites are seen as suspended in the new servers, and their status will be updated based on the original suite;
     - Example: https://confluence.ecmwf.int/display/~map/A+simple+mirror+example
     - More information on mirrors can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/mirrors.html>`_.
-
-ECMWF software packages
------------------------
-    ECMWF has a number of software packages that can be used to retrieve, process, and disseminate data. When working with ecFlow suites, netCDF data, grb files, BUFR, etc., it is recommended to use \n
-    native tools suck as ecCodes, earthkit, pyflow, anemoi, Metview, and others. Some of the advantages of using ECMWF software packages are:
-      - They are more reliable when dealing with ECMWF products;
-      - Most of these packages are maintained by ECMWF and have a good support system;
-      - They are optimized to work with ECMWF data and products;
-      - There are a number of examples and tutorials on how to use these packages, which can be found on CDS or the ECMWF website;

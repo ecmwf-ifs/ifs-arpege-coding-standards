@@ -5,7 +5,7 @@ Foreword
 At ECMWF we have a comprehensive list of computational workflows called *suites* that
 produce both operational and research data. The design of these suites has evolved over
 time to a high level of complexity to the workflow management system
-(`ECFLow <https://ecflow.readthedocs.io>`_), incorporating a range of different styles and
+(:ecflow-docs:`ECFLow </>`), incorporating a range of different styles and
 methodologies. Many recommendations for best practices and standards exist, but mainly
 only at working group level, thus serve mostly specific use cases and are not transferable
 across ECMWF. Especially the different requirements for research and operational suites

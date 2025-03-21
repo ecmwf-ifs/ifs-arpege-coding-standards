@@ -1,5 +1,5 @@
-Time-crticiality
-================
+Time-criticiality
+=================
 This section is dedicated to time-critical and non-time-critical tasks of ecFlow suites. What tasks are cosidered critical or not will depend on what the suite is designed for, in what \n 
 part of the suite the tasks are running, and how relevant they are in terms of blocking the progress of the suite. Since there are no exact definitions, here we discuss some \n
 examples of tasks that are usually critical and some that, even though are not on the critical path, can still be used in a suite.
@@ -57,37 +57,3 @@ Non-Time-critical tasks
 
     When dealing with archiving and cleaning, it is important to consider the space availability on the filesystem you are using. Different filesystems have different quotas and \n
     limitations, and the efficiency and stability of the filesystem can impact the suite's performance. More information on the filesystems used at ECMWF can be found `here <https://confluence.ecmwf.int/display/UDOC/HPC2020%3A+Filesystems>`_.
-
-Retrieving
-----------
-- MARS
-    - User Documentation: https://confluence.ecmwf.int/display/UDOC/MARS+user+documentation
-    - examples: https://confluence.ecmwf.int/display/UDOC/MARS+example+requests
-    - writing a request: https://confluence.ecmwf.int/display/MARS/Guidelines+for+writing+MARS+requests+in+suite+scripts
-- FDB
-    - Documentation and examples: https://confluence.ecmwf.int/display/FDB/Home
-- ECFS
-    - User Documentation: https://confluence.ecmwf.int/display/UDOC/ECFS+user+documentation
-- ECPDS
-    - ECMWF Production Data Store (ECPDS): https://confluence.ecmwf.int/pages/viewpage.action?pageId=118831332
-
-Archiving
----------
-- efficiency of ecfs and mars can impact suite design/structure
-- links to mars and ecfs best practices
-    - https://confluence.ecmwf.int/display/UDOC/Operational+Data%3A+Guidelines+to+write+efficient+MARS+requests
-- MARS archiving
-    - 
-- ECFS archiving
-- FDB - Fields Database
-    - FDB procedures: https://confluence.ecmwf.int/display/FAB/FDB+Procedures
-    - Github: https://github.com/ecmwf/fdb
-    - FDB service: https://confluence.ecmwf.int/display/FAB/FDB+service
-
-Cleaning
---------
-- dissemination
-    - ECPDS - https://aux-monitor.ecmwf.int/do/login
-    - https://confluence.ecmwf.int/display/~maar/Create+new+stream+and+user+in+aux-monitor.ecmwf.int
-    - FTP - https://confluence.ecmwf.int/display/UDOC/FTP+Service+-+Internal+users+to+provide+files+for+external+access#FTPServiceInternaluserstoprovidefilesforexternalaccess-HowdoImakeuseoftheFTPserviceinBologna?
-

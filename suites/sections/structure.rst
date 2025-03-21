@@ -30,7 +30,7 @@ most suites should include with the following names widely used at ECMWF:
 Looping families
 ----------------
 Most suites loop over dates for the forecast or other analysis. This looping structure is
-achived with the `repeat functionality of ecFlow <https://ecflow.readthedocs.io/en/5.13.8/glossary.html#term-repeat>`_.
+achived with the :ecflow-docs:`repeat functionality of ecFlow <glossary.html#term-repeat>`.
 *Repeats* move foreward with triggers and are often linked to the a barrier YMD variable.
 *Repeat families* can be split or "unrolled" to improve throughput. Because the next repeat of e.g. the "main" family
 cannot begin until the previous one has finished, critical-path throughput may be improved byone of two approaches:

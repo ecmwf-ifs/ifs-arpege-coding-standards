@@ -5,7 +5,7 @@ Overview
 --------
 
 ecFlow suites can be built in many ways, including by directly composing a 
-`definition file <https://ecflow.readthedocs.io/en/latest/glossary.html#term-suite-definition>`_
+:ecflow-docs:`definition file <glossary.html#term-suite-definition>`
 or using ecFlow's Python API to generate suites programmatically. 
 These methods can be combined with various tools and frameworks to facilitate the construction and management
 of more complex workflows. This chapter will present what to consider when using one of these tools to build more 
@@ -20,7 +20,7 @@ used in each one of the tasks. For simple workflows, just a handfull of files wo
 complexity of the application grows the use of tools and frameworks can help to manage the complexity and make the suite more maintainable.
 
 As ecFlow has been used at ECMWF for many years, several tools and frameworks are used in operations for building and managing various applications. 
-For new developments, `pyflow <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introduction.html>`_ is the recommended 
+For new developments, :pyflow-docs:`pyflow <content/introduction.html>` is the recommended 
 framework to follow and it is the one that will be presented in this chapter. 
 `pyflow` provides an extensive documentation with many examples and best practices recommendations and it is, therefore, a good starting point for 
 those not familiar with the framework. This document is not a replacement for the official documentation, but rather a summary of the key points to consider when 
@@ -34,9 +34,11 @@ When using a suite building framework, it's important to treat it as a developme
 
 More specifically, `pyflow` encourages some key principles to follow when building suites:
 
-1. **Object-Oriented Design**: Encapsulate behavior in Python classes, use inheritance and composition. `Examples <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/object-oriented-suites.html>`_ and `here <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/additional-examples.html>`_
+- **Object-Oriented Design**: Encapsulate behavior in Python classes, use inheritance and composition. :pyflow-docs:`Examples <content/introductory-course/object-oriented-suites.html>`
+ and :pyflow-docs:`here <content/introductory-course/additional-examples.html>`
 
 .. code-block:: python
+
     with pyflow.Suite("suite"):
         DeploymentFamily(config)
         with pyflow.Family("tests", FLAG=123) as f:
@@ -51,6 +53,7 @@ More specifically, `pyflow` encourages some key principles to follow when buildi
 Classes can inherit from base classes reusing the base structure and common functionality while overriding context specific ones.
 
 .. code-block:: python
+
     class BaseTest(pyflow.AnchorFamily):
         def __init__(self, name, **kwargs):
             super().__init__(name, **kwargs)
@@ -79,7 +82,7 @@ There are specific recommendations for writing `scripts <https://sites.ecmwf.int
 - **ecFlow variables**: Use shell syntax for appropriate defaults. Define variables at the top most node level as possible to avoid redefinition of variables. [#f1]_
 
 Extra resources
----------
+---------------
 
 - [pyFlow Documentation](https://pyFlow-workflow-generator.readthedocs.io/en/latest/content/introduction.html)
 - [Wellies Documentation](https://pyFlow-wellies.readthedocs.io/latest/)

@@ -14,7 +14,7 @@ ECMWF suite design standars
    sections/software_dependencies
    sections/data
    sections/external_dependencies
-   sections/non_time_critical_tasks
+   sections/time_criticality
    sections/suite_construction
 
 

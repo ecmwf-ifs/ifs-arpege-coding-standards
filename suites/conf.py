@@ -40,7 +40,15 @@ release = ''
 # ones.
 extensions = [
     'sphinx.ext.autosectionlabel',
+    'sphinx.ext.extlinks',
 ]
+
+extlinks = {
+    'ecflow-docs': ('https://ecflow.readthedocs.io/en/latest/%s', '%s'),
+    'pyflow-docs': ('https://pyflow-workflow-generator.readthedocs.io/en/latest/%s', '%s'),
+    'ifs-standards-docs': ('https://sites.ecmwf.int/docs/ifs-arpege-coding-standards/%s', '%s'),
+}
+extlinks_detect_hardcoded_links = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
