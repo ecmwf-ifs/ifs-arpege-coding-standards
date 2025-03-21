@@ -1,4 +1,4 @@
-Time criticiality
+Time criticality
 =================
 This section is dedicated to time-critical and non-time-critical tasks of ecFlow suites. What tasks are cosidered critical or not will depend on what the suite is designed for, in what  
 part of the suite the tasks are running, and how relevant they are in terms of blocking the progress of the suite. Since there are no exact definitions, here we discuss some 
@@ -6,29 +6,29 @@ examples of tasks that are usually critical and some that, even though are not o
 
 Time-critical tasks
 -------------------
-    Time-critical tasks are those that are essential for the suite to run, and that can block the progress of the suite if they are not completed. For these tasks, in case they fail  
-    or are not active/running at a certain time/order, the user will have to manually check and fix the suite as soon as possible. Usually, these tasks are under the **main** family:
-        - Can be divided in different cycles, e.g. main/12, main/18, main/00, etc.;
-        - Retrieval tasks that retrieve the forcing/initial conditions for the forecast, e.g. main/12/fc/mars_retrieve;
-        - Tasks that run the forecast, e.g main/12/fc/model;
-        - Tasks that post-process the output of the forecast, e.g. main/12/prodgen;
-        - Tasks that generate the plots that will be sent to the web (ecCharts, a specific website), e.g. main/12/prodgen/web_products;
-        - Time-critical dissemination tasks for users that rely on near-real-time data (e.g. main/12/diss/ecpds_diss);
-        - Alerts in the main family that will fail if the forecast is late, e.g. main/12/late_alert;
-    
-    As mentioned before, there is no exact definition of what is time-critical or not, and the examples above are just some of the tasks that are usually considered critical. 
-    Apart from the specifics of these time-critical tasks, there are general rules that can be followed when designing yur critical path, specially in operations:
-        - Tasks should have a good man page, ideally with a description of the task, its inputs and expected outputs, there should instructions on how to run/rerun/debug the task 
-        in case of failure, and the dependencies of the task;
-        - Tasks should be rerunnable, or at least include instructions on how to rerun it in case it fails;
-        - Tasks should be able to run independently of the server, which includes having the necessary data and software dependencies on every server;
-        - Tasks should have a trapping mechanisms so ecFlow can detect if they fail and send an alert to the user;
-        - Tasks should run in a reasonable time. If a task is taking too long to run (over two hours), it may block the progress of the suite and should be optimized;
-        - Tasks should be informative, with logs and outputs that can be used to debug the suite in case of failure;
-        - Tasks should be reliable, with the minimum number of manual interventions;
+Time-critical tasks are those that are essential for the suite to run, and that can block the progress of the suite if they are not completed. For these tasks, in case they fail  
+or are not active/running at a certain time/order, the user will have to manually check and fix the suite as soon as possible. Usually, these tasks are under the **main** family:
+    - Can be divided in different cycles, e.g. main/12, main/18, main/00, etc.;
+    - Retrieval tasks that retrieve the forcing/initial conditions for the forecast, e.g. main/12/fc/mars_retrieve;
+    - Tasks that run the forecast, e.g main/12/fc/model;
+    - Tasks that post-process the output of the forecast, e.g. main/12/prodgen;
+    - Tasks that generate the plots that will be sent to the web (ecCharts, a specific website), e.g. main/12/prodgen/web_products;
+    - Time-critical dissemination tasks for users that rely on near-real-time data (e.g. main/12/diss/ecpds_diss);
+    - Alerts in the main family that will fail if the forecast is late, e.g. main/12/late_alert;
 
-        More information on time-critical tasks and what to consider when writing ecFlow scripts can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/time_critical_tasks.html>`_ 
-        and `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/writing_ecflow_scripts.html>`_, respectively.
+As mentioned before, there is no exact definition of what is time-critical or not, and the examples above are just some of the tasks that are usually considered critical. 
+Apart from the specifics of these time-critical tasks, there are general rules that can be followed when designing yur critical path, specially in operations:
+    - Tasks should have a good man page, ideally with a description of the task, its inputs and expected outputs, there should instructions on how to run/rerun/debug the task 
+    in case of failure, and the dependencies of the task;
+    - Tasks should be rerunnable, or at least include instructions on how to rerun it in case it fails;
+    - Tasks should be able to run independently of the server, which includes having the necessary data and software dependencies on every server;
+    - Tasks should have a trapping mechanisms so ecFlow can detect if they fail and send an alert to the user;
+    - Tasks should run in a reasonable time. If a task is taking too long to run (over two hours), it may block the progress of the suite and should be optimized;
+    - Tasks should be informative, with logs and outputs that can be used to debug the suite in case of failure;
+    - Tasks should be reliable, with the minimum number of manual interventions;
+
+    More information on time-critical tasks and what to consider when writing ecFlow scripts can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/time_critical_tasks.html>`_ 
+    and `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/writing_ecflow_scripts.html>`_, respectively.
     
 
 Non-Time-critical tasks
