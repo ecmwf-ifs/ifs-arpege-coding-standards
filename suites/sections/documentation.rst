@@ -50,83 +50,80 @@ dashboards and GUIs to issue warnings and call out relevant analysts for remedia
    :align: center
    :width: 200%
 
-   ecFlow user interface that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
+   `ecFlow user interface <https://github.com/ecmwf/ecflow/tree/main>`_ that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
+   In order to link this interface with dashboards below, a suite must use labels, man pages and verbosity levels in logs that help linking to what is seen. 
+
+For example, the following monitoring page gives granular overview of single destinations ECMWF sends data to 4x per day. 
+Using labels or verbose logs can help operators to find the exact task that is delayed or failing and needs attention.
 
 .. figure:: _img/xdiss_monitor.png
-   :alt: XDIS Monitor
+   :alt: Dissemination Monitor
    :align: center
    :width: 200%
 
-   Specialized view for monitoring XDIS processes.
+   Overview of dissemination destinations and their status.
+
+.. figure:: _img/verbose_logs.png
+   :alt: ecflow task logs
+   :align: center
+   :width: 200%
+
+   The verbosity of logs can be tuned to the right level of granularity to help operators and analysts to quickly link with dissemination monitor.
 
 .. figure:: _img/service_status.png
    :alt: Service Status
    :align: center
-   :target: https://status.ecmwf.int
    :width: 200%
 
-   High-level dashboard for various service statuses.
+   High-level dashboard for various `services status <https://status.ecmwf.int>`_. If a particular service is affected, several parts of suites using those services will likely fail. The design of suites should be such that they can be easily linked to the services status page, for example in the man pages:
 
-.. figure:: _img/opsview.png
-   :alt: Opsview Monitoring
-   :align: center
-   :width: 200%
-
-   Comprehensive monitoring tool for all operational services and infrastructure with a simple color-coded health status.
-
-.. figure:: _img/infoboard.png
+.. figure:: _img/man_page.png
    :alt: Service Status
    :align: center
    :width: 200%
 
-   Infoboard with announcements of system sessions and potential service degradations.
-
-.. figure:: _img/service_catalogue.png
-   :alt: Service Status
-   :align: center
-   :width: 200%
-
-   New interface portal which will serve as gateway to all other services' monitoring in the near future.
-
-.. figure:: _img/jira.png
-   :alt: Jira Integration
-   :align: center
-   :target: https://www.atlassian.com/software/jira
-   :width: 200%
-
-   Shows JIRA tickets from users of importance to the shift teams.
+   A man page example with links and instructions to other dashboards and detailing which services or other tasks dependencies a task has.
 
 .. figure:: _img/confluence.png
    :alt: Confluence Documentation
    :align: center
-   :target: https://www.atlassian.com/software/confluence
    :width: 200%
 
-   Confluence page references for detailed suite documentation.
+   Additional high-level documentation and links to suites can be hosted elsewhere, e.g. on a dedicated `confluence. <https://www.atlassian.com/software/confluence>`_ which describes the responsibility of the various tasks and their callout policy throughout the operational suites.
 
 .. figure:: _img/eccharts.png
    :alt: ecCharts Interface
    :align: center
-   :target: https://eccharts.ecmwf.int
    :width: 150%
 
-   The ecCharts service.
+   The `ecCharts <https://eccharts.ecmwf.int>`_ service.
+
+For other services, operators look at the end-user interfaces to check the suites output are as expected. Here too, clear task naming will help operators to identify where silent failures or other problems occured.
+
+Other dashboards give hardware or network health overviews. The suite can show where tasks are late and operators can link the delay with sytem health through these dashboards.
+Any type of problem occuring in operations like I/O contentions, network latency, hardware failures, etc. can be linked to late flags in the suite. In operations, it's customary to use check alarms in situations where the model is run at fixed times every day.
+
+.. figure:: _img/check_alarms.png
+   :alt: ecflow check alarms
+   :align: center
+   :width: 1000%
+
+   Check alarms implemented through cron jobs help to warn operators when a task is late. The statistics or runtimes can be either fixed times every day or be based on persistence runtimes statistics kept on the HPC. 
 
 .. figure:: _img/splunk_ecpds.png
    :alt: Splunk Web API
    :align: center
-   :target: https://www.splunk.com
    :width: 1000%
 
-   Splunk dashboards for the full ECPDS system health.
+   `Splunk <https://www.splunk.com>`_ dashboards for the dissemination system health.
 
 .. figure:: _img/open_nms.png
    :alt: HPC Open NMS
    :align: center
-   :target: https://www.opennms.com
    :width: 200%
 
-   Monitoring of the network's component health.
+   Monitoring of the `network's component health <https://www.opennms.com>`_.
+
 
 Task purpose, criticality, and failure procedures
 -------------------------------------------------
