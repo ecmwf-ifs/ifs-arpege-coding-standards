@@ -47,7 +47,7 @@ It has to be known that operators who monitor and support our operations 24/7 ca
    :alt: ecFlow
    :align: center
    :target: https://github.com/ecmwf/ecflow/tree/main
-   :width: 50%
+   :width: 200%
 
    ecFlow user interface that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
    https://ecflow.readthedocs.io/en/5.13.8/overview.html
@@ -56,7 +56,7 @@ It has to be known that operators who monitor and support our operations 24/7 ca
    :alt: pyFlow-wellies
    :align: center
    :target: https://github.com/ecmwf/pyflow-wellies/tree/main
-   :width: 50%
+   :width: 10%
 
    Suite generation software to facilitate building suites.
    https://pyflow-wellies.readthedocs.io/latest/
