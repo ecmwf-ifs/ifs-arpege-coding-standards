@@ -43,9 +43,10 @@ Software versions should not be hardcoded in the task scripts but should be load
 
 ECMWF software packages
 -----------------------
-    ECMWF has a number of software packages that can be used to retrieve, process, and disseminate data. When working with ecFlow suites, netCDF data, grb files, BUFR, etc., it is recommended to use \n
-    native tools suck as ecCodes, earthkit, pyflow, anemoi, Metview, and others. Some of the advantages of using ECMWF software packages are:
-      - They are more reliable when dealing with ECMWF products;
-      - Most of these packages are maintained by ECMWF and have a good support system;
-      - They are optimized to work with ECMWF data and products;
-      - There are a number of examples and tutorials on how to use these packages, which can be found on CDS or the ECMWF website;
+ECMWF has a number of software packages that can be used to retrieve, process, and disseminate data. When working with ecFlow suites, netCDF data, grb files, BUFR, etc., it is recommended to use \n
+native tools suck as ecCodes, earthkit, pyflow, anemoi, Metview, and others. Some of the advantages of using ECMWF software packages are:
+
+- They are more reliable when dealing with ECMWF products;
+- Most of these packages are maintained by ECMWF and have a good support system;
+- They are optimized to work with ECMWF data and products;
+- There are a number of examples and tutorials on how to use these packages, which can be found on CDS or the ECMWF website;

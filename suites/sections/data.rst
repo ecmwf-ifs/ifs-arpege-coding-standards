@@ -1,9 +1,21 @@
 Data
 ====
 
-- work on fast filestems in tasks, like temp dirs or IO optimised filesystems
+Intro paragraph
+How we handle data within suite, in tasks and between tasks
 
-- Clean working directories before you start a new date cycle
+Data within and between tasks
+-----------------------------
+Most tasks read and write data of various formats and sizes. Tasks need to be designed to
+handle this input and output data efficiently and reliably, both within and between tasks.
+There are best practices for data handling to ensure this within a suite:
+
+- Ensure input data is available on a fast and reliable filesystem, e.g. in a previous
+  data retrieval task.
+- Fast filestems for task output, such as a temporary or scratch space.
+- Consider data formats, data chunking and data compression when designing a task.
+- Clean working directories before you start the task, as a previous run or previous date
+  cycle could have left files behind.
 
   - Allows time between runs to debug problems or rerun tasks
   - Ensure important outputs are archived
@@ -17,8 +29,10 @@ Data
 
   - Treat data as a dependency of the suite and use some form of version control or snapshots for reproducibility.
 
-Retrieving
-----------
+
+Retrieving data from remote services, databases and archives
+------------------------------------------------------------
+- should not be in critical path
 - MARS
     - User Documentation: https://confluence.ecmwf.int/display/UDOC/MARS+user+documentation
     - examples: https://confluence.ecmwf.int/display/UDOC/MARS+example+requests
@@ -30,8 +44,10 @@ Retrieving
 - ECPDS
     - ECMWF Production Data Store (ECPDS): https://confluence.ecmwf.int/pages/viewpage.action?pageId=118831332
 
-Archiving
----------
+
+Archiving data
+--------------
+- should not be in critical path
 - efficiency of ecfs and mars can impact suite design/structure
 - links to mars and ecfs best practices
     - https://confluence.ecmwf.int/display/UDOC/Operational+Data%3A+Guidelines+to+write+efficient+MARS+requests
@@ -43,8 +59,11 @@ Archiving
     - Github: https://github.com/ecmwf/fdb
     - FDB service: https://confluence.ecmwf.int/display/FAB/FDB+service
 
-Cleaning
---------
+
+Dissemination
+-------------
+Needs to be in critical path
+
 - dissemination
     - ECPDS - https://aux-monitor.ecmwf.int/do/login
     - https://confluence.ecmwf.int/display/~maar/Create+new+stream+and+user+in+aux-monitor.ecmwf.int
