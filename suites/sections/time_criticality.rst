@@ -1,4 +1,4 @@
-Time criticiality
+Time criticality
 =================
 This section is dedicated to time-critical and non-time-critical tasks of ecFlow suites. What tasks are cosidered critical or not will depend on what the suite is designed for, in what  
 part of the suite the tasks are running, and how relevant they are in terms of blocking the progress of the suite. Since there are no exact definitions, here we discuss some 
