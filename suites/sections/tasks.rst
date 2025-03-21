@@ -68,3 +68,28 @@ pyFlow, or deployed from a version control system like Git.
 These scripts should be as simple as possible, with complex work
 devolved to external well-tested scripts or programs in a more suitable
 language.
+
+A typical example might look like this:
+
+.. code-block:: sh
+
+    #!/usr/bin/env bash
+    %manual
+    [TEXT OF MANUAL PAGE FOR TASK: see Documentation section]
+    %end
+    # TROIKA ... [batch system directives, abstracted using Troika]
+
+    # ecFlow-included header containing boilerplate used for all tasks
+    # e.g. to set error trapping and common environment
+    %include <head.h>
+
+    # Set specific environment variables that depend on ecFlow variables
+    DOIT_DEBUG=%DOIT_DEBUG:0%
+
+    # Run the script or program that does the actual work, passing through
+    # anything needed from ecFlow variables
+    doit --mode "%DOIT_MODE:default%"
+
+    # ecFlow-included tail containing boilerplate used at the end of
+    # every task for cleanup, logging, etc.
+    %include <tail.h>
