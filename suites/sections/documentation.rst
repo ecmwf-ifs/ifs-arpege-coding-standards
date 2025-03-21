@@ -40,92 +40,30 @@ This should include:
 
 Operators perspective
 ---------------------
-In this section we give a view on all the pages and systems monitored by operators 24/7 as documented on https://confluence.ecmwf.int/display/PS/Suites+Monitored+by+Operators
+It has to be known that operators who monitor and support our operations 24/7 cannot have full understanding of the operational components that are running. They have limited visibility on the tasks run and can only consult higher level dashboards and GUIs to issue warnings and call out relevant analysts for remediary action. One should keep this into account when designing suites to be as self-explanatory as possible and simple in structure and instructions in the man pages. Here follows a few examples of such dashboards and GUIs.
+
 
 .. figure:: _img/ecflow.png
-   :alt: ecFlow Interface
+   :alt: ecFlow
    :align: center
-   :target: https://confluence.ecmwf.int/display/PS/Suites+Monitored+by+Operators
+   :target: https://github.com/ecmwf/ecflow/tree/main
    :width: 50%
 
-   Overview of the ecFlow interface that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
+   ecFlow user interface that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
+   https://ecflow.readthedocs.io/en/5.13.8/overview.html
 
-.. figure:: _img/ssh.png
-   :alt: ecFlow Interface for SSH accesses
+.. figure:: _img/pyflow.png
+   :alt: pyFlow-wellies
    :align: center
-   :target: https://confluence.ecmwf.int/display/PS/Suites+Monitored+by+Operators
-   :width: 200%
-
-   Overview of the ecFlow interface that operators use to monitor and control suite ssh tasks in different categories of jobs.
-
-.. figure:: _img/hpc_users.png
-   :alt: HPC Users Monitor
-   :align: center
-   :target: https://atos-stats.ecmwf.int:3000/d/AlbyPPf4z/hpc-users?orgId=1&from=now-6h&to=now&timezone=utc&var-username=.%2A
-   :width: 200%
-
-   Displays real-time usage statistics for HPC users. Allows operators to catch users who are (accidentally) draining resources and endangering operations.
-
-.. figure:: _img/hpc_elephant.png
-   :alt: HPC Elephant View
-   :align: center
-   :target: https://atos-stats.ecmwf.int:3000/d/fdvdmcsmizxtsd/elephant?orgId=1&from=now%2Fd&to=now%2F1d&timezone=utc&var-clusters=aa&var-partition=all&refresh=1m
-   :width: 200%
-
-   Illustrates resource usage across HPC nodes (the so-called “Elephant” view) with a focus on the two operational clusters that contain the time-critical runs of the data assimilation, IFS forecast and dissemination.
-
-.. figure:: _img/hpc_node_usage.png
-   :alt: HPC Node Usage
-   :align: center
-   :target: https://atos-stats.ecmwf.int:3000/d/e13ab66a-5663-49b5-af7d-cf307a707aa0/node-usage?orgId=1&from=now-6h&to=now&timezone=utc&var-partition=par&refresh=1m
-   :width: 200%
-
-   Shows detailed CPU, memory, and job distribution on HPC nodes.
-
-.. figure:: _img/hpss_gui.png
-   :alt: HPSS GUI
-   :align: center
-   :target: https://confluence.ecmwf.int/display/SHIFT/Starting+HPSSGUI+and+HPSSMON
+   :target: https://github.com/ecmwf/pyflow-wellies/tree/main
    :width: 50%
 
-   Graphical interface for the HPSS (High Performance Storage System).
-
-.. figure:: _img/hpss.png
-   :alt: HPSS Monitor
-   :align: center
-   :target: http://hpssmon.ecmwf.int:5001
-   :width: 300%
-
-   Monitoring tool for ongoing HPSS (High Performance Storage System) transfers and storage usage.
-
-.. figure:: _img/acq_monitor.png
-   :alt: Acquisition Monitor
-   :align: center
-   :target: https://acq-monitor.ecmwf.int/do/monitoring
-   :width: 200%
-
-   Monitors the acq ECPDS server used for SAPP (observation data acquisition).
-
-.. figure:: _img/diss_monitor.png
-   :alt: DISS Monitor
-   :align: center
-   :target: https://diss-monitor.ecmwf.int/do/monitoring
-   :width: 200%
-
-   Monitors the diss ECPDS server used for the main dissemination.
-
-.. figure:: _img/aux_monitor.png
-   :alt: Auxiliary Monitor
-   :align: center
-   :target: https://aux-monitor.ecmwf.int/do/monitoring
-   :width: 200%
-
-   Monitors the aux ECPDS server used for opendata and CAMS.
+   Suite generation software to facilitate building suites.
+   https://pyflow-wellies.readthedocs.io/latest/
 
 .. figure:: _img/xdiss_monitor.png
    :alt: XDIS Monitor
    :align: center
-   :target: https://xdiss-monitor.ecmwf.int/do/monitoring
    :width: 200%
 
    Specialized view for monitoring XDIS processes.
@@ -141,7 +79,6 @@ In this section we give a view on all the pages and systems monitored by operato
 .. figure:: _img/opsview.png
    :alt: Opsview Monitoring
    :align: center
-   :target: https://opsview.ecmwf.int
    :width: 200%
 
    Comprehensive monitoring tool for all operational services and infrastructure with a simple color-coded health status.
@@ -149,7 +86,6 @@ In this section we give a view on all the pages and systems monitored by operato
 .. figure:: _img/infoboard.png
    :alt: Service Status
    :align: center
-   :target: https://infoboard.ecmwf.int
    :width: 200%
 
    Infoboard with announcements of system sessions and potential service degradations.
@@ -157,7 +93,6 @@ In this section we give a view on all the pages and systems monitored by operato
 .. figure:: _img/service_catalogue.png
    :alt: Service Status
    :align: center
-   :target: https://sites.ecmwf.int/services/catalogue/
    :width: 200%
 
    New interface portal which will serve as gateway to all other services' monitoring in the near future.
@@ -165,7 +100,7 @@ In this section we give a view on all the pages and systems monitored by operato
 .. figure:: _img/jira.png
    :alt: Jira Integration
    :align: center
-   :target: https://jira.ecmwf.int/secure/Dashboard.jspa?selectPageId=12722
+   :target: https://www.atlassian.com/software/jira
    :width: 200%
 
    Shows JIRA tickets from users of importance to the shift teams.
@@ -173,7 +108,7 @@ In this section we give a view on all the pages and systems monitored by operato
 .. figure:: _img/confluence.png
    :alt: Confluence Documentation
    :align: center
-   :target: https://confluence.ecmwf.int/display/SHIFT/Dissemination+Products+new
+   :target: https://www.atlassian.com/software/confluence
    :width: 200%
 
    Confluence page references for detailed suite documentation.
@@ -186,96 +121,18 @@ In this section we give a view on all the pages and systems monitored by operato
 
    The ecCharts service.
 
-.. figure:: _img/preprocess_jobs.png
-   :alt: Preprocess Jobs
-   :align: center
-   :target: https://apps.ecmwf.int/data-layer/preprocess?status=aborted&action=all
-   :width: 150%
-
-   Shows the flow and status of preprocess jobs.
-
-.. figure:: _img/eccmd.png
-   :alt: ecmwf ec batch Jobs
-   :align: center
-   :target: http://boleccmd.ecmwf.int:8090
-   :width: 200%
-
-   Shows the monitoring of all batch jobs of the ecaccess interface for Member States and other users.
-
-.. figure:: _img/mars_web_api.png
-   :alt: MARS Web API
-   :align: center
-   :target: https://apps.ecmwf.int/webapi-activity/
-   :width: 200%
-
-   Interface for interacting with MARS via the Web API.
-
-.. figure:: _img/mars_activity.png
-   :alt: MARS Activity
-   :align: center
-   :target: https://apps.ecmwf.int/mars-activity
-   :width: 150%
-
-   Real-time overview of MARS data retrieval and archiving activity.
-
-.. figure:: _img/splunk_webapi.png
-   :alt: webMARS API splunk dashboard
-   :align: center
-   :target: https://splunk.ecmwf.int/en-US/app/ecmwf_mars/web_api_now?form.system=bol-webmars-private-prod
-   :width: 200%
-
-   Splunk dashboards for web MARS API.
-
-.. figure:: _img/mars_web_software.png
-   :alt: MARS Web API
-   :align: center
-   :target: https://bol-monitoring.ecmwf.int/monitoring/#!/hashtags/detail?h=va-webmars-service
-   :width: 200%
-
-   Application level monitoring of MARS services.
-
-.. figure:: _img/mars_web_hardware.png
-   :alt: MARS Web API
-   :align: center
-   :target: https://bol-monitoring.ecmwf.int/monitoring/#!/hashtags/detail?h=va-webmars-infra
-   :width: 200%
-
-   Hardware level monitoring of MARS services.
-
-.. figure:: _img/marsadm.png
-   :alt: MARS Administration
-   :align: center
-   :width: 200%
-
-   Interface for monitoring MARS tasks running on each MARS instance, i.e. od, rd, er, th, ms and sc.
-
-.. figure:: _img/ecfsadm.png
-   :alt: ECFS Administration
-   :align: center
-   :width: 400%
-
-   Interface for monitoring ECFS (ECMWF File Storage) tasks.
-
 .. figure:: _img/splunk_ecpds.png
    :alt: Splunk Web API
    :align: center
-   :target: https://ecpds-metrics.ecmwf.int/d/rYdddlPWk2/hosts?orgId=1&from=now-24h&to=now&timezone=browser&var-datasource=PBFA97CFB590B2093&var-job=node_exporter&var-service=$__all&var-component=$__all&var-node=bodh1ecpdmv-04:9100&var-diskdevices=%5Ba-z%5D%2B%7Cnvme%5B0-9%5D%2Bn%5B0-9%5D%2B%7Cmmcblk%5B0-9%5D%2B&refresh=1h
+   :target: https://www.splunk.com
    :width: 1000%
 
    Splunk dashboards for the full ECPDS system health.
 
-.. figure:: _img/necj.png
-   :alt: NECJ Monitor
-   :align: center
-   :target: https://confluence.ecmwf.int/display/SHIFT/ATOS+-+necj+%3A+new+tool
-   :width: 200%
-
-   Specialized monitoring of jobs running on the HPC and their runtime deviations from stored statistical averages.
-
 .. figure:: _img/open_nms.png
    :alt: HPC Open NMS
    :align: center
-   :target: http://hpc-opennms.ecmwf.int/
+   :target: https://www.opennms.com
    :width: 200%
 
    Monitoring of the network's component health.
