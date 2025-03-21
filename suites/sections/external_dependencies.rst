@@ -21,25 +21,29 @@ There are a number of ways the barrier tasks can be set, and they will be descri
 
 Events
 ------
+
 A task in the barrier family can have specific events, such as "no data" or "data ok", and each will have specific instructions in the manual page:
+
     - The event can be set within the task by running "ecflow_client --event data ok" or "ecflow_client --event no data";
     - The task can then be configured to fail/complete based on the instructions for each event (e.g. "no data" will be set if MARS is not available, or if the data is not on disk);
-    - An event can be set based on the status of another task, which can be in the same suite or in another suite (e.g. "data ok" will be set if /{control_suite}/main/12/fc/model is complete);
+    - An event can be set based on the status of another task, which can be in the same suite or in another suite (e.g. "data ok" will be set if /{control_suite}/main/12/fc/model is complete).
     
 Once an event is set, it will then trigger other tasks to indicate the avaialability of the data, and the suite can progress or fail. It is also important to notice here that 
-events are not limited to the barrier family, and can be set in any task in the suite. More information on events can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/events.html>`_.
+events are not limited to the barrier family, and can be set in any task in the suite. More information on events can be found :ecflow-docs:`here <ug/user_manual/running_ecflow/events.html>`.
 
 
 Triggers and alerts
 -------------------
+
 Triggers and alerts can be used in a number of ways within the barrier family. Depending on the outcome of an event, a trigger will set warning tasks that will check on the progress of the suite. 
 These warnings tasks can have a specific time range and will fail/complete to indicate the status of the suite. Some examples of triggers and alerts are:
+
     - A "no data" event triggers a "late_alert" task that will fail to indicate to the users the suite is late based on a specific time range;
     - A second "missing data" task can be triggered at a later time to tell the user there is no data and what are his options;
     - The users can then check if the data is missing/available on MARS/ECFS/ECPDS/disk, or if the suite can run without that specific data.
 
 As there are no rules on how many alerts/warnings tasks should be used, it will depend on how the suite runs, what KPIs are important, and how time-critical the suite is. 
-These triggers and extra tasks are important tools for debugging tasks and monitoring the suite, specially in operations. More information on triggers and alerts can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/triggers.html>`_.
+These triggers and extra tasks are important tools for debugging tasks and monitoring the suite, specially in operations. More information on triggers and alerts can be found :ecflow-docs:`here <ug/user_manual/running_ecflow/triggers.html>`.
 
 
 YMD
@@ -60,9 +64,10 @@ Just like events, triggers, and alerts, can also be used in other parts of the s
 Mirrors
 -------
 Considering all the different elements described above, a mirror is one of the many practices that allow the running/completion of tasks and events in the barrier:
+
 - Can be defined as a reflection of the status of one suite on another server;
 - The idea is that a server can "see" what is happening in another server so the suites in that first serve can progess;
 - A practical example would be an operational suite that is mirrored to different servers so other suites that rely on it can check their progress;
 - In this case, the mirrored suites are seen as suspended in the new servers, and their status will be updated based on the original suite;
 - Example: https://confluence.ecmwf.int/display/~map/A+simple+mirror+example
-- More information on mirrors can be found `here <https://ecflow.readthedocs.io/en/5.13.8/ug/user_manual/running_ecflow/mirrors.html>`_.
+- More information on mirrors can be found :ecflow-docs:`here <ug/user_manual/running_ecflow/mirrors.html>`.

@@ -10,7 +10,7 @@ management of more complex workflows. This chapter will present what to consider
 tools to build more standardised and maintainable suites.
 
 `ecFlow` workflows can be defined in a very generic way. While the structure and dependencies across nodes are all well-defined and 
-must be managed in an :ref:`appropriate way <structure>`, the application complexity can be hidden in the scripts and headers
+must be managed in an :doc:`appropriate way <structure>`, the application complexity can be hidden in the scripts and headers
 used in each one of the tasks. For simple workflows, just a handfull of files would be enough to define the whole suite. However, as the
 the application grows, the use of tools and frameworks built on top of the base ecFlow API help make the general project more maintainable.
 
@@ -35,8 +35,7 @@ Main principles
 
 More specifically, `pyflow` encourages some key principles to follow when building suites:
 
-- **Object-Oriented Design**: Encapsulate behavior in Python classes, use inheritance and composition. :pyflow-docs:`Examples <content/introductory-course/object-oriented-suites.html>`
- and :pyflow-docs:`here <content/introductory-course/additional-examples.html>`
+- **Object-Oriented Design**: Encapsulate behavior in Python classes, use inheritance and composition. :pyflow-docs:`Examples <content/introductory-course/object-oriented-suites.html>` and :pyflow-docs:`here <content/introductory-course/additional-examples.html>`
 
 .. code-block:: python
 

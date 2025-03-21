@@ -18,7 +18,7 @@ most suites should include with the following names widely used at ECMWF:
   - **admin**: tasks for suite maintenance and other manually run tasks or toggles
   - :ref:`barrier <Barrier>`: a family to hold the next execution date for operational suites
   - one or several families that contain the main, time-critical tasks of the suite (there is no accepted standard name, but **main** is often used)
-  - **lag**: tasks that lag :doc:`behind time-critical tasks, such as archiving and cleaning <non_time_critical_tasks>`
+  - **lag**: tasks that lag :doc:`behind time-critical tasks, such as archiving and cleaning <time_criticality>`
   - **cancel**: tasks to clean up the suite after it has finished
 
 .. image:: _img/ifs_suite_structure.png
