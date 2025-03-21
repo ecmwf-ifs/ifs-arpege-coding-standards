@@ -48,6 +48,7 @@ extlinks = {
     'pyflow-docs': ('https://pyflow-workflow-generator.readthedocs.io/en/latest/%s', '%s'),
     'ifs-standards-docs': ('https://sites.ecmwf.int/docs/ifs-arpege-coding-standards/%s', '%s'),
     'wellies-docs': ('https://pyFlow-wellies.readthedocs.io/latest/%s', '%s'),
+    'ecmwf-confluence': ('https://confluence.ecmwf.int/%s', '%s'),
 }
 extlinks_detect_hardcoded_links = True
 
