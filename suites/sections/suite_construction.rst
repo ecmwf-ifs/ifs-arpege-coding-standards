@@ -1,25 +1,23 @@
 ecFlow suite builders
 ======================
 
-Overview
---------
-
 ecFlow suites can be built in many ways, including by directly composing a 
 :ecflow-docs:`definition file <glossary.html#term-suite-definition>`
 or using ecFlow's Python API to generate suites programmatically. 
-These methods can be combined with various tools and frameworks to facilitate the construction and management
-of more complex workflows. This chapter will present what to consider when using one of these tools to build more 
-stardadized and maintainable suites.
 
-Developing ecflow suites
-------------------------
+These methods can be combined with various tools and frameworks to facilitate the construction and 
+management of more complex workflows. This chapter will present what to consider when using one of these 
+tools to build more standardised and maintainable suites.
 
-`ecFlow` workflows can be defined in a very generic way. While the structure and dependencies across nodes are all well-defined 
-in the various attributes and expressions provided by the ecFlow API, the application complexity can be hidden in the scripts and headers
+`ecFlow` workflows can be defined in a very generic way. While the structure and dependencies across nodes are all well-defined and 
+must be managed in an :ref:`appropriate way <structure>`, the application complexity can be hidden in the scripts and headers
 used in each one of the tasks. For simple workflows, just a handfull of files would be enough to define the whole suite. However, as the
-complexity of the application grows the use of tools and frameworks can help to manage the complexity and make the suite more maintainable.
+the application grows, the use of tools and frameworks built on top of the base ecFlow API help make the general project more maintainable.
 
-As ecFlow has been used at ECMWF for many years, several tools and frameworks are used in operations for building and managing various applications. 
+Introducing pyflow
+------------------
+
+Along the many years of operational use of the `ecFlow` framework, several tools and frameworks have been developed to facilitate the construction of suites.
 For new developments, :pyflow-docs:`pyflow <content/introduction.html>` is the recommended 
 framework to follow and it is the one that will be presented in this chapter. 
 `pyflow` provides an extensive documentation with many examples and best practices recommendations and it is, therefore, a good starting point for 
@@ -31,6 +29,9 @@ When using a suite building framework, it's important to treat it as a developme
 - The suite should be version controlled, tested, and documented.
 - The suite should be treated as a software project, with the suite building framework as a compiler to generate both the definition file and scripts.
 - The suite should be developed in a modular way, with each part of the suite being testable in isolation where possible. 
+
+Main principles
+^^^^^^^^^^^^^^^
 
 More specifically, `pyflow` encourages some key principles to follow when building suites:
 
@@ -74,7 +75,10 @@ Classes can inherit from base classes reusing the base structure and common func
 - **Configuration Management**: Use configurator objects to manage different suite deployments. Parameterize using Python objects, not script conditionals. `Examples <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/configuring-suites.html>`_
 - **Dettached Deployment**: Separate deployment concerns, where the workflow will be managed and executed, from suite generation. `See tracksuite <https://github.com/ecmwf/tracksuite>`_
 
-There are specific recommendations for writing `scripts <https://sites.ecmwf.int/docs/ifs-arpege-coding-standards/shell/guidelines/ecflow/structure.html>`_ and managing :ref:`tasks`, but the following are some general principles to follow when using `pyflow`:
+Script Handling
+^^^^^^^^^^^^^^^
+
+There are specific recommendations for writing `:ifs-standards-docs: scripts <shell/guidelines/ecflow/structure.html>` and managing :ref:`tasks`, but the following are some general principles to follow when using `pyflow`:
 
 - **Script Handling**: Maintain scripts with suites, avoid side-effects, and ensure scripts are testable in isolation. `See more <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/script-handling.html>`_
 - **Script Sources**: Use templated and composable scripts for flexibility and maintainability, but avoid excessive complexity. Body may be composed of snippets assembled together by `pyflow`.
