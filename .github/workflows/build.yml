@@ -32,7 +32,7 @@ jobs:
                   build-command: "make html"
 
             - name: Deploy to sites
-              if: github.repository == 'ecmwf-projects/ecflow-suite-standards' && github.ref == 'refs/heads/ecmwf_suite_design'
+              if: github.repository == 'ecmwf-projects/ecflow-suite-standards'
               env:
                   SITES_TOKEN: ${{ secrets.SITES_TOKEN_IFS_CODING_STANDARDS }}
               run: |
