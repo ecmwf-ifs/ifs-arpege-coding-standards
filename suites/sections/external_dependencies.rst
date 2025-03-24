@@ -13,11 +13,11 @@ The barrier family contains tasks that check if the starting conditions are avai
 When these start conditions are satisfied, these tasks can change their state by setting an event, a trigger, or even an
 ecFlow state. Some examples of barriers are:
 
-  - The barrier tasks wait for ECMWF's NWP forecast output: ensemble, control, seasonal, AIFS (e.g. mc, o, eda, seas5,
-    aifs_single suites);
-  - The tasks wait for input from other Centres: DWD, COSMOS, etc. In this case, the event can be triggered by data
-    available on MARS or even on disk;
-  - observations (BUFR, radar, etc.), data assimilation, :ecmwf-confluence:`ERA5 <display/CKB/ERA5%3A+data+documentation>`.
+- The barrier tasks wait for ECMWF's NWP forecast output: ensemble, control, seasonal, AIFS (e.g. mc, o, eda, seas5,
+  aifs_single suites);
+- The tasks wait for input from other Centres: DWD, COSMOS, etc. In this case, the event can be triggered by data
+  available on MARS or even on disk;
+- observations (BUFR, radar, etc.), data assimilation, :ecmwf-confluence:`ERA5 <display/CKB/ERA5%3A+data+documentation>`.
 
 There are a number of ways the barrier tasks can be set, and they will be described in the next sections.
 
@@ -27,12 +27,12 @@ Events
 A task in the barrier family can have specific events, such as "no data" or "data ok", and each will have specific
 instructions in the manual page:
 
-  - The event can be set within the task by running "ecflow_client --event data ok" or "ecflow_client --event no data";
-  - The task can then be configured to fail/complete based on the instructions for each event (e.g. "no data" will be
-    set if MARS is not available, or if the data is not on disk);
-  - An event can be set based on the status of another task, which can be in the same suite or in another suite (e.g.
-    "data ok" will be set if /{control_suite}/main/12/fc/model is complete).
-  
+- The event can be set within the task by running "ecflow_client --event data ok" or "ecflow_client --event no data";
+- The task can then be configured to fail/complete based on the instructions for each event (e.g. "no data" will be
+  set if MARS is not available, or if the data is not on disk);
+- An event can be set based on the status of another task, which can be in the same suite or in another suite (e.g.
+  "data ok" will be set if /{control_suite}/main/12/fc/model is complete).
+
 Once an event is set, it will then trigger other tasks to indicate the availability of the data, and the suite can
 progress or fail. It is also important to note here that events are not limited to the barrier family, and can be set in
 any task in the suite. More information on events can be found :ecflow-docs:`here <ug/user_manual/running_ecflow/events.html>`.
