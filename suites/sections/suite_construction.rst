@@ -78,14 +78,14 @@ Classes can inherit from base classes reusing the base structure and common func
 
 
 - **Configuration Management**: Use configurator objects to manage different suite deployments. Parameterize using Python
-  objects, not script conditionals. `Examples <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/configuring-suites.html>`_
+  objects, not script conditionals. `Examples are available here <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/configuring-suites.html>`_.
 - **Detached Deployment**: Separate deployment concerns, where the workflow will be managed and executed, from suite
-  generation. `See tracksuite <https://github.com/ecmwf/tracksuite>`_
+  generation. `See tracksuite documentation <https://github.com/ecmwf/tracksuite>`_.
 
 Script Handling
 ---------------
 
-There are specific recommendations for writing `:ifs-standards-docs: scripts <shell/guidelines/ecflow/structure.html>`
+There are specific recommendations for writing :ifs-standards-docs:`scripts <shell/guidelines/ecflow/structure.html>`
 and managing :ref:`tasks`, but the following are some general principles to follow when using `pyflow`:
 
 - **Script Handling**: Maintain scripts with suites, avoid side-effects, and ensure scripts are testable in isolation.
