@@ -40,17 +40,17 @@ This should include:
 
 Operators perspective
 ---------------------
-It has to be known that operators who monitor and support our operations 24/7 cannot have full understanding of the
+It is important to note that operators who monitor and support operational suites around the clock cannot have full understanding of the
 operational components that are running. They have limited visibility on the tasks run and can only consult higher level
-dashboards and GUIs to issue warnings and call out relevant analysts for remediary action. One should keep this into account when designing suites to be as self-explanatory as possible and simple in structure and provide simple, but precise instructions in the man pages. Here follows a few examples of such dashboards and GUIs.
+dashboards and GUIs to issue warnings and call out relevant analysts for remedial action. This should be taken into account when designing suites to be as self-explanatory as possible and simple in structure and provide simple, but precise instructions in the manual pages. Here follows a few examples of such dashboards and GUIs.
 
 
 .. figure:: _img/ecflow.png
    :alt: ecFlow
    :align: center
-   :width: 200%
+   :width: 600px
 
-   `ecFlow user interface <https://github.com/ecmwf/ecflow/tree/main>`_ that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
+   :ecflow-docs:`ecFlow user interface <ug/ecflow_ui/index.html>` that operators use to monitor and control suite tasks. This is the main interface of interaction during cycle runs 4x a day.
    In order to link this interface with dashboards below, a suite must use labels, man pages and verbosity levels in logs that help linking to what is seen. 
 
 For example, the following monitoring page gives granular overview of single destinations ECMWF sends data to 4x per day. 
@@ -59,44 +59,37 @@ Using labels or verbose logs can help operators to find the exact task that is d
 .. figure:: _img/xdiss_monitor.png
    :alt: Dissemination Monitor
    :align: center
-   :width: 200%
+   :width: 600px
 
    Overview of dissemination destinations and their status.
 
 .. figure:: _img/verbose_logs.png
    :alt: ecflow task logs
    :align: center
-   :width: 200%
+   :width: 600px
 
    The verbosity of logs can be tuned to the right level of granularity to help operators and analysts to quickly link with dissemination monitor.
 
 .. figure:: _img/service_status.png
    :alt: Service Status
    :align: center
-   :width: 200%
+   :width: 600px
 
    High-level dashboard for various `services status <https://status.ecmwf.int>`_. If a particular service is affected, several parts of suites using those services will likely fail. The design of suites should be such that they can be easily linked to the services status page, for example in the man pages:
 
 .. figure:: _img/man_page.png
    :alt: Service Status
    :align: center
-   :width: 200%
+   :width: 600px
 
-   A man page example with links and instructions to other dashboards and detailing which services or other tasks dependencies a task has.
+   A manual page example with links and instructions to other dashboards and detailing which services or other tasks dependencies a task has.
 
 .. figure:: _img/confluence.png
    :alt: Confluence Documentation
    :align: center
-   :width: 200%
+   :width: 600px
 
-   Additional high-level documentation and links to suites can be hosted elsewhere, e.g. on a dedicated `confluence. <https://www.atlassian.com/software/confluence>`_ which describes the responsibility of the various tasks and their callout policy throughout the operational suites.
-
-.. figure:: _img/eccharts.png
-   :alt: ecCharts Interface
-   :align: center
-   :width: 150%
-
-   The `ecCharts <https://eccharts.ecmwf.int>`_ service.
+   Additional high-level documentation and links to suites can be hosted elsewhere, e.g. on a dedicated :ecmwf-confluence:`confluence </>` which describes the responsibility of the various tasks and their callout policy throughout the operational suites.
 
 For other services, operators look at the end-user interfaces to check the suites output are as expected. Here too, clear task naming will help operators to identify where silent failures or other problems occured.
 
@@ -106,23 +99,16 @@ Any type of problem occuring in operations like I/O contentions, network latency
 .. figure:: _img/check_alarms.png
    :alt: ecflow check alarms
    :align: center
-   :width: 1000%
+   :width: 300px
 
    Check alarms implemented through cron jobs help to warn operators when a task is late. The statistics or runtimes can be either fixed times every day or be based on persistence runtimes statistics kept on the HPC. 
 
 .. figure:: _img/splunk_ecpds.png
    :alt: Splunk Web API
    :align: center
-   :width: 1000%
+   :width: 600px
 
    `Splunk <https://www.splunk.com>`_ dashboards for the dissemination system health.
-
-.. figure:: _img/open_nms.png
-   :alt: HPC Open NMS
-   :align: center
-   :width: 200%
-
-   Monitoring of the `network's component health <https://www.opennms.com>`_.
 
 
 Task purpose, criticality, and failure procedures

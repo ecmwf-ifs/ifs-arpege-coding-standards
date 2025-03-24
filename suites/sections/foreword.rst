@@ -31,7 +31,7 @@ Requirements of research and operational suites
 
 Designing suites that are incompatible in either can lead to inefficiencies and
 difficulties in collaboration, debugging, and transitioning between the two stages of the
-suite lifecycle.
+suite lifecycle. 
 
 Aim of these guidelines
 -----------------------

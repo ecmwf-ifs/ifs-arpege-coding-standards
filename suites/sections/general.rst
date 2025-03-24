@@ -14,7 +14,7 @@ What is a suite?
 
 TL;DR recommendations
 ---------------------
-- Keep it simple: Complexity should always be weighted up against maintainability and clarity for other users.
+- Keep it simple: Complexity should always be weighed up against maintainability and clarity for other users.
 - :doc:`Tasks and scripts <tasks>` should should be self-contained without side-effects
 - :doc:`Document <documentation>` tasks in the manual pages enough so operators understand their purpose
 - :doc:`For suite construction <suite_construction>` use configuration files where possible

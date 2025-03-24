@@ -42,20 +42,19 @@ These warnings tasks can have a specific time range and will fail/complete to in
     - A second "missing data" task can be triggered at a later time to tell the user there is no data and what are his options;
     - The users can then check if the data is missing/available on MARS/ECFS/ECPDS/disk, or if the suite can run without that specific data.
 
-As there are no rules on how many alerts/warnings tasks should be used, it will depend on how the suite runs, what KPIs are important, and how time-critical the suite is. 
+The number and kind of alerts and warnings will depend on how the suite runs, performance requirements, and how time-critical the suite is. 
 These triggers and extra tasks are important tools for debugging tasks and monitoring the suite, specially in operations. More information on triggers and alerts can be found :ecflow-docs:`here <ug/user_manual/running_ecflow/triggers.html>`.
 
 
 YMD
 ---
-The year-month-day (YMD) is one of the most important parameters in the suite and the barrier family, as it is the reference date for a group family/tasks within the suite.  
+The year-month-day (YMD) variable is one of the most important parameters in the suite and the barrier family, as it is the reference date for a group family/tasks within the suite.  
 Some aspects of the YMD are:
 
     - Can be set as an ecFlow variable that will loop based on the suite's time range;
     - The YMD should be set correctly to the first day of the experiment and used consistently throughout the suite, with the right intervals.
     - Different forecasts will have different intervals (e.g. medium-range, reforecasts, seasonal, etc.);
-    - Different parts of the suite can have different YMDs (e.g. lag can be one day behind main);
-    - That difference is what triggers different tasks/families along the suite, such as when the YMD in the barrier loops, causing the tasks in barrier to runm and the YMD in the main family to loop to progress the suite.
+    - Different parts of the suite can have different YMDs, e.g. lag can be behind main, main behind barrier etc., meaning these loop run in parallel but wait for their triggering YMD.
 
 Just like events, triggers, and alerts, can also be used in other parts of the suite, such as main and lag. 
 

@@ -4,8 +4,7 @@ Structure and families
 Families are used to structure the tasks of the suite, providing both a visual and
 execution hierarchy in ecFlow. These family nodes can be expanded or collapsed to
 reveal or hide the part of the suite. They can have their own documentation and triggers or can be
-referenced in other triggers. It is important to use descriptive but concise names for
-families to aid navigation of the suite. Suites should be laid out in a consistent and
+referenced in other triggers. Suites should be laid out in a consistent and
 logical structure, with families grouping related tasks for clarity and to simplify the
 required triggers.
 
@@ -21,11 +20,12 @@ most suites should include with the following names widely used at ECMWF:
   - **lag**: tasks that lag :doc:`behind time-critical tasks, such as archiving and cleaning <time_criticality>`
   - **cancel**: tasks to clean up the suite after it has finished
 
-.. image:: _img/ifs_suite_structure.png
+.. figure:: _img/ifs_suite_structure.png
     :width: 300px
+    :align: center
     :alt: An IFS surface experiment suite with the main family expanded.
 
-*Figure*: Example of a well-structured suite with standard families, here an IFS surface experiment suite.
+    Example of a well-structured suite with standard families, here an IFS surface experiment suite.
 
 Looping families
 ----------------
@@ -55,7 +55,7 @@ manually executed. Other tasks may nevertheless have triggers on them, if they n
 
 Configuration structure
 -----------------------
-ecFlow variables are cascading, i.e. they can be defined at any node level with the lowermost node taking precedence.
+ecFlow variables are inherited, i.e. they can be defined at any node level with the innermost node taking precedence.
 This means families can be used to apply configuration settings to all tasks within them, or to override settings that
 are inherited from higher up in the suite. This is particularly useful for configuration that may need to be changed
 "on the fly" without editing the suite definition. This avoids the need to "hack" deployed scripts (either on the
@@ -65,11 +65,13 @@ suite-wide, but still possible to override on individual families or tasks when 
 For boolean configuration switches, it may be convenient to use ecFlow events on a ``defstatus complete`` task in the
 **admin** family as toggles and used within triggers.
 
-.. image:: _img/admin_toggles_example.png
+.. figure:: _img/admin_toggles_example.png
     :width: 300px
+    :align: center
     :alt: The admin family with a toggles task for suite-wide switches.
 
-*Figure*: Example of a toggles task for suite-wide switches. Here the GloFAS suite.
+    Example of a toggles task for suite-wide switches. Here the GloFAS suite.
+
 
 Execution structure
 -------------------
