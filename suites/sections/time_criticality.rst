@@ -1,13 +1,16 @@
 Time criticality
 =================
-This section is dedicated to time-critical and non-time-critical tasks of ecFlow suites. What tasks are considered critical or not will depend on what the suite is designed for, in what  
-part of the suite the tasks are running, and how relevant they are in terms of blocking the progress of the suite. Since there are no exact definitions, here we discuss some 
-examples of tasks that are usually critical and some that, even though they are not on the critical path, can still be used in a suite.
+This section is dedicated to time-critical and non-time-critical tasks of ecFlow suites. What tasks are considered 
+critical or not will depend on what the suite is designed for, in what part of the suite the tasks are running, and 
+how relevant they are in terms of blocking the progress of the suite. Since there are no exact definitions, here we 
+discuss some examples of tasks that are usually critical and some that, even though they are not on the critical path, 
+can still be used in a suite.
 
 Time-critical tasks
 -------------------
-Time-critical tasks are those that are essential for the suite to run, and that can block the progress of the suite if they are not completed. For these tasks, in case they fail  
-or are not active/running at a certain time/order, the user will have to manually check and fix the suite as soon as possible. Usually, these tasks are under the **main** family:
+Time-critical tasks are those that are essential for the suite to run, and that can block the progress of the suite if 
+they are not completed. For these tasks, in case they fail or are not active/running at a certain time/order, the user 
+will have to manually check and fix the suite as soon as possible. Usually, these tasks are under the **main** family:
 
     - Can be divided into different cycles, e.g. main/12, main/18, main/00, etc.;
     - Retrieval tasks that retrieve the forcing/initial conditions for the forecast, e.g. main/12/fc/mars_retrieve;
@@ -17,25 +20,33 @@ or are not active/running at a certain time/order, the user will have to manuall
     - Time-critical dissemination tasks for users that rely on near-real-time data (e.g. main/12/diss/ecpds_diss);
     - Alerts in the main family that will fail if the forecast is late, e.g. main/12/late_alert;
 
-As mentioned before, there is no exact definition of what is time-critical or not, and the examples above are just some of the tasks that are usually considered critical. 
-Apart from the specifics of these time-critical tasks, there are general rules that can be followed when designing your critical path, especially in operations:
+As mentioned before, there is no exact definition of what is time-critical or not, and the examples above are just some 
+of the tasks that are usually considered critical. Apart from the specifics of these time-critical tasks, there are 
+general rules that can be followed when designing your critical path, especially in operations:
 
-    - Tasks should have a good man page, ideally with a description of the task, its inputs and expected outputs, and there should be instructions on how to run/rerun/debug the task in case of failure, and the dependencies of the task;
+    - Tasks should have a good man page, ideally with a description of the task, its inputs and expected outputs, and 
+      there should be instructions on how to run/rerun/debug the task in case of failure, and the dependencies of the 
+      task;
     - Tasks should be rerunnable, or at least include instructions on how to rerun them in case they fail;
-    - Tasks should be able to run independently of the server, which includes having the necessary data and software dependencies on every server;
+    - Tasks should be able to run independently of the server, which includes having the necessary data and software 
+      dependencies on every server;
     - Tasks should have a trapping mechanism so ecFlow can detect if they fail and send an alert to the user;
-    - Tasks should run in a reasonable time. If a task is taking too long to run (over two hours), it may block the progress of the suite and should be optimized;
+    - Tasks should run in a reasonable time. If a task is taking too long to run (over two hours), it may block the 
+      progress of the suite and should be optimized;
     - Tasks should be informative, with logs and outputs that can be used to debug the suite in case of failure;
     - Tasks should be reliable, with the minimum number of manual interventions.
 
-More information on time-critical tasks and what to consider when writing ecFlow scripts can be found :ecflow-docs:`here <ug/user_manual/running_ecflow/time_critical_tasks.html>` 
-and :ecflow-docs:`here <ug/user_manual/running_ecflow/writing_ecflow_scripts.html>`, respectively.
+More information on time-critical tasks and what to consider when writing ecFlow scripts can be found :ecflow-docs:`here 
+<ug/user_manual/running_ecflow/time_critical_tasks.html>` and :ecflow-docs:`here 
+<ug/user_manual/running_ecflow/writing_ecflow_scripts.html>`, respectively.
     
 
 Non-Time-critical tasks
 -----------------------
-Non-time-critical tasks are those that are not essential for the suite to run, and that do not block the critical path of the suite if they are not completed. These tasks can be used to 
-improve the performance of the suite, to clean up the suite after it has finished, or to archive the data generated by the suite. Some examples of non-time-critical tasks are:
+Non-time-critical tasks are those that are not essential for the suite to run, and that do not block the critical path 
+of the suite if they are not completed. These tasks can be used to improve the performance of the suite, to clean up 
+the suite after it has finished, or to archive the data generated by the suite. Some examples of non-time-critical tasks 
+are:
     
 - Tasks under the **setup** family:
 
@@ -53,11 +64,16 @@ improve the performance of the suite, to clean up the suite after it has finishe
 - Tasks under the **lag** family:
 
     - Can also be divided into different cycles, e.g. lag/12, lag/18, lag/00, etc.;
-    - Tasks that convert the output of the forecast to a different format, e.g. lag/12/convert. This includes converting from netCDF to grib, making the grib files MARS-friendly, tarring the files for ECFS, etc.;
-    - Archiving tasks that archive the output of the forecast on ECFS or MARS, e.g. lag/12/archive/ecfs_archive or lag/12/archive/mars_archive;
+    - Tasks that convert the output of the forecast to a different format, e.g. lag/12/convert. This includes converting 
+      from netCDF to grib, making the grib files MARS-friendly, tarring the files for ECFS, etc.;
+    - Archiving tasks that archive the output of the forecast on ECFS or MARS, e.g. lag/12/archive/ecfs_archive or 
+      lag/12/archive/mars_archive;
     - Cleaning tasks that clean up the output of the forecast, e.g. lag/12/clean/fc_clean;
-    - Dissemination tasks that disseminate the output of the forecast to users that do not rely on near-real-time data, e.g. lag/12/diss/ecpds_diss;
+    - Dissemination tasks that disseminate the output of the forecast to users that do not rely on near-real-time data, 
+      e.g. lag/12/diss/ecpds_diss;
     - Backup tasks that will transfer today's output to a different server, e.g. lag/12/backup_to_server;
 
-When dealing with archiving and cleaning, it is important to consider the space availability on the filesystem you are using. Different filesystems have different quotas and 
-limitations, and the efficiency and stability of the filesystem can impact the suite's performance. More information on the filesystems used at ECMWF can be found `here <https://confluence.ecmwf.int/display/UDOC/HPC2020%3A+Filesystems>`__.
+When dealing with archiving and cleaning, it is important to consider the space availability on the filesystem you are 
+using. Different filesystems have different quotas and limitations, and the efficiency and stability of the filesystem 
+can impact the suite's performance. More information on the filesystems used at ECMWF can be found `here 
+<https://confluence.ecmwf.int/display/UDOC/HPC2020%3A+Filesystems>`__.
