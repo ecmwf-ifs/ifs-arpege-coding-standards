@@ -4,12 +4,12 @@ Foreword
 
 At ECMWF we have a comprehensive list of computational workflows called *suites* that
 produce both operational and research data. The design of these suites has evolved over
-time to a high level of complexity to the workflow management system
+time to a high level of complexity in the workflow management system
 (:ecflow-docs:`ECFLow </>`), incorporating a range of different styles and
 methodologies. Many recommendations for best practices and standards exist, but mainly
-only at working group level, thus serve mostly specific use cases and are not transferable
-across ECMWF. Especially the different requirements for research and operational suites
-presents challenges in maintaining a consistent approach.
+only at the working group level, thus serving mostly specific use cases and not being transferable
+across ECMWF. The different requirements for research and operational suites
+present challenges in maintaining a consistent approach.
 
 Requirements of research and operational suites
 -----------------------------------------------
@@ -21,13 +21,13 @@ Requirements of research and operational suites
     - Collaboration with a range of users
 
 - Operations/production
-    - Runs on latest date using observation retrievals
+    - Runs on the latest date using observation retrievals
     - One fixed configuration
     - Locked down from outside interference
     - As efficient as possible
     - Finely tuned to a schedule
     - Features to ensure reliability and avoid or fix common problems
-    - Clear documentation (that can be followed by stressed person at 3am)
+    - Clear documentation (that can be followed by a stressed person at 3am)
 
 Designing suites that are incompatible in either can lead to inefficiencies and
 difficulties in collaboration, debugging, and transitioning between the two stages of the

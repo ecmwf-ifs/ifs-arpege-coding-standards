@@ -48,19 +48,19 @@ meaningful error messages.
 Unanticipated errors should also be detected and reported, for example
 using ``set -e`` in the shell.
 
-Correct error traps / signal handling should be maintained in the
+Correct error traps/signal handling should be maintained in the
 top-level task process to ensure that it notifies ecFlow on all abort
 paths.
 
 External scripts or programs called by the task should also have
-appropriate error checking, and be maintained with their own test
+appropriate error checking and be maintained with their own test
 suites.
       
 
 Top-level ecFlow task scripts
 -----------------------------
 
-Tasks should be shell scripts at the top level (preferably Bash, following the
+Tasks should be shell scripts at the top level (preferably Bash), following the
 applicable standards (e.g. `these for IFS-related tasks <https://sites.ecmwf.int/docs/ifs-arpege-coding-standards/shell/>`_).
 These should be either produced at suite creation time by a tool like
 pyFlow, or deployed from a version control system like Git.

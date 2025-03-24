@@ -3,7 +3,7 @@ Structure and families
 
 Families are used to structure the tasks of the suite, providing both a visual and
 execution hierarchy in ecFlow. These family nodes can be expanded or collapsed to
-reveal or hide the part of the suite. They can have their own documentation and triggers or can be
+reveal or hide parts of the suite. They can have their own documentation and triggers or can be
 referenced in other triggers. Suites should be laid out in a consistent and
 logical structure, with families grouping related tasks for clarity and to simplify the
 required triggers.
@@ -30,16 +30,15 @@ most suites should include with the following names widely used at ECMWF:
 Looping families
 ----------------
 Most suites loop over dates for the forecast or other analysis. This looping structure is
-achived with the :ecflow-docs:`repeat functionality of ecFlow <glossary.html#term-repeat>`.
-*Repeats* move foreward with triggers and are often linked to the a barrier YMD variable.
+achieved with the :ecflow-docs:`repeat functionality of ecFlow <glossary.html#term-repeat>`.
+*Repeats* move forward with triggers and are often linked to a barrier YMD variable.
 *Repeat families* can be split or "unrolled" to improve throughput. Because the next repeat of e.g. the "main" family
-cannot begin until the previous one has finished, critical-path throughput may be improved byone of two approaches:
+cannot begin until the previous one has finished, critical-path throughput may be improved by one of two approaches:
 
   - Splitting parts that run sequentially to cycle independently (e.g. an analysis and the forecast from it generating
     the first guess for the next one).
   - "Unrolling" the repeat so that alternate cycles can overlap. Excessive unrolling can make the suite hard to manage,
     but separate repeating families for e.g. 0Z and 12Z cycles when running two cycles per day is clean and effective.
-
 
 Administrative or manually-triggered tasks
 ------------------------------------------
@@ -51,7 +50,6 @@ manually executed. Other tasks may nevertheless have triggers on them, if they n
 
   - Remove output files that would otherwise be reused rather than regenerated.
   - Apply a workaround for a known failure type.
-
 
 Configuration structure
 -----------------------
@@ -72,12 +70,11 @@ For boolean configuration switches, it may be convenient to use ecFlow events on
 
     Example of a toggles task for suite-wide switches. Here the GloFAS suite.
 
-
 Execution structure
 -------------------
 As each task of a suite generates a separate compute job, the structure of the suite should reflect the most efficient
 way to run these jobs in terms of parallelism and optimal data chunking. For example, the retrieval of data from MARS
-should be chunked in a way to optimise the MARS request, rather than an according to the chunking used
+should be chunked in a way to optimise the MARS request, rather than according to the chunking used
 to process the retrieved data.
 
 Triggers are used to control the flow of the suite, ensuring that tasks are run in the correct order and at the correct time.
@@ -99,4 +96,4 @@ submitted or running at any one time.
 This is preferable to artificially `sequencing` independent tasks with
 triggers, as it allows flexible control of the level of parallelism.
 This is particularly important for tasks that are off the critical path
-and rely on "bottleneck" services like archivng.
+and rely on "bottleneck" services like archiving.

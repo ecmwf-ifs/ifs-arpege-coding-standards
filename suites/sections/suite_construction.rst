@@ -11,8 +11,8 @@ tools to build more standardised and maintainable suites.
 
 `ecFlow` workflows can be defined in a very generic way. While the structure and dependencies across nodes are all well-defined and 
 must be managed in an :doc:`appropriate way <structure>`, the application complexity can be hidden in the scripts and headers
-used in each one of the tasks. For simple workflows, just a handfull of files would be enough to define the whole suite. However, as the
-the application grows, the use of tools and frameworks built on top of the base ecFlow API help make the general project more maintainable.
+used in each one of the tasks. For simple workflows, just a handful of files would be enough to define the whole suite. However, as the
+application grows, the use of tools and frameworks built on top of the base ecFlow API helps make the general project more maintainable.
 
 Introducing pyflow
 ------------------
@@ -20,7 +20,7 @@ Introducing pyflow
 Along the many years of operational use of the `ecFlow` framework, several tools and frameworks have been developed to facilitate the construction of suites.
 For new developments, :pyflow-docs:`pyflow <content/introduction.html>` is the recommended 
 framework to follow and it is the one that will be presented in this chapter. 
-`pyflow` provides an extensive documentation with many examples and best practices recommendations and it is, therefore, a good starting point for 
+`pyflow` provides extensive documentation with many examples and best practices recommendations and it is, therefore, a good starting point for 
 those not familiar with the framework. This document is not a replacement for the official documentation, but rather a summary of the key points to consider when 
 building ecFlow suites.
 
@@ -50,7 +50,7 @@ More specifically, `pyflow` encourages some key principles to follow when buildi
                 IntegrationTests(config, name="cloudserver", host="cloudserver")
             )
 
-Classes can inherit from base classes reusing the base structure and common functionality while overriding context specific ones.
+Classes can inherit from base classes reusing the base structure and common functionality while overriding context-specific ones.
 
 .. code-block:: python
 
@@ -72,17 +72,17 @@ Classes can inherit from base classes reusing the base structure and common func
 
 
 - **Configuration Management**: Use configurator objects to manage different suite deployments. Parameterize using Python objects, not script conditionals. `Examples <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/configuring-suites.html>`_
-- **Dettached Deployment**: Separate deployment concerns, where the workflow will be managed and executed, from suite generation. `See tracksuite <https://github.com/ecmwf/tracksuite>`_
+- **Detached Deployment**: Separate deployment concerns, where the workflow will be managed and executed, from suite generation. `See tracksuite <https://github.com/ecmwf/tracksuite>`_
 
 Script Handling
 ---------------
 
 There are specific recommendations for writing `:ifs-standards-docs: scripts <shell/guidelines/ecflow/structure.html>` and managing :ref:`tasks`, but the following are some general principles to follow when using `pyflow`:
 
-- **Script Handling**: Maintain scripts with suites, avoid side-effects, and ensure scripts are testable in isolation. `See more <https://pyflow-workflow-generator.readthedocs.io/en/latest/content/introductory-course/script-handling.html>`_
+- **Script Handling**: Maintain scripts with suites, avoid side-effects, and ensure scripts are testable in isolation. :pyflow-docs:`See more here <content/introductory-course/script-handling.html>`.
 - **Script Sources**: Use templated and composable scripts for flexibility and maintainability, but avoid excessive complexity. Body may be composed of snippets assembled together by `pyflow`.
 - **Concise Deployment**: Use `AnchorFamily` only where necessary to avoid creating complex deployed file trees. [#f2]_
-- **ecFlow variables**: Use shell syntax for appropriate defaults. Define variables at the top most node level as possible to avoid redefinition of variables. [#f1]_
+- **ecFlow variables**: Use shell syntax for appropriate defaults. Define variables at the topmost node level as possible to avoid redefinition of variables. [#f1]_
 
 Extra resources
 ---------------
@@ -92,12 +92,12 @@ Here are some other references for other suite building tools that are available
     - :wellies-docs:`pyflow-wellies`: A library of common patterns and utilities for `pyflow` including YAML-based configuration, 
       commonly used script snippets, and execution environment management.
     
-    - `tracksuite <https://github.com/ecmwf/tracksuite>`_: A tool for git-based deployment of `ecFlow` suites, including support to multi-user 
-      environments, remote deployment and cloud-based backup of deployments.
+    - `tracksuite <https://github.com/ecmwf/tracksuite>`_: A tool for git-based deployment of `ecFlow` suites, including support for multi-user 
+      environments, remote deployment, and cloud-based backup of deployments.
     
-    - `pySuite <https://confluence.ecmwf.int/display/IFS/pysuite%3A+IFS+suite+definitions+in+Python>`_: A modular object-oriented framework for generating IFS suites, built on pyFlow in a limited way. 
+    - :ecmwf-confluence:`pySuite <display/IFS/pysuite%3A+IFS+suite+definitions+in+Python>`: A modular object-oriented framework for generating IFS suites, built on pyFlow in a limited way. 
 
 .. rubric:: Footnotes
 
 .. [#f1] `pyflow` enforces the use of shell variables in the body of scripts and has its own inspection step to create appropriate environment variables.
-.. [#f2] `pyflow` enforces uniqueness of task names and script-to-task mapping. The library's `AnchorFamily` class creates a new "root" for the script file tree, allowing scripts with same name to co-exist.
+.. [#f2] `pyflow` enforces uniqueness of task names and script-to-task mapping. The library's `AnchorFamily` class creates a new "root" for the script file tree, allowing scripts with the same name to co-exist.
