@@ -20,7 +20,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                language: ["fortran", "shell", "python"]
+                language: ["suites"]
         steps:
             - uses: actions/checkout@v4
 
@@ -32,7 +32,7 @@ jobs:
                   build-command: "make html"
 
             - name: Deploy to sites
-              if: github.repository == 'ecmwf-ifs/ifs-arpege-coding-standards' && github.event_name != 'pull_request'
+              if: github.repository == 'ecmwf-projects/ecflow-suite-standards' && github.ref == 'refs/heads/ecmwf_suite_design'
               env:
                   SITES_TOKEN: ${{ secrets.SITES_TOKEN_IFS_CODING_STANDARDS }}
               run: |
@@ -42,11 +42,10 @@ jobs:
                 chmod a+x ~/bin/sites
                 ~/bin/sites content \
                     --debug \
-                    --space docs \
-                    --name ifs-arpege-coding-standards \
+                    --space dimw \
+                    --name dev-suites-standards \
                     --api-authentication-token="${SITES_TOKEN}" \
                     upload \
                         --force \
                         --source "${{ matrix.language }}/_build/html/" \
-                        --destination "${{ matrix.language }}/" \
                         --recursive
