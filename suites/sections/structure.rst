@@ -11,13 +11,13 @@ Standard families
 Due to the common tasks required in most suites, there are some standard families that most suites should include with
 the following names widely used at ECMWF:
 
-  - **setup/make/init**: tasks to install the suite's :doc:`software <software_dependencies>` and data dependencies
-  - **admin**: tasks for suite maintenance and other manually run tasks or toggles
-  - :ref:`barrier <Barrier>`: a family to hold the next execution date for operational suites
-  - one or several families that contain the main, time-critical tasks of the suite (there is no accepted standard name,
-    but **main** is often used)
-  - **lag**: tasks that lag :doc:`behind time-critical tasks, such as archiving and cleaning <time_criticality>`
-  - **cancel**: tasks to clean up the suite after it has finished
+- **setup/make/init**: tasks to install the suite's :doc:`software <software_dependencies>` and data dependencies
+- **admin**: tasks for suite maintenance and other manually run tasks or toggles
+- :ref:`barrier <Barrier>`: a family to hold the next execution date for operational suites
+- one or several families that contain the main, time-critical tasks of the suite (there is no accepted standard name,
+  but **main** is often used)
+- **lag**: tasks that lag :doc:`behind time-critical tasks, such as archiving and cleaning <time_criticality>`
+- **cancel**: tasks to clean up the suite after it has finished
 
 .. figure:: _img/ifs_suite_structure.png
     :width: 300px
@@ -34,10 +34,10 @@ often linked to a barrier YMD variable. *Repeat families* can be split or "unrol
 next repeat of e.g. the "main" family cannot begin until the previous one has finished, critical-path throughput may be
 improved by one of two approaches:
 
-  - Splitting parts that run sequentially to cycle independently (e.g. an analysis and the forecast from it generating
-    the first guess for the next one).
-  - "Unrolling" the repeat so that alternate cycles can overlap. Excessive unrolling can make the suite hard to manage,
-    but separate repeating families for e.g. 0Z and 12Z cycles when running two cycles per day is clean and effective.
+- Splitting parts that run sequentially to cycle independently (e.g. an analysis and the forecast from it generating
+  the first guess for the next one).
+- "Unrolling" the repeat so that alternate cycles can overlap. Excessive unrolling can make the suite hard to manage,
+  but separate repeating families for e.g. 0Z and 12Z cycles when running two cycles per day is clean and effective.
 
 Administrative or manually-triggered tasks
 ------------------------------------------
@@ -47,8 +47,8 @@ tasks. These families should have the ``defstatus complete`` so that they only r
 may nevertheless have triggers on them, if they need to wait in the event that they *are* being run. Examples of such
 tasks might be:
 
-  - Remove output files that would otherwise be reused rather than regenerated.
-  - Apply a workaround for a known failure type.
+- Remove output files that would otherwise be reused rather than regenerated.
+- Apply a workaround for a known failure type.
 
 Configuration structure
 -----------------------

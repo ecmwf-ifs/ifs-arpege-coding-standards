@@ -29,9 +29,9 @@ When using a suite building framework, it's important to treat it as a developme
 
 - The suite should be version controlled, tested, and documented.
 - The suite should be treated as a software project, with the suite building framework as a compiler to generate both 
-    the definition file and scripts.
+  the definition file and scripts.
 - The suite should be developed in a modular way, with each part of the suite being testable in isolation where 
-    possible. 
+  possible. 
 
 Main principles
 ---------------
@@ -39,8 +39,8 @@ Main principles
 More specifically, `pyflow` encourages some key principles to follow when building suites:
 
 - **Object-Oriented Design**: Encapsulate behavior in Python classes, use inheritance and composition.
-    :pyflow-docs:`Examples <content/introductory-course/object-oriented-suites.html>` and
-    :pyflow-docs:`here <content/introductory-course/additional-examples.html>`
+  :pyflow-docs:`Examples <content/introductory-course/object-oriented-suites.html>` and
+  :pyflow-docs:`here <content/introductory-course/additional-examples.html>`
 
 
 .. code-block:: python
@@ -101,14 +101,14 @@ Extra resources
 
 Here are some other references for other suite building tools that are available in the `ecFlow` ecosystem:
 
-    - :wellies-docs:`pyflow-wellies`: A library of common patterns and utilities for `pyflow` including YAML-based
-      configuration, commonly used script snippets, and execution environment management.
-    
-    - `tracksuite <https://github.com/ecmwf/tracksuite>`_: A tool for git-based deployment of `ecFlow` suites, including
-      support for multi-user environments, remote deployment, and cloud-based backup of deployments.
-    
-    - :ecmwf-confluence:`pySuite <display/IFS/pysuite%3A+IFS+suite+definitions+in+Python>`: A modular object-oriented
-      framework for generating IFS suites, built on pyFlow in a limited way. 
+  - :wellies-docs:`pyflow-wellies`: A library of common patterns and utilities for `pyflow` including YAML-based
+    configuration, commonly used script snippets, and execution environment management.
+
+  - `tracksuite <https://github.com/ecmwf/tracksuite>`_: A tool for git-based deployment of `ecFlow` suites, including
+    support for multi-user environments, remote deployment, and cloud-based backup of deployments.
+
+  - :ecmwf-confluence:`pySuite <display/IFS/pysuite%3A+IFS+suite+definitions+in+Python>`: A modular object-oriented
+    framework for generating IFS suites, built on pyFlow in a limited way. 
 
 .. rubric:: Footnotes
 

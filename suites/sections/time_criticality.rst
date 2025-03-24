@@ -12,29 +12,29 @@ Time-critical tasks are those that are essential for the suite to run, and that 
 they are not completed. For these tasks, in case they fail or are not active/running at a certain time/order, the user 
 will have to manually check and fix the suite as soon as possible. Usually, these tasks are under the **main** family:
 
-    - Can be divided into different cycles, e.g. main/12, main/18, main/00, etc.;
-    - Retrieval tasks that retrieve the forcing/initial conditions for the forecast, e.g. main/12/fc/mars_retrieve;
-    - Tasks that run the forecast, e.g. main/12/fc/model;
-    - Tasks that post-process the output of the forecast, e.g. main/12/prodgen;
-    - Tasks that generate the plots that will be sent to the web (ecCharts, a specific website), e.g. main/12/prodgen/web_products;
-    - Time-critical dissemination tasks for users that rely on near-real-time data (e.g. main/12/diss/ecpds_diss);
-    - Alerts in the main family that will fail if the forecast is late, e.g. main/12/late_alert;
+  - Can be divided into different cycles, e.g. main/12, main/18, main/00, etc.;
+  - Retrieval tasks that retrieve the forcing/initial conditions for the forecast, e.g. main/12/fc/mars_retrieve;
+  - Tasks that run the forecast, e.g. main/12/fc/model;
+  - Tasks that post-process the output of the forecast, e.g. main/12/prodgen;
+  - Tasks that generate the plots that will be sent to the web (ecCharts, a specific website), e.g. main/12/prodgen/web_products;
+  - Time-critical dissemination tasks for users that rely on near-real-time data (e.g. main/12/diss/ecpds_diss);
+  - Alerts in the main family that will fail if the forecast is late, e.g. main/12/late_alert;
 
 As mentioned before, there is no exact definition of what is time-critical or not, and the examples above are just some 
 of the tasks that are usually considered critical. Apart from the specifics of these time-critical tasks, there are 
 general rules that can be followed when designing your critical path, especially in operations:
 
-    - Tasks should have a good man page, ideally with a description of the task, its inputs and expected outputs, and 
-      there should be instructions on how to run/rerun/debug the task in case of failure, and the dependencies of the 
-      task;
-    - Tasks should be rerunnable, or at least include instructions on how to rerun them in case they fail;
-    - Tasks should be able to run independently of the server, which includes having the necessary data and software 
-      dependencies on every server;
-    - Tasks should have a trapping mechanism so ecFlow can detect if they fail and send an alert to the user;
-    - Tasks should run in a reasonable time. If a task is taking too long to run (over two hours), it may block the 
-      progress of the suite and should be optimized;
-    - Tasks should be informative, with logs and outputs that can be used to debug the suite in case of failure;
-    - Tasks should be reliable, with the minimum number of manual interventions.
+  - Tasks should have a good man page, ideally with a description of the task, its inputs and expected outputs, and 
+    there should be instructions on how to run/rerun/debug the task in case of failure, and the dependencies of the 
+    task;
+  - Tasks should be rerunnable, or at least include instructions on how to rerun them in case they fail;
+  - Tasks should be able to run independently of the server, which includes having the necessary data and software 
+    dependencies on every server;
+  - Tasks should have a trapping mechanism so ecFlow can detect if they fail and send an alert to the user;
+  - Tasks should run in a reasonable time. If a task is taking too long to run (over two hours), it may block the 
+    progress of the suite and should be optimized;
+  - Tasks should be informative, with logs and outputs that can be used to debug the suite in case of failure;
+  - Tasks should be reliable, with the minimum number of manual interventions.
 
 More information on time-critical tasks and what to consider when writing ecFlow scripts can be found :ecflow-docs:`here 
 <ug/user_manual/running_ecflow/time_critical_tasks.html>` and :ecflow-docs:`here 
@@ -50,30 +50,30 @@ are:
     
 - Tasks under the **setup** family:
 
-    - Can be used to install the suite's software and data dependencies;
-    - Can be used to retrieve the initial conditions that will be used by the first forecast, e.g. setup/get_ini;
-    - Usually run once at the beginning of the suite or when a package needs to be reinstalled or updated;
+  - Can be used to install the suite's software and data dependencies;
+  - Can be used to retrieve the initial conditions that will be used by the first forecast, e.g. setup/get_ini;
+  - Usually run once at the beginning of the suite or when a package needs to be reinstalled or updated;
 
 - Tasks under the **admin** family, which can be used to run manually administrative tasks:
 
-    - Set toggles that will be used to control the suite;
-    - Manage static files that are used by the suite;
-    - Run backups in case there is a need to transfer files to a different server;
-    - Generate reports that will be used to monitor the suite;  
+  - Set toggles that will be used to control the suite;
+  - Manage static files that are used by the suite;
+  - Run backups in case there is a need to transfer files to a different server;
+  - Generate reports that will be used to monitor the suite;  
 
 - Tasks under the **lag** family:
 
-    - Can also be divided into different cycles, e.g. lag/12, lag/18, lag/00, etc.;
-    - Tasks that convert the output of the forecast to a different format, e.g. lag/12/convert. This includes converting 
-      from netCDF to grib, making the grib files MARS-friendly, tarring the files for ECFS, etc.;
-    - Archiving tasks that archive the output of the forecast on ECFS or MARS, e.g. lag/12/archive/ecfs_archive or 
-      lag/12/archive/mars_archive;
-    - Cleaning tasks that clean up the output of the forecast, e.g. lag/12/clean/fc_clean;
-    - Dissemination tasks that disseminate the output of the forecast to users that do not rely on near-real-time data, 
-      e.g. lag/12/diss/ecpds_diss;
-    - Backup tasks that will transfer today's output to a different server, e.g. lag/12/backup_to_server;
+  - Can also be divided into different cycles, e.g. lag/12, lag/18, lag/00, etc.;
+  - Tasks that convert the output of the forecast to a different format, e.g. lag/12/convert. This includes converting 
+    from netCDF to grib, making the grib files MARS-friendly, tarring the files for ECFS, etc.;
+  - Archiving tasks that archive the output of the forecast on ECFS or MARS, e.g. lag/12/archive/ecfs_archive or 
+    lag/12/archive/mars_archive;
+  - Cleaning tasks that clean up the output of the forecast, e.g. lag/12/clean/fc_clean;
+  - Dissemination tasks that disseminate the output of the forecast to users that do not rely on near-real-time data, 
+    e.g. lag/12/diss/ecpds_diss;
+  - Backup tasks that will transfer today's output to a different server, e.g. lag/12/backup_to_server;
 
 When dealing with archiving and cleaning, it is important to consider the space availability on the filesystem you are 
 using. Different filesystems have different quotas and limitations, and the efficiency and stability of the filesystem 
-can impact the suite's performance. More information on the filesystems used at ECMWF can be found `here 
-<https://confluence.ecmwf.int/display/UDOC/HPC2020%3A+Filesystems>`__.
+can impact the suite's performance. More information on the filesystems used at ECMWF can be found
+:ecmwf-confluence:`here <display/UDOC/HPC2020%3A+Filesystems>`.

@@ -8,9 +8,10 @@ relying on the software’s default version. Making the version explicit also al
 versions, facilitating pre-operational testing of new software versions.
 
 A suite usually interacts with software in two ways:
-    - Deploying the software in a directory local to the suite or in a shared location (in case the suite acts as a software 
-      deployer)
-    - Loading the environment containing the software within the suite
+
+- Deploying the software in a directory local to the suite or in a shared location (in case the suite acts as a software 
+  deployer)
+- Loading the environment containing the software within the suite
 
 Software deployment
 -------------------
