@@ -1,5 +1,9 @@
 # TODOs
 
+
+## Ideas
+- should we have a section/subsection on suite testing to advocate suite build testing as well as integration testing with the suite?
+
 ## Notes from Andrew B.
 
 ### General comments
