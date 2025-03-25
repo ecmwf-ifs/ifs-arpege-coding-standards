@@ -1,6 +1,6 @@
-===========================
-ECMWF suite design standars
-===========================
+============================
+ECMWF suite design standards
+============================
 
 .. toctree::
    :maxdepth: 2

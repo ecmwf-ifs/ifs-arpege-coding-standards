@@ -1,6 +1,14 @@
 # TODOs
 
 
+## Problems
+- because the recommendations are HPC/architecture agnostic, they are often not tangible and practical, not directly useful,
+  and leave room for interpretation and implementation.
+- supposed to go into the open-source ifs-arpege-coding-standards document, but scope is only for ECMWF suites, hence
+  security-relevant info needs to left out.
+- difficult to enforce or check.
+
+
 ## Ideas
 - should we have a section/subsection on suite testing to advocate suite build testing as well as integration testing with the suite?
 

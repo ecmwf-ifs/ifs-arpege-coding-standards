@@ -29,8 +29,8 @@ Requirements of research and operational suites
 Designing suites that are incompatible in either can lead to inefficiencies and difficulties in collaboration, debugging,
 and transitioning between the two stages of the suite lifecycle. 
 
-Aim of these guidelines
------------------------
+Aim and scope of these guidelines
+---------------------------------
 This document aims to provide a coherent set of guidelines for suite development across ECMWF. They were developed by
 suite developers and users from across the centre to promote a consistent, structured, and modern approach that is
 applicable across research, development, testing, and operational environments. They are expected to be useful for new
