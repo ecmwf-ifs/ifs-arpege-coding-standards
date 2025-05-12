@@ -19,6 +19,7 @@ include:
 
 - Detailed descriptions of the suite's functionality.
 - Examples of typical analysis workflows.
+- Troubleshooting guides for a more complex rerun and diagnosis of issues.
 - Code snippets demonstrating how to interact with the suite programmatically.
 
 For developers

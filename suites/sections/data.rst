@@ -18,8 +18,15 @@ These best practices for data handling have been established at ECMWF to achieve
 - Consider data formats, data chunking, and data compression when designing a task.
 - Clean working directories before you start the task, as a previous run or previous date
   cycle could have left files behind.
-- Store frequently-accessed invariant data (static data) on disk or other highly available data storage and document its expected structure in the task or suite documentation, ideally using a consistent naming convention.
-- Treat static data as a dependency of the suite and use some form of version control or snapshots for reproducibility.
+- Store frequently-accessed invariant data (static data) on disk or other highly available
+  data storage and document its expected structure in the task or suite documentation,
+  ideally using a consistent naming convention.
+- Treat static data as a dependency of the suite and use some form of version control or
+  snapshots for reproducibility.
+- Periodically clean out-of-date data to avoid build-up of data on disk once archived,
+  including task log files.
+- Minimise filesystem access by avoiding unnecessary file reads and writes. For example,
+  prefer a single `grib_set` to assign multiple attributes rather than one per attribute.
 
 Retrieving data from remote services, databases, and archives
 -------------------------------------------------------------
@@ -53,7 +60,7 @@ they should be implemented on separate repeat loops (the :ref:`lag family <stand
 to allow them to run independently of the main loop. Once archived, data should be cleaned on
 disk if it is no longer required for the rest of the suite. It is often useful to keep this
 data available in operations to recover from failures or to rerun parts of the suite. This
-should be enabled with appropriate automated tasks to clean this data.
+should be enabled with appropriately timed tasks to clean this data.
 
 ECMWF archival and dissemination services
 -----------------------------------------
