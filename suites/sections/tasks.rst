@@ -83,12 +83,13 @@ A typical example might look like this:
     # e.g. to set error trapping and common environment
     %include <head.h>
 
-    # Set specific environment variables that depend on ecFlow variables
-    DOIT_DEBUG=%DOIT_DEBUG:0%
+    # Set specific shell/environment variables that depend on ecFlow variables
+    DOIT_MODE=%DOIT_MODE:default%
+    export DOIT_DEBUG=%DOIT_DEBUG:0%
 
     # Run the script or program that does the actual work, passing through
     # anything needed from ecFlow variables
-    doit --mode "%DOIT_MODE:default%"
+    doit --mode "${DOIT_MODE}"
 
     # ecFlow-included tail containing boilerplate used at the end of
     # every task for cleanup, logging, etc.
