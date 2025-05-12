@@ -2,32 +2,33 @@ Foreword
 ========
 
 At ECMWF we have a comprehensive list of computational workflows called *suites* that produce both operational and
-research data. The design of these suites has evolved over time to a high level of complexity in the workflow
-management system (:ecflow-docs:`ECFLow </>`), incorporating a range of different styles and methodologies. Many
+research data or provide system maintenance. The design of these suites has evolved over time to a high level of complexity in the workflow
+management system (:ecflow-docs:`ecFLow </>`), incorporating a range of different styles and methodologies. Many
 recommendations for best practices and standards exist, but mainly only at the working group level, thus serving mostly
-specific use cases and not being transferable across ECMWF. The different requirements for research and operational
-suites present challenges in maintaining a consistent approach.
+specific use cases and not being transferable across ECMWF. The different requirements for research, development and
+operational suites present challenges in maintaining a consistent approach.
 
-Requirements of research and operational suites
------------------------------------------------
+Requirements of research, development and operational suites
+------------------------------------------------------------
 
-- Research
+- Research and development
     - Runs on historical dates, retrieved from archive or another experiment
     - Requires configurability and flexibility
     - On-the-fly debugging
     - Collaboration with a range of users
+    - Ability to run in test mode
 
 - Operations/production
     - Runs on the latest date using observation retrievals
     - One fixed configuration
-    - Locked down from outside interference
+    - Run with dedicated users and special permissions to avoid outside interference
     - As efficient as possible
     - Finely tuned to a schedule
     - Features to ensure reliability and avoid or fix common problems
     - Clear documentation (that can be followed by a stressed person at 3am)
 
 Designing suites that are incompatible in either can lead to inefficiencies and difficulties in collaboration, debugging,
-and transitioning between the two stages of the suite lifecycle. 
+and transitioning between these use cases within suite lifecycle.
 
 Aim and scope of these guidelines
 ---------------------------------

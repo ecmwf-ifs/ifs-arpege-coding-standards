@@ -52,3 +52,18 @@
 
 ### Time criticality
 - Section 9 repeats a lot of what was in the previous sections, and I wonder if it is even needed? It is useful to define example of time-critical tasks though, and the impact of filling up the disk because families that deal with initial conditions/driving data and archiving run too far ahead/behind the main family.
+
+
+## Comments on PR
+- more examples
+- re-runability/idempotency for operators, output file management when they fail
+- Troubleshooting guide for analysts in man page
+- add SAPP's BUFR Data Store (bds) and the Observational Database (ODB)
+- no ecflow variables in main body of script
+- ability to deploy suite as family
+- description of many solutions to use software managed on ECMWF HPC
+- data, L55: This should be enabled with appropriate automated tasks to clean this data.
+- clean out of date data
+- minimising filesystem use
+- paragraph on versions in software deps
+- documentation type, less focus on audiences

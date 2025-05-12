@@ -3,7 +3,7 @@ General principles
 
 What is a suite?
 ----------------
-- **A definition of the suite structure including tasks and their dependencies:** This is captured in the ecFlow *.def*
+- **A definition of the workflow including tasks and their dependencies:** This is captured in the ecFlow *.def*
   file, which is uploaded to an ecFlow server and displayed in the ecFlow UI.
 - **Scripts and software to run the tasks:** Each task needs a *.ecf* script which is expanded by ecFlow and can call
   other shell scripts or executables.

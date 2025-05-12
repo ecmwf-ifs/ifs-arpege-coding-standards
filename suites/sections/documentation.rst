@@ -52,10 +52,10 @@ simple, but precise instructions in the manual pages. Here follow a few examples
    :width: 600px
 
    :ecflow-docs:`ecFlow user interface <ug/ecflow_ui/index.html>` that operators use to monitor and control suite tasks.
-   This is the main interface of interaction during cycle runs 4x a day. In order to link this interface with dashboards
+   This is the main interface of interaction during cycle runs. In order to link this interface with dashboards
    below, a suite must use labels, manual pages, and verbosity levels in logs that help link to what is seen.
 
-For example, the following monitoring page gives a granular overview of single destinations ECMWF sends data to 4x per day.
+For example, the following monitoring page gives a granular overview of single destinations ECMWF sends data to.
 Using labels or verbose logs can help operators to find the exact task that is delayed or failing and needs attention.
 
 .. figure:: _img/xdiss_monitor.png

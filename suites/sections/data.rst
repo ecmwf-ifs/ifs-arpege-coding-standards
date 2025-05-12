@@ -50,10 +50,10 @@ Ensure the main outputs of a suite are archived properly, i.e. stored on reliabl
 storage rather than expensive, fast file systems. As archival often is a slow, serial process,
 keep the tasks outside of the critical path of the suite. Similar to data retrieval tasks,
 they should be implemented on separate repeat loops (the :ref:`lag family <standard families>`)
-to allow them to run independently of the main loop. Once archived, data should be cleaned on disk if it is no longer required
-for the rest of the suite. It is often useful to keep this data available in operations to
-recover from failures or to rerun parts of the suite. This should be enabled with appropriate
-to clean this data.
+to allow them to run independently of the main loop. Once archived, data should be cleaned on
+disk if it is no longer required for the rest of the suite. It is often useful to keep this
+data available in operations to recover from failures or to rerun parts of the suite. This
+should be enabled with appropriate automated tasks to clean this data.
 
 ECMWF archival and dissemination services
 -----------------------------------------
