@@ -13,11 +13,10 @@ The barrier family contains tasks that check if the starting conditions are avai
 When these start conditions are satisfied, these tasks can change their state by setting an event, a trigger, or even an
 ecFlow state. Some examples of barriers are:
 
-- The barrier tasks wait for ECMWF's NWP forecast output: ensemble, control, seasonal, AIFS (e.g. mc, o, eda, seas5,
-  aifs_single suites);
-- The tasks wait for input from other Centres: DWD, COSMOS, etc. In this case, the event can be triggered by data
-  available on MARS or even on disk;
-- observations (BUFR, radar, etc.), data assimilation, :ecmwf-confluence:`ERA5 <display/CKB/ERA5%3A+data+documentation>`.
+    - The barrier tasks wait for ECMWF's NWP forecast output: ensemble, control, seasonal, AIFS (e.g mc, o, eda, seas5, aifs_single suites);
+    - The tasks wait for input from other Centres: DWD, COSMOS, etc. In this case, the event can be triggered by data available on MARS or even on disk;
+    - Observations (BUFR, ODB, radar, etc.), data assimilation, `ERA5 <https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation>`_;
+    - One other use for the barrier is to set it to run on a specific time and/or day (e.g. every Wednesday at 12:00 UTC), which can be useful for specific processes, such as running the lag family a few days after the forecast, or setting the exact date for monthly runs.
 
 There are a number of ways the barrier tasks can be set, and they will be described in the next sections.
 
@@ -70,6 +69,20 @@ the reference date for a group family/tasks within the suite. Some aspects of th
 
 Just like events, triggers, and alerts, YMD can also be used in other parts of the suite, such as main and lag. 
 
+Barrier Example
+----------------
+
+.. image:: _img/barrier.png
+    :width: 700px
+    :alt: Example of a barrier family with different tasks and events.
+
+*Figure*: Example of different families/tasks included within the barrier family.
+
+In the example above, the barrier family has its own YMD variable, which loops over a set of pre-determined dates. This one YMD is used by the other families as a 
+reference, so they can start running to check for other inputs, in this case DWD and ECMWF's deterministic output. There are also events (e.g. ready) set for specific tasks that will trigger tasks in main/lag. 
+
+It is also important to notice how each family has its own triggers (gray boxes under the tasks), where some are based on tasks/events from the same suite, and some will be trigered by external suites, but within the same server. 
+
 Mirrors
 -------
 
@@ -77,11 +90,8 @@ Considering all the different elements described above, a mirror is one of the m
 running/completion of tasks and events in the barrier:
 
 - Can be defined as a reflection of the status of one suite on another server;
-- The idea is that a server can "see" what is happening in another server so the suites in that first server can
-  progress;
-- A practical example would be an operational suite that is mirrored to different servers so other suites that rely on it
-  can check their progress;
-- In this case, the mirrored suites are seen as suspended in the new servers, and their status will be updated based on
-  the original suite;
-- More information on mirrors can be found :ecflow-docs:`here <ug/user_manual/text_based_suite_definition/external/mirror.html>`
-  and an example :ecmwf-confluence:`here <display/~map/A+simple+mirror+example>`.
+- The idea is that a server can "see" what is happening in another server so the suites in that first serve can progess;
+- A practical example would be an operational suite that is mirrored to different servers so other suites that rely on it can check their progress;
+- In this case, the mirrored suites are seen as suspended in the new servers, and their status will be updated based on the original suite;
+- More information on mirrors can be found :ecflow-docs:`here <ug/user_manual/text_based_suite_definition/external/mirror.html>`.
+
