@@ -38,11 +38,6 @@
 - Section 5.2: not sure idempotent is quite the right word to use here, and I think it could be removed or replaced with something more plain english.
 - 5.4: I think the link to IFS scripts standards should be noted as guidance for all suites, not just IFS.
 
-### Software dependencies
-- 6.1: I think this section is a bit unclear, and perhaps needs more context:
-- I don't agree with "For operational suites, local deployment ... should be minimised." How does this enable isolated testing?
-- Last paragraph: is this in relation to testing? Otherwise it doesn't quite make sense
-- 6.3: would be good to explain why compilation should be avoided in the same task as running
 
 ### Data management
 - 7.1: "Clean working directories before you start the task" is not necessarily compatible with the earlier re-runability section

@@ -1,13 +1,15 @@
 Software dependencies
 =====================
 
-Software dependencies are an important part of the suite design as they drive the reproducibility of the suite. If software 
-dependencies are not managed properly, it becomes very difficult to reproduce previous suite runs or test new versions of the 
-software. Software versions should be explicit, meaning the version should be specified in the suite configuration rather than 
-relying on the software’s default version. Making the version explicit also allows testing the suite with different software 
-versions, facilitating pre-operational testing of new software versions.
+Software dependencies are the software artifacts that the suite relies on to run successfully.
+The software dependencies are used within the ecFlow tasks and can include command-line tools, scripts, libraries, modules, 
+virtual environment, etc.
+Proper management of software dependencies are an important part of the suite design as they drive the reproducibility of the suite.
+If software dependencies are not managed properly, it can become very difficult to reproduce previous suite runs or test new versions of the software.
+Software versions should be explicit, meaning the version should be specified in the suite configuration rather than relying on the software’s default version.
+Making the version explicit also allows testing the suite with different software versions, facilitating pre-operational testing of new software versions.
 
-A suite usually interacts with software in two ways:
+A suite usually interacts with software in wo ways:
 
 - Deploying the software in a directory local to the suite or in a shared location (in case the suite acts as a software 
   deployer)
@@ -27,8 +29,8 @@ on the system, and improves reproducibility by making multiple software versions
 
 Additionally, the suite can be used to deploy the software to a shared environment. In this case, the software should first be 
 built and tested locally in a separate task and deployed to the shared location only if the tests are successful.
-
-Note that if the suite can run on multiple hosts, the software should be deployed on all the hosts.
+Note that if the suite can run on multiple hosts, the software should be deployed on all the hosts. For instance, we have 4 distinct
+clusters at ECMWF and the software should be deployed on all of them.
 
 Loading the software environment
 --------------------------------
@@ -39,6 +41,10 @@ environments, Python virtual environments).
 
 Loading the environment should be straightforward, and software dependencies should be loaded automatically. Complex environment 
 setups, such as setting numerous environment variables or modifying the PATH, should be avoided.
+
+Software versions should not be hardcoded in the task scripts but should be set from the suite configuration. This allows testing
+different software versions from the same code without modifying the task scripts. Additionally, ecFlow variables can be used to
+change the version after the suite has been deployed. This allows to update the version without having to redeploy the suite.
 
 Best practices for software compilation
 ---------------------------------------
