@@ -51,10 +51,6 @@
 
 ## Comments on PR
 - more examples - all, illustrating recommended patterns
-- re-runability/idempotency for operators, output file management when they fail  - Zak
 - add SAPP's BUFR Data Store (bds) and the Observational Database (ODB) - DD
-- no ecflow variables in main body of script - Zak
 - ability to deploy suite as family - Marcos, hopefully add ticket link and take further
-- description of many solutions to use software managed on ECMWF HPC - Corentin
-- paragraph on versions in software deps - Corentin
 - documentation type, less focus on audiences - follow up with DD
