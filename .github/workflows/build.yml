@@ -4,7 +4,7 @@ name: build
 on:
     # Triggers the workflow on push events
     push:
-        branches: [ 'ecmwf_suite_design' ]
+        branches: [ 'main' ]
         tags-ignore: [ '**' ]
 
     # Triggers the workflow on pull request events
@@ -20,7 +20,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                language: ["suites"]
+                language: ["fortran", "shell", "python", "suites"]
         steps:
             - uses: actions/checkout@v4
 
@@ -32,7 +32,7 @@ jobs:
                   build-command: "make html"
 
             - name: Deploy to sites
-              if: github.repository == 'ecmwf-projects/ecflow-suite-standards'
+              if: github.repository == 'ecmwf-ifs/ifs-arpege-coding-standards' && github.event_name != 'pull_request'
               env:
                   SITES_TOKEN: ${{ secrets.SITES_TOKEN_IFS_CODING_STANDARDS }}
               run: |
@@ -42,10 +42,11 @@ jobs:
                 chmod a+x ~/bin/sites
                 ~/bin/sites content \
                     --debug \
-                    --space dimw \
-                    --name dev-suites-standards \
+                    --space docs \
+                    --name ifs-arpege-coding-standards \
                     --api-authentication-token="${SITES_TOKEN}" \
                     upload \
                         --force \
                         --source "${{ matrix.language }}/_build/html/" \
+                        --destination "${{ matrix.language }}/" \
                         --recursive
