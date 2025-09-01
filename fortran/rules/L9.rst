@@ -1,5 +1,5 @@
 L9 : interfaces for routines
-****************************
+*****************************
 
 Calls to subroutines and functions that are provided neither by a module nor by a CONTAINS statement, 
 must have a matching explicit interface block.

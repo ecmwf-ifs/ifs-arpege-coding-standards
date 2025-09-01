@@ -1,11 +1,19 @@
-L13 : array declarations in parallel routines
-*********************************************
+L13 : array declarations in NPROMA routines
+*******************************************
 
-Parallel routines (those processing a list of NPROMA blocks) should wrap their field data 
-into Field API objects.
+NPROMA routines (those processing a single NPROMA block) should only declare arrays of basic 
+data types whose kinds are taken from parkind1.F90 and parkind2.F90, eg:
 
-In particular the legacy data representation for model state (PGMV/PGFL arrays) should be 
-considered obsolescent and replaced by YDVARS wherever possible.
+* ``REAL(KIND=JPRB)``
+* ``REAL(KIND=JPRD)``
+* ``INTEGER(KIND=JPIM)``
+* ``LOGICAL``
 
-Parallel routines should never declare an array that will be involved in calculations
-(ie passed to NPROMA routines or used in OpenMP sections).
+The leading dimensions of these array should be ``NPROMA``.
+
+Any other arrays are forbidden in NPROMA routines. These other arrays (not depending on 
+the meteorological situation) should be computed in the setup and passed as arguments
+to NPROMA compute routines, or integrated into sub-components of YDMODEL.
+
+Arrays declared in NPROMA routines be automatic arrays; ALLOCATABLEs and POINTERs are
+forbidden.
