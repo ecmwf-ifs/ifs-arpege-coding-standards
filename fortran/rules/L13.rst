@@ -1,11 +1,12 @@
-L13 : array declarations in parallel routines
-*********************************************
+L13 : allocatable arrays in NPROMA routines
+*******************************************
 
-Parallel routines (those processing a list of NPROMA blocks) should wrap their field data 
-into Field API objects.
+Arrays declared in NPROMA routines (those processing a single NPROMA block) should be automatic, rather 
+than allocatable or pointer-based.
 
-In particular the legacy data representation for model state (PGMV/PGFL arrays) should be 
-considered obsolescent and replaced by YDVARS wherever possible.
+Rationale :
 
-Parallel routines should never declare an array that will be involved in calculations
-(ie passed to NPROMA routines or used in OpenMP sections).
+NPROMA routines are typically called a large number of times so efficient handling of memory is
+of particular importance in them. Automatic arrays, which are placed on the stack, incur lower 
+overheads than allocatable arrays, which are by default placed on the heap. 
+
