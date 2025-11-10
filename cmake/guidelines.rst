@@ -11,10 +11,12 @@ limited to:
 
 - The central **IFS** build system and its integrated subprojects (e.g. ifsobs, odb)
 - External but aligned components such as:
-
+  
   * `ecRad <https://github.com/ecmwf-ifs/ecrad>`_ — radiation scheme
   * `ecWAM <https://github.com/ecmwf-ifs/ecwam>`_ — wave model
   * `ecTrans <https://github.com/ecmwf-ifs/ectrans>`_ — spectral transform library
+  * `FIAT <https://github.com/ecmwf-ifs/fiat>`_ — I/O abstraction and data utilities
+  * `OOPS <https://git.ecmwf.int/projects/OOPS/repos/oops>`_ — Object-Oriented Prediction System
 
 All these projects share a common build and packaging framework based on
 **ecbuild** and follow consistent CMake idioms and project structure.
@@ -37,7 +39,7 @@ This standard applies to:
 
 - The **IFS master build** (`ifs/CMakeLists.txt`)
 - IFS internal subprojects (e.g. `ifsobs`, `odb`, `fiat`)
-- Independent IFS component repositories (e.g. `ecrad`, `ecwam`, `ectrans`)
+- Independent IFS component repositories (e.g. `ecrad`, `ecwam`, `ectrans`, `oops`)
 - All supporting CMake modules under the ``cmake/`` directory
 
 It does **not** prescribe configuration for generic third-party libraries,
@@ -132,6 +134,18 @@ Example (ecRad-like structure)::
   ecbuild_install_project(NAME ${PROJECT_NAME})
   ecbuild_print_summary()
 
+Mixed-Language / Complex Component Repositories
+-----------------------------------------------
+Some repositories (e.g. **FIAT**, **OOPS**) contain both Fortran and C or C++ sources.
+For such projects:
+
+- Declare all used languages in ``project()``.
+- Apply language-specific flags via ``ecbuild_add_c_flags`` and ``ecbuild_add_fortran_flags``.
+- Avoid setting shared flags (``CMAKE_C_FLAGS`` etc.) globally; handle each language separately.
+- Keep hardening or safety-specific C flags (stack protection, warnings) in
+  ``cmake/compile_flags.cmake`` with clear comments explaining their purpose.
+- Use ``target_compile_options()`` to apply per-target options instead of directory-wide flags.
+
 ---
 
 Options and Feature Flags
@@ -149,6 +163,21 @@ Declare optional components using ``ecbuild_add_option``::
   )
 
 Always provide a clear description and a logical default.
+
+Plugins and Optional Modules
+----------------------------
+Repositories such as **OOPS** define optional plugin modules or tools.
+Follow this pattern:
+
+- Declare one ``FEATURE`` per plugin or optional component.
+- Wrap target definitions in feature guards::
+
+    if(HAVE_PLUGIN_FOO)
+      add_subdirectory(plugins/foo)
+    endif()
+
+- Ensure a clean dependency graph when plugins are disabled.
+- Document each plugin’s purpose and dependencies in comments.
 
 Conditional Logic
 -----------------
@@ -173,10 +202,19 @@ Add compiler-specific options through ``ecbuild_add_fortran_flags()``::
     ecbuild_add_fortran_flags("-fPIC -ffree-line-length-none")
   endif()
 
+Hardening and Safety Flags
+--------------------------
+Some components (like **FIAT**) apply strict compiler flags for robustness or security.
+If used, such flags (e.g. ``-fstack-protector-strong``, ``-Werror``) must:
+
+- Be isolated in a dedicated module (``cmake/compile_flags.cmake``)
+- Be documented with a comment stating their motivation (e.g. memory safety, API conformance)
+- Not be applied unconditionally across all targets
+
 Cross-Project Flag Propagation
 ------------------------------
 IFS component repositories may inherit compiler flags from a parent build
-using helper functions like ``ifs_propagate_flags(proj)``.
+using helper functions like ``ifs_propagate_flags(proj)``.  
 Encapsulate such logic in ``cmake/compile_flags.cmake`` to avoid duplication.
 
 ---
@@ -247,7 +285,7 @@ Variable Naming
 
 Paths
 -----
-Use variable-based directories (``${PROJECT_SOURCE_DIR}``, ``${INSTALL_BIN_DIR}``)
+Use variable-based directories (``${PROJECT_SOURCE_DIR}``, ``${INSTALL_BIN_DIR}``)  
 and avoid hardcoded paths.
 
 ---
@@ -268,6 +306,35 @@ Use ``ifs_target_compile_definitions_FILENAME`` to embed filename metadata in bu
 Flag Propagation
 ----------------
 Use ``ifs_propagate_flags`` to align component compiler settings with IFS.
+
+---
+
+Installation and Packaging
+==========================
+
+Exporting Package Configurations
+--------------------------------
+Standalone components (e.g. **FIAT**, **ecTrans**, **OOPS**) must export
+CMake package configuration files for downstream discovery::
+
+  ecbuild_pkgconfig(
+    NAME ${PROJECT_NAME}
+    DESCRIPTION "FIAT: ECMWF I/O abstraction library"
+    URL "https://github.com/ecmwf-ifs/fiat"
+    LIBRARIES ${FIAT_LIBRARIES}
+  )
+
+These files ensure interoperability whether built standalone or within IFS.
+
+Dual Build Mode Support
+-----------------------
+Projects should support both embedded and standalone builds::
+
+  if(CMAKE_PROJECT_NAME STREQUAL "ifs")
+    message(STATUS "Building ${PROJECT_NAME} as part of IFS")
+  else()
+    ecbuild_declare_project()
+  endif()
 
 ---
 
@@ -304,14 +371,15 @@ A component may support both modes::
 Evolution and Best Practice
 ===========================
 
-This standard reflects current practice across IFS, ifsobs, ODB, and the
-component repositories (ecRad, ecWAM, ecTrans).
+This standard reflects current practice across IFS, ifsobs, ODB, FIAT, OOPS,
+and the component repositories (ecRad, ecWAM, ecTrans).  
 Future evolution should aim to:
 
 - Move fully to modern CMake idioms (``target_*`` over global flags)
 - Limit compiler-specific conditionals to dedicated modules
 - Provide consistent packaging and installation metadata across all components
 - Maintain strict compatibility with ecbuild and CMake ≥ 3.20
+- Define common helper macros in a shared ECMWF CMake toolkit
 
 ---
 
