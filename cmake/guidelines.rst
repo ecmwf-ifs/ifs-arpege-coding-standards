@@ -11,7 +11,7 @@ limited to:
 
 - The central **IFS** build system and its integrated subprojects (e.g. ifsobs, odb)
 - External but aligned components such as:
-  
+
   * `ecRad <https://github.com/ecmwf-ifs/ecrad>`_ — radiation scheme
   * `ecWAM <https://github.com/ecmwf-ifs/ecwam>`_ — wave model
   * `ecTrans <https://github.com/ecmwf-ifs/ectrans>`_ — spectral transform library
@@ -139,12 +139,17 @@ Mixed-Language / Complex Component Repositories
 Some repositories (e.g. **FIAT**, **OOPS**) contain both Fortran and C or C++ sources.
 For such projects:
 
-- Declare all used languages in ``project()``.
+- Ensure all used languages are declared in ``project()``.
 - Apply language-specific flags via ``ecbuild_add_c_flags`` and ``ecbuild_add_fortran_flags``.
-- Avoid setting shared flags (``CMAKE_C_FLAGS`` etc.) globally; handle each language separately.
+- Avoid adding compiler flags to the native CMake variables (``CMAKE_C_FLAGS``, etc.) directly, because:
+
+  * They apply across the entire build (bundle superspace), which is risky.
+  * They bypass the configure-time safety and correctness checks provided by ``ecbuild`` macros.
+
 - Keep hardening or safety-specific C flags (stack protection, warnings) in
   ``cmake/compile_flags.cmake`` with clear comments explaining their purpose.
-- Use ``target_compile_options()`` to apply per-target options instead of directory-wide flags.
+- Use ``target_compile_options()`` to add compiler flags only to a specific target; these get
+  appended to the project-wide flags already in place.
 
 ---
 
@@ -209,12 +214,12 @@ If used, such flags (e.g. ``-fstack-protector-strong``, ``-Werror``) must:
 
 - Be isolated in a dedicated module (``cmake/compile_flags.cmake``)
 - Be documented with a comment stating their motivation (e.g. memory safety, API conformance)
-- Not be applied unconditionally across all targets
+- The application of these flags should be switchable via an option or configure-time CMake flag
 
 Cross-Project Flag Propagation
 ------------------------------
 IFS component repositories may inherit compiler flags from a parent build
-using helper functions like ``ifs_propagate_flags(proj)``.  
+using helper functions like ``ifs_propagate_flags(proj)``.
 Encapsulate such logic in ``cmake/compile_flags.cmake`` to avoid duplication.
 
 ---
@@ -285,7 +290,7 @@ Variable Naming
 
 Paths
 -----
-Use variable-based directories (``${PROJECT_SOURCE_DIR}``, ``${INSTALL_BIN_DIR}``)  
+Use variable-based directories (``${PROJECT_SOURCE_DIR}``, ``${INSTALL_BIN_DIR}``)
 and avoid hardcoded paths.
 
 ---
@@ -312,29 +317,25 @@ Use ``ifs_propagate_flags`` to align component compiler settings with IFS.
 Installation and Packaging
 ==========================
 
-Exporting Package Configurations
---------------------------------
-Standalone components (e.g. **FIAT**, **ecTrans**, **OOPS**) must export
-CMake package configuration files for downstream discovery::
-
-  ecbuild_pkgconfig(
-    NAME ${PROJECT_NAME}
-    DESCRIPTION "FIAT: ECMWF I/O abstraction library"
-    URL "https://github.com/ecmwf-ifs/fiat"
-    LIBRARIES ${FIAT_LIBRARIES}
-  )
-
-These files ensure interoperability whether built standalone or within IFS.
+Pkg-Config Support
+------------------
+The use of ``ecbuild_pkgconfig`` is **deprecated** for IFS components.
+This functionality was historically used for integration with non-CMake build systems
+but is no longer maintained or required; standard CMake exports handled by
+``ecbuild_install_project`` are sufficient.
 
 Dual Build Mode Support
 -----------------------
-Projects should support both embedded and standalone builds::
+Sub-components, i.e. projects built via ``add_subdirectory`` invocations rather than
+via a separate bundle entry, should support both embedded and standalone builds::
 
   if(CMAKE_PROJECT_NAME STREQUAL "ifs")
     message(STATUS "Building ${PROJECT_NAME} as part of IFS")
   else()
     ecbuild_declare_project()
   endif()
+
+Fully standalone projects, e.g. **ecWAM**, should not support embedded builds.
 
 ---
 
@@ -372,14 +373,14 @@ Evolution and Best Practice
 ===========================
 
 This standard reflects current practice across IFS, ifsobs, ODB, FIAT, OOPS,
-and the component repositories (ecRad, ecWAM, ecTrans).  
+and the component repositories (ecRad, ecWAM, ecTrans).
 Future evolution should aim to:
 
 - Move fully to modern CMake idioms (``target_*`` over global flags)
 - Limit compiler-specific conditionals to dedicated modules
 - Provide consistent packaging and installation metadata across all components
 - Maintain strict compatibility with ecbuild and CMake ≥ 3.20
-- Define common helper macros in a shared ECMWF CMake toolkit
+- Identify commonalities where new ecbuild macros may be shared across projects
 
 ---
 
