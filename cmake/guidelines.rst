@@ -140,16 +140,15 @@ Some repositories (e.g. **FIAT**, **OOPS**) contain both Fortran and C or C++ so
 For such projects:
 
 - Ensure all used languages are declared in ``project()``.
-- Apply language-specific flags via ``ecbuild_add_c_flags`` and ``ecbuild_add_fortran_flags``.
-- Avoid adding compiler flags to the native CMake variables (``CMAKE_C_FLAGS``, etc.) directly, because:
-
-  * They apply across the entire build (bundle superspace), which is risky.
-  * They bypass the configure-time safety and correctness checks provided by ``ecbuild`` macros.
-
-- Keep hardening or safety-specific C flags (stack protection, warnings) in
-  ``cmake/compile_flags.cmake`` with clear comments explaining their purpose.
-- Use ``target_compile_options()`` to add compiler flags only to a specific target; these get
-  appended to the project-wide flags already in place.
+- Apply language-specific flags via ``ecbuild_add_c_flags`` and
+  ``ecbuild_add_fortran_flags`` when needed.
+- Refer to the section :ref:`hardening-safety-flags` for guidance on compiler
+  hardening flags, safe flag handling, and how to avoid modifying global CMake
+  variables directly.
+- Keep mixed-language structure clear by grouping source files and targets
+  logically (e.g., C utilities in ``src/c/``, Fortran modules in ``src/fortran/``).
+- Use ``target_compile_options()`` for target-specific flags; these are
+  appended to the project-wide flags already defined via ecbuild.
 
 ---
 
@@ -207,14 +206,50 @@ Add compiler-specific options through ``ecbuild_add_fortran_flags()``::
     ecbuild_add_fortran_flags("-fPIC -ffree-line-length-none")
   endif()
 
+
+.. _hardening-safety-flags:
+
 Hardening and Safety Flags
 --------------------------
-Some components (like **FIAT**) apply strict compiler flags for robustness or security.
-If used, such flags (e.g. ``-fstack-protector-strong``, ``-Werror``) must:
+Some IFS components (notably **FIAT**, but also OOPS utilities and low-level
+C support code) require stricter compiler behaviour to ensure robustness,
+memory safety, or standards conformance.
 
-- Be isolated in a dedicated module (``cmake/compile_flags.cmake``)
-- Be documented with a comment stating their motivation (e.g. memory safety, API conformance)
-- The application of these flags should be switchable via an option or configure-time CMake flag
+Hardening or safety-related compiler flags (e.g. ``-fstack-protector-strong``,
+``-Wall``, ``-Wextra``, ``-Werror``, ``-fsanitize`` options) must follow these
+general rules, regardless of language (C, C++, Fortran):
+
+1. **Do not modify global CMake variables** such as ``CMAKE_C_FLAGS``,
+   ``CMAKE_CXX_FLAGS`` or ``CMAKE_Fortran_FLAGS`` directly.
+
+   These variables:
+   - affect the entire build (IFS “bundle superspace”), making changes risky;
+   - bypass ecbuild’s configuration-time safety checks and portability logic.
+
+2. **Use ecbuild helpers** (``ecbuild_add_c_flags``, ``ecbuild_add_fortran_flags``)
+   to apply project-wide hardening flags in a controlled way.
+
+3. **Use ``target_compile_options()`` for target-specific flags** when a library
+   or executable requires stricter settings than the rest of the project.
+
+4. **Keep all hardening flags isolated** in a dedicated CMake module
+   (typically ``cmake/compile_flags.cmake``) with clear comments explaining
+   their purpose and which targets they apply to.
+
+5. **Expose hardening choices via options** when appropriate, e.g.::
+
+      ecbuild_add_option(
+        FEATURE ENABLE_HARDENING
+        DEFAULT OFF
+        DESCRIPTION "Enable stricter safety and hardening compiler flags"
+      )
+
+
+   This allows end users or the central IFS build to toggle hardening at
+   configure time.
+
+This unified approach ensures consistency across pure Fortran projects
+(ecRad, ecWAM, ecTrans), mixed-language systems (FIAT, OOPS), and the main IFS.
 
 Cross-Project Flag Propagation
 ------------------------------
