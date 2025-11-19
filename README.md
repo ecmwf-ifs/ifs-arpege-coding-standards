@@ -11,6 +11,7 @@ The standards and their applicability are as follows:
 1. `fortran` - applicable to both IFS and Arpège
 1. `python` (#todo) - applicable to IFS only
 1. `shell` - applicable to IFS only
+1. `cmake` - applicable to IFS only
 
 ## Build locally
 
@@ -28,7 +29,7 @@ The standards and their applicability are as follows:
    ```bash
    make -C <language> html
    ```
-   where `<language>` is one of `suites`, `fortran`, `python` or `shell`.
+   where `<language>` is one of `suites`, `fortran`, `python`, `cmake` or `shell`.
 1. View the result:
    ```bash
    open <language>/_build/html/index.html
