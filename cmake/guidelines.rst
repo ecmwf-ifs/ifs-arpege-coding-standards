@@ -37,9 +37,9 @@ Scope
 
 This standard applies to:
 
-- The **IFS master build** (`ifs/CMakeLists.txt`)
-- IFS internal subprojects (e.g. `ifsobs`, `odb`, `fiat`)
-- Independent IFS component repositories (e.g. `ecrad`, `ecwam`, `ectrans`, `oops`)
+- The **IFS master build** (`ifs-source/CMakeLists.txt`)
+- IFS internal subprojects (e.g. `ifsobs`, `odb`, ...)
+- Independent IFS component repositories (e.g. `ecrad`, `ecwam`, `ectrans`, `fiat`, `oops`)
 - All supporting CMake modules under the ``cmake/`` directory
 
 It does **not** prescribe configuration for generic third-party libraries,
