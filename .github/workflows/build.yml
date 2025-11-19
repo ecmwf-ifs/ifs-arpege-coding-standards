@@ -40,12 +40,12 @@ jobs:
                 curl -o ~/bin/sites -L \
                     "https://get.ecmwf.int/service/rest/v1/search/assets/download?sort=name&direction=desc&q=linux&repository=sites-cli"
                 chmod a+x ~/bin/sites
-                ~/bin/sites content \
+                ~/bin/sites site \
                     --debug \
                     --space docs \
                     --name ifs-arpege-coding-standards \
-                    --api-authentication-token="${SITES_TOKEN}" \
-                    upload \
+                    --token "${SITES_TOKEN}" \
+                    content upload \
                         --force \
                         --source "${{ matrix.language }}/_build/html/" \
                         --destination "${{ matrix.language }}/" \
