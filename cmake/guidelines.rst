@@ -502,7 +502,3 @@ Future evolution should aim to:
 - Provide consistent packaging and installation metadata across all components
 - Maintain strict compatibility with ecbuild and CMake ≥ 3.20
 - Identify commonalities where new ecbuild macros may be shared across projects
-
----
-
-**Document Status:** *Draft – unified standard for IFS and Component Repositories*
