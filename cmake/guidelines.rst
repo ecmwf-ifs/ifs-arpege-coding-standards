@@ -393,6 +393,32 @@ and avoid hardcoded paths.
 Custom Utilities
 ================
 
+The utilities described in this section refer to helper macros provided by the
+IFS build system. These are **not part of ecbuild**, and are **only available
+when a component is built inside the IFS tree** (i.e. via ``add_subdirectory``).
+
+External component repositories such as **ecRad**, **ecWAM**, **ecTrans**,
+**FIAT**, and **OOPS** typically provide their own equivalents under their
+``cmake/`` directory when required.
+
+IFS-Provided Macros
+-------------------
+
+The following macros originate from ``ifs-source/cmake`` and are available only
+when the project is built as part of IFS:
+
+- ``ifs_target_fortran_module_directory`` — Set a consistent module output and
+  install directory for a target.
+- ``ifs_target_compile_definitions_FILENAME`` — Add a preprocessor definition
+  containing the source filename.
+- ``add_symlink`` — Create a post-build symbolic link to a target.
+
+Standalone component repositories **must not rely on these macros**. If similar
+behaviour is needed, they should provide their own project-specific versions
+(e.g. ``ecwam_target_fortran_module_directory.cmake``,
+``ectrans_target_fortran_module_directory.cmake``).
+
+
 Adding Symlinks
 ---------------
 Use ``add_symlink(target symlink)`` to create post-build links::
