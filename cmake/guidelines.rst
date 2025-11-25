@@ -153,6 +153,7 @@ Options and Feature Flags
 
 Feature Declaration
 -------------------
+
 Declare optional components using ``ecbuild_add_option``::
 
   ecbuild_add_option(
@@ -162,7 +163,18 @@ Declare optional components using ``ecbuild_add_option``::
     CONDITION NetCDF_FOUND
   )
 
-Always provide a clear description and a logical default.
+Features controlled by ``ecbuild_add_option`` can be enabled or disabled at
+configure time by passing a corresponding CMake variable on the command line::
+
+  cmake -DUSE_NETCDF=ON  path/to/source
+  cmake -DUSE_NETCDF=OFF path/to/source
+
+Each option creates two variables:
+
+- ``USE_NETCDF`` – user-facing toggle
+- ``HAVE_NETCDF`` – internal result after evaluating the ``CONDITION``
+
+Only ``HAVE_<FEATURE>`` should be used to guard code or subdirectories.
 
 Plugins and Optional Modules
 ----------------------------
