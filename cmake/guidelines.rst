@@ -140,15 +140,11 @@ Some repositories (e.g. **FIAT**, **OOPS**) contain both Fortran and C or C++ so
 For such projects:
 
 - Ensure all used languages are declared in ``project()``.
-- Apply language-specific flags via ``ecbuild_add_c_flags`` and
-  ``ecbuild_add_fortran_flags`` when needed.
 - Refer to the section :ref:`hardening-safety-flags` for guidance on compiler
   hardening flags, safe flag handling, and how to avoid modifying global CMake
   variables directly.
 - Keep mixed-language structure clear by grouping source files and targets
   logically (e.g., C utilities in ``src/c/``, Fortran modules in ``src/fortran/``).
-- Use ``target_compile_options()`` for target-specific flags; these are
-  appended to the project-wide flags already defined via ecbuild.
 
 ---
 
@@ -211,45 +207,97 @@ Add compiler-specific options through ``ecbuild_add_fortran_flags()``::
 
 Hardening and Safety Flags
 --------------------------
-Some IFS components (notably **FIAT**, but also OOPS utilities and low-level
-C support code) require stricter compiler behaviour to ensure robustness,
-memory safety, or standards conformance.
 
-Hardening or safety-related compiler flags (e.g. ``-fstack-protector-strong``,
-``-Wall``, ``-Wextra``, ``-Werror``, ``-fsanitize`` options) must follow these
-general rules, regardless of language (C, C++, Fortran):
+Compiler hardening, warning, and safety-related flags may originate from
+three distinct layers of the IFS build environment:
 
-1. **Do not modify global CMake variables** such as ``CMAKE_C_FLAGS``,
-   ``CMAKE_CXX_FLAGS`` or ``CMAKE_Fortran_FLAGS`` directly.
+Flag Sources and Precedence
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   These variables:
-   - affect the entire build (IFS “bundle superspace”), making changes risky;
-   - bypass ecbuild’s configuration-time safety checks and portability logic.
+The following layers determine the final compiler flags applied to a target:
 
-2. **Use ecbuild helpers** (``ecbuild_add_c_flags``, ``ecbuild_add_fortran_flags``)
-   to apply project-wide hardening flags in a controlled way.
+.. code-block::
 
-3. **Use ``target_compile_options()`` for target-specific flags** when a library
-   or executable requires stricter settings than the rest of the project.
+    ┌──────────────────────────────────────────────┐
+    │  Platform Toolchain (ifs-bundle)             │
+    │  * compiler selection                        │
+    │  * MPI wrappers                              │
+    │  * optimisation defaults                     │
+    └──────────────────────────────────────────────┘
+                     ↓
+    ┌──────────────────────────────────────────────────────────┐
+    │  IFS Master Flags (ifs-source/cmake/compile_flags.cmake) │
+    │  * language-wide Fortran/C/C++ flags                     │
+    │  * global warning levels                                 │
+    │  * cross-component consistency                           │
+    └──────────────────────────────────────────────────────────┘
+                     ↓
+    ┌──────────────────────────────────────────────────┐
+    │  Component-Specific Flags (e.g. ecwam/fiat/oops) │
+    │  * local warning policies                        │
+    │  * experimental or safety-related options        │
+    │  * project-maintained exceptions                 │
+    └──────────────────────────────────────────────────┘
+                     ↓
+    target_compile_options()  (per-target adjustments)
 
-4. **Keep all hardening flags isolated** in a dedicated CMake module
-   (typically ``cmake/compile_flags.cmake``) with clear comments explaining
-   their purpose and which targets they apply to.
+General Guidelines
+~~~~~~~~~~~~~~~~~~
 
-5. **Expose hardening choices via options** when appropriate, e.g.::
+- **Do not** modify the raw CMake variables (``CMAKE_C_FLAGS``,
+  ``CMAKE_Fortran_FLAGS``, etc.), because:
 
-      ecbuild_add_option(
-        FEATURE ENABLE_HARDENING
-        DEFAULT OFF
-        DESCRIPTION "Enable stricter safety and hardening compiler flags"
-      )
+  * they apply globally across the entire IFS bundle, and
+  * they bypass ecbuild’s feature-testing and compiler compatibility checks.
 
+- Use ``ecbuild_add_c_flags`` and ``ecbuild_add_fortran_flags`` when the
+  intention is to extend the *project-wide* compile flags for a repository.
 
-   This allows end users or the central IFS build to toggle hardening at
-   configure time.
+- Use ``target_compile_options()`` only when adjusting flags for a
+  *specific* library or executable.
 
-This unified approach ensures consistency across pure Fortran projects
-(ecRad, ecWAM, ecTrans), mixed-language systems (FIAT, OOPS), and the main IFS.
+Project-Specific Flags Modules
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Several component repositories legitimately carry their own flag modules,
+typically to enforce safety, debugging, or warning behaviour specific to the
+project. Examples include:
+
+- ``ecwam/cmake/ecwam_compile_flags.cmake``
+- ``fiat/cmake/fiat_compiler_warnings.cmake``
+- ``oops/cmake/oops_compiler_flags.cmake``
+
+These modules:
+
+- Must clearly document the purpose of each flag
+  (e.g. numerical precision, stack protection, strict C++ warnings).
+- Should contain **only** flags relevant to that component, not flags intended
+  for the entire IFS ecosystem.
+- Are evaluated **after** toolchain and IFS master flags, meaning they may
+  refine or override behaviour locally.
+
+IFS Master Flags
+~~~~~~~~~~~~~~~~
+
+When building a component inside the full IFS build, the file
+
+``ifs-source/cmake/compile_flags.cmake``
+
+provides the canonical set of global build flags for consistency across the
+entire system. Component repositories should not duplicate these settings.
+
+Switchable Hardening Options
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If strong hardening or warning levels are introduced (e.g.
+``-fstack-protector-strong``, ``-Werror``), they must:
+
+- be placed in the project's dedicated compile-flags module,
+- be guarded by an option (e.g. ``ENABLE_STRICT_FLAGS``),
+- be disabled by default unless the project mandates otherwise,
+- document clearly the motivation (e.g. “FIAT requires strict C safety
+  rules for low-level systems components”).
+
 
 Cross-Project Flag Propagation
 ------------------------------
