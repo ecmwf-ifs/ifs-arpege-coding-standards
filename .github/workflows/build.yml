@@ -50,3 +50,11 @@ jobs:
                         --source "${{ matrix.language }}/_build/html/" \
                         --destination "${{ matrix.language }}/" \
                         --recursive
+                ~/bin/sites site \
+                    --debug \
+                    --space docs \
+                    --name ifs-arpege-coding-standards \
+                    --token "${SITES_TOKEN}" \
+                    content upload \
+                        --force \
+                        --source "index.html"

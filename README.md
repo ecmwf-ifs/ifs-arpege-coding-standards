@@ -11,6 +11,7 @@ The standards and their applicability are as follows:
 1. `fortran` - applicable to both IFS and Arpège
 1. `python` (#todo) - applicable to IFS only
 1. `shell` - applicable to IFS only
+1. `suites` - applicable to IFS only
 1. `cmake` - applicable to IFS only
 
 ## Build locally
