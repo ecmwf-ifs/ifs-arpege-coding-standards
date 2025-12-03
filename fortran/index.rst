@@ -99,6 +99,7 @@ points (Sy), and Single-Column related rules (SCz).
    rules/I5
    rules/I6
    rules/I7
+   rules/I8
    rules/SC1
    rules/SC2
    rules/SC3

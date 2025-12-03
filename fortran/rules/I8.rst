@@ -1,0 +1,34 @@
+I7 : FYPP files
+***************
+
+
+The use of `fypp` pre-processing is accepted, with limitations:
+the preprocessing must happen within a Fortran `MODULE`, or within a `SUBROUTINE`.
+In the latter case, it should not generate more than one actual Fortran subroutine/file from a fypp subroutine/file,
+and the interface of the subroutine should not be changed by the pre-processing between the `.fypp` file
+and the `.F90` file.
+
+A bit of context
+----------------
+
+Since CY48, a new file type has been introduced in the IAL repository in order to reduce boilerplate code
+and automatically generate Fortran code otherwise cumbersome to write and maintain.
+This file type is called `fypp` for "Fortran pYthon Pre-Processing",
+named after a tool that processes comments in Fortran code to expand it.
+The files are suffixed `.fypp` and transformed into `.F90` files by the `fypp` pre-processor, prior to compilation.
+Until CY49, only Fortran modules had to be pre-processed that way.
+In CY49T1, 4 subroutines were transformed into `.fypp` in order to generate code within.
+
+In the IAL, the use of `.h` interfaces files for subroutines within the project is enforced in order to detect bugs
+at compilation stage rather than at execution.
+However, in order to avoid writing and maintaining manually these interfaces in the repository,
+they are automatically generated as a pre-compilation step.
+This auto-generation only targets `.F90` files containing one subroutine, as stated in the coding standards of the IAL.
+
+When it comes to `.fypp` subroutines, their interfaces need to be auto-generated too.
+Two approaches are possible:
+* transform `.fypp` into `.F90`, then generate interfaces
+* generate interfaces of `.fypp`, then transform `.fypp` into `.F90`
+For the second approach to be viable, it assumes that one `.fypp` produces one and only one `.F90` subroutine,
+and that the interface (or signature) of the subroutine is not changed by the `fypp` pre-processing.
+
