@@ -1,16 +1,9 @@
-L15 : dummy/actual array dimensions
-***********************************
+L15 : notations
+***************
 
-If an actual argument is an array, then :
+Notations should homogeneous for the loop index, NPROMA array leading dimension, first iteration, last iteration:
 
-- its rank should match the rank of the corresponding dummy argument
+* ``JLON/KLON/KIDIA/KFDIA`` in ARPEGE physics
+* ``JL/KLON/KIDIA/KFDIA`` in ECMWF physics
+* ``JROF/NPROMA/KST/KEND`` in dynamics routines (call_sl.F90, cpg_gp.F90, cpg_dyn.F90)
 
-- its dimensions should match those of the corresponding dummy argument
-
-Notable exceptions are the interpolation routines of the Semi-Lagrangian: 
-
-* ``laitli.F90``
-
-* ``laitri.F90``
-
-* etc.

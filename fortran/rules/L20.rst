@@ -1,0 +1,9 @@
+L20 : Design of derived types
+*****************************
+
+Dervived types should be implemented in modules. Their methods (the minimal code accessing their private attributes) 
+should be implemented in the module where they are defined.
+
+The SEQUENCE statement is forbidden in the definition of complex (embedding some POINTER or ALLOCATABLE members) derived types 
+meant to be used on accelerators, as the SEQUENCE statement
+forbids the implementation of object methods.

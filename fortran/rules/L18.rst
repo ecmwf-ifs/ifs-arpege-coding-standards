@@ -1,16 +1,27 @@
-L18 : Design of NPROMA routines
-*******************************
+L18 : Pointers in NPROMA routines
+*********************************
 
-NPROMA routines should be individual subroutines, allowing for :
-
-- automatic interface generation
-- separate compilation
-- easiness of automatic analysis and transformation
-
-In particular implementing a routine or a set of subroutines inside a module in
-order to benefit from the automatic generation of an interface in a .mod file
-should be prohibited.
-
-The use of modules should be restricted to derived types definition and implementation (methods).
+The use of Fortran pointers in compute NPROMA routines should be forbidden except for the following pattern:
 
 
+.. code-block:: fortran
+
+   SUBROUTINE GPRCP_EXPL (YDCST, YDCPG_BNDS, YDCPG_OPTS, PCP, PR, PKAP, YDVARS, KGFLTYP)
+
+   REAL(KIND=JPRB),OPTIONAL,TARGET,INTENT(OUT)   :: PCP(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
+   REAL(KIND=JPRB),OPTIONAL,TARGET,INTENT(OUT)   :: PR(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
+   REAL(KIND=JPRB),OPTIONAL,       INTENT(OUT)   :: PKAP(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
+
+   REAL(KIND=JPRB), POINTER :: ZR(:,:)
+   REAL(KIND=JPRB), TARGET  :: ZR0(YDCPG_OPTS%KLON,YDCPG_OPTS%KFLEVG)
+
+   IF (PRESENT (PR)) THEN
+     ZR => PR
+   ELSEIF (PRESENT (PKAP)) THEN
+     ZR => ZR0
+   ELSE
+     CALL ABOR1 ('GPRCP_EXPL: EXPECTED PR OR PKAP')
+   ENDIF
+
+
+And such pointers should always point to arrays with the same shapes.

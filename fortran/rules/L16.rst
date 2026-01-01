@@ -1,23 +1,16 @@
-L16 : INTENT attribute in NPROMA routines
-*****************************************
+L16 : dummy/actual array dimensions
+***********************************
 
-In NPROMA routines (those processing a single NPROMA block), only NPROMA data should
-be allowed to have an INTENT different of IN.
-All other argument data should have the ``INTENT(IN)`` attribute.
+If an actual argument is an array, then :
 
-This, for instance should be forbidden:
+- its rank should match the rank of the corresponding dummy argument
 
-.. code-block:: fortran
+- its dimensions should match those of the corresponding dummy argument
 
-   SUBROUTINE LAPINEA(&
-   & YDGEOMETRY, YDML_GCONF,YDML_DYN,KST,KPROF,YDSL,KIBL,PB1,PB2,PWRL9,&
-   & KVSEPC,KVSEPL,&
-   & PSAVEDP,PCCO,PUF,PVF,KL0,KLH0,PLSCAW,PRSCAW,KL0H,PLSCAWH,PRSCAWH,&
-   & PSCO,PGFLT1,KNOWENO)
+Notable exceptions are the interpolation routines of the Semi-Lagrangian: 
 
-   INTEGER(KIND=JPIM),INTENT(INOUT) :: KVSEPC
-   INTEGER(KIND=JPIM),INTENT(INOUT) :: KVSEPL
+* ``laitli.F90``
 
-In particular, ``YDMODEL`` and ``YDGEOMETRY`` as well as all their sub-components passed as arguments (eg ``YDDYNA``) should 
-have the ``INTENT(IN)`` attribute in NPROMA routines.
+* ``laitri.F90``
 
+* etc.
