@@ -54,5 +54,4 @@ any jurisdiction.
 ## Contributing
 
 Contributions are welcome. Please open an issue where a proposed change can be
-discussed. Then create a pull request with your contribution and sign the
-[contributors license agreement (CLA)](https://bol-claassistant.ecmwf.int/ecmwf-ifs/ifs-arpege-coding-standards).
+discussed. Then create a pull request with your contribution.
